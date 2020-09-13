@@ -52,9 +52,18 @@
 
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        {{ partial "authors.html" $page }}
+                        {{ partial "comment.html" $page }}
                     </div>
                 </div>
+
+                {{- if .Site.Params.commento.enable -}}
+                <div class="row justify-content-center my-3">
+                    <div class="col-lg-8">
+                        <div id="commento"></div>
+                        <script src="{{ .Site.Params.commento.url }}"></script>
+                    </div>
+                </div>
+                {{- end -}}
             </article>
         </div>
     </div>
