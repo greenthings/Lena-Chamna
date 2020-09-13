@@ -36,16 +36,9 @@ rss = true
 email = "keunnalee@gmail.com"
 facebook = "https://www.facebook.com/devlena.lee"
 linkedin = "https://linkedin.com"
-stack-overflow = "https://stackoverflow.com"
 instagram = "https://www.instagram.com/dev_lena_lee"
 github = "https://github.com/dev-Lena"
-weibo = "https://www.weibo.com"
 medium = "https://medium.com"
-pinterest = "https://pinterest.com"
-reddit = "https://reddit.com"
-gitlab = "https://gitlab.com"
-mastodon = "https://mastodon.social"
-keybase = "https://keybase.io/"
 [params.prismJS]
    enable = true
    theme = "okaidia"
