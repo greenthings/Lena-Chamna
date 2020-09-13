@@ -1,6 +1,8 @@
 # Lena-Chamna
 Hugo + Netlify
-[chunky-poster 테마](https://github.com/puresyntax71/hugo-theme-chunky-poster)를 사용하였습니다
+[hugo-theme-chunky-poster 테마](https://github.com/puresyntax71/hugo-theme-chunky-poster)를 사용했다.
+
+* 참고로 커스텀하는 과정에서 themes/hugo-theme-chunky-poster 하위에 있는 모든 파일들은 참고만 하고 수정하지는 않는다.  
 
 ## content
 포스팅할 md 파일을 `contents > posts` 에 등록한다.
@@ -25,7 +27,7 @@ authors: []
 images: ['/images/your-image.png']
 ---
 ```
-그르면 헤더 이미지를 볼 수 있다.
+그러면 헤더 이미지를 볼 수 있다.
 
 ## archetypes
 `hugo new posts/제목.md` 로 생성한 md 파일이 posts 폴더에 생성될 때 archetypes에서 정의한 기본 템플릿으로 생성된다.
@@ -59,87 +61,6 @@ images 폴더를 만든 후 homepage-image.jpg 로 이미지를 저장하면 홈
 🏗 Config
 데모 사이트를 참고하여서 config를 작성하고 싶다면 `themes/chunky-poster/exampleSite` 에 있는 config.toml를 참고하면 된다.
 
-```
-baseURL = "https://example.com"
-title = "Hugo Themes"
-copyright = "Copyright © 2008–2019, Steve Francia and the Hugo Authors; all rights reserved."
-paginate = 2
-languageCode = "en"
-DefaultContentLanguage = "en"
-enableInlineShortcodes = true
-footnoteReturnLinkContents = "^"
-googleAnalytics = "UA-XXXX"
-DisqusShortname = ""
-theme = "hugo-theme-chunky-poster"
-
-[menu]
-  [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
-    weight = 10
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 0
-
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
-author = "authors"
-
-[params]
-  author = "Hugo Authors"
-  description = "Lorem ipsum dolor sit amet."
-  homepageImage = "/images/homepage-image.jpg"
-  share = true
-  showLanguageSwitcher = false
-
-  # Custom CSS and JS. Relative to /static/css and /static/js respectively.
-
-  customCSS = []
-  customJS = []
-
-  [params.social]
-    rss = true
-    email = "example@example.com"
-    facebook = "https://facebook.com"
-    twitter = "https://twitter.com"
-    linkedin = "https://linkedin.com"
-    stack-overflow = "https://stackoverflow.com"
-    instagram = "https://stackoverflow.com"
-    github = "https://github.com"
-    weibo = "https://www.weibo.com"
-    medium = "https://medium.com"
-    pinterest = "https://pinterest.com"
-    reddit = "https://reddit.com"
-    gitlab = "https://gitlab.com"
-    mastodon = "https://mastodon.social"
-    keybase = "https://keybase.io/"
-
-  [params.prismJS]
-    enable = true
-    theme = ""
-
-  [params.commento]
-    enable = true
-    url = "https://commento.io"
-
-[markup]
-  [markup.highlight]
-    codeFences = false
-
-[services]
-  [services.instagram]
-    disableInlineCSS = true
-
-  [services.twitter]
-    disableInlineCSS = true
-```
-
-
 특히 여기서
 ```
 [params]
@@ -150,9 +71,82 @@ author = "authors"
 
 author에 작성자의 이름을, description에 설명을 쓰면 홈 화면에 적용되어 보여진다.
 
+## utterances 댓글 설정
+hugo-theme-chunky-poster에서는 commento와 Disqus를 지원하고 있다.
+utternaces를 사용하기 위해서는 `themes/hugo-theme-chunky-poster/layouts/_default/single.html`를 참고하여  
+layouts 폴더 하위에 `_default` 폴더를 생성한 후 `single.html`에 utterances html 코드를 추가한다. 위치는 content 아래에 위치하도록 정해줬다.
+```html
+{{ define "main" }}
+<main class="content-page container pt-7 pb-5">
+    <div class="row">
+        <div class="col">
+            <article>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="mb-3">{{ .Title }}</h2>
+
+                        <div class="content">
+                            {{ .Content }}
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <script src="https://utteranc.es/client.js"
+                    repo="dev-Lena/blog-comments"
+                    issue-term="pathname"
+                    label="✨💬✨"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </div>
+    </div>
+</main>
+{{ end }}
+```
+
+## 임시저장
+content/posts/ 에 저장한 md 파일에서
+```
+---
+title: "My First Post"
+date: 2020-09-14T02:07:08+09:00
+draft: false
+---
+```
+draft가 true로 설정되어있으면 임시저장의 개념으로 배포했을 때 해당 문서는 글로 올라가지 않는다.
+false로 설정해야 배포시 포스팅을 할 수 있다.
+
+
 ## Netlify로 배포하기
 [Netlify](https://app.netlify.com/)에 가입하여서 진행하면 된다.
 준비 사항은 github 레파지토리 (로컬에 만들어놓은 블로그 컨텐츠가 있는 레파지토리)를 미리 만들어놓고 Netlify와 연결하면 된다.
 
 빌드 명령어: `hugo`
 배포 디렉토리: `public`
+
+배포 전 로컬 서버에서 확인하고 싶다면
+```
+hugo server 
+또는 
+hugo server -D
+```
+로 확인할 수 있다.
+
+
+터미널에 변경 사항을 커밋한 후 
+```
+git push origin matser
+```
+로 변경사항을 원격 저장소로 푸시하면 Netlify 에서 자동으로 빌드와 배포를 시작한다.
+
+Netlify 홈페이지에서 <br>
+<img src="https://i.imgur.com/PWl6A92.png" style="width:50%"><br>
+<img src="https://i.imgur.com/ldyI3CP.png" style="width:50%"><br>
+
+배포 상태를 확인할 수 있고 Building 중인 디플로이를 선택하면 배포 과정 로그를 확인할 수 있다.
+<img src="https://i.imgur.com/XgmflFT.png" style="width:50%"><br>
+
+
+
+
