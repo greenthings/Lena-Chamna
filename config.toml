@@ -24,7 +24,7 @@ author = "authors"
 [params]
 author = "Lena"
 description = "iOS Developer 👩🏻‍💻"
-homepageImage = "/images/homepage-image.jpg"
+homepageImage = "/images/homepage-image.png"
 share = true
 showLanguageSwitcher = false
 
