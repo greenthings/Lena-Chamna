@@ -81,12 +81,14 @@ git submodule add https://github.com/puresyntax71/hugo-theme-chunky-poster.git
 > [Git 도구 - 서브모듈](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88)  
 > Git 저장소 안에 다른 Git 저장소를 디렉토리로 분리해 넣는 것이 서브모듈이다. 다른 독립된 Git 저장소를 Clone 해서 내 Git 저장소 안에 포함할 수 있으며 각 저장소의 커밋은 독립적으로 관리한다.
 > 서브보듈을 추가하고 난 후 제대로 됐는지 확인하고 싶다면 [command + . + shift]를 눌러 숨겨진 파일 중 `.gitmodules` 파일이 있습니다.
-> `.gitmodules` 파일은 서브디렉토리와 하위 프로젝트 URL의 매핑 정보를 담은 설정파일입니다. 이곳에서 추가한 아래와 같이 submodule을 확인할 수 있습니다.
-> ```ini
-> [submodule "DbConnector"]
->     path = DbConnector
->     url = https://github.com/chaconinc/DbConnector
-> ```
+> `.gitmodules` 파일은 서브디렉토리와 하위 프로젝트 URL의 매핑 정보를 담은 설정파일입니다. 이곳에서 추가한 아래와 같이 submodule을 확인할 수 있습니다.  
+
+  ```ini
+  [submodule "DbConnector"]
+    path = DbConnector
+    url = https://github.com/chaconinc/DbConnector
+  ```
+  
 > 서브모듈 개수만큼 이 항목이 생긴다. 이 파일도 `.gitignore` 파일처럼 버전을 관리한다. 다른 파일처럼 Push 하고 Pull 한다. 이 프로젝트를 Clone 하는 사람은 `.gitmodules` 파일을 보고 어떤 서브모듈 프로젝트가 있는지 알 수 있다.
 > 혹시 submodule을 추가하는 와중에 문제가 생겨서 submodule을 삭제하고 다시 진행하고 싶다면 [stackoverflow - git submodule add a git directory is founc locally issue](
 https://stackoverflow.com/questions/20929336/git-submodule-add-a-git-directory-is-found-locally-issue)와 [iOS git submodule](https://zeddios.tistory.com/704)를 참고하여 진행하면 해결할 수 있습니다.
