@@ -11,7 +11,7 @@ tags = [
 images = [
     "iOS_developing_mac.png"
 ]
-draft = false
+draft = true
 +++
 
 Hugo + Netlify로 블로그 만드는 방법을 소개합니다.
@@ -57,7 +57,8 @@ git submodule add https://github.com/puresyntax71/hugo-theme-chunky-poster.git
 ### 각 디렉토리에서 할일
 #### content  
   * (포스트에 들어가는 md 파일 및 이미지 등을 관리)  
-포스팅할 md 파일을 `contents > posts` 에 등록합니다.  
+포스팅할 md 파일을 `contents > post` 에 등록합니다.  
+(⭐️ posts나 다른 폴더 이름으로 명명한다면 배포 후 테마가 적용되지 않을 수 있다.)
 이미지를 추가하고 싶다면 images 폴더를 추가한 후(`content/images`) 이곳에 이미지를 추가하면 됩니다.  
 
 그리고 아래 내용을 가진 `content/images/index.md` 를 생성합니다.  
