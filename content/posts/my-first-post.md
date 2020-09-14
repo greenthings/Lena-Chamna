@@ -12,7 +12,7 @@ tags = [
 images = [
     "iOS_developing_mac.png"
 ]
-draft: false
+draft = false
 +++
 
 Testing My First Post 
