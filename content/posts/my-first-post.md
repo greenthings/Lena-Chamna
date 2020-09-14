@@ -1,5 +1,4 @@
-
-+++
+---
 authors = [
     "Lena"
 ]
@@ -13,7 +12,7 @@ images = [
     "images/iOS_developing_mac.png"
 ]
 draft = false
-+++
+---
 
 Testing My First Post 
 <!--more-->
