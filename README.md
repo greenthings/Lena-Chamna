@@ -5,7 +5,8 @@ Hugo + Netlify
 * 참고로 커스텀하는 과정에서 themes/hugo-theme-chunky-poster 하위에 있는 모든 파일들은 참고만 하고 수정하지는 않는다.  
 
 ## content
-포스팅할 md 파일을 `contents > posts` 에 등록한다.
+포스팅할 md 파일을 `contents > post` 에 등록한다.  
+(⭐️ posts나 다른 폴더 이름으로 명명한다면 배포 후 테마가 적용되지 않을 수 있다.)
 이미지를 추가하고 싶다면 `content/images` 에 이미지를 추가하면 된다.
 이미지를 사용할 md 파일을 열고 images 경로를 추가한다.
 그리고 아래 내용을 가진 `content/images/index.md` 를 생성 한다
@@ -39,6 +40,7 @@ date: {{ .Date }}
 draft: true
 ---
 ```
+
 ## layouts
 페이지의 HTML 템플릿을 커스텀할 수 있는 파일이 저장되어있다.
 데모 사이트에서 봤던 템플릿을 참고 하고 싶다면 themes/chunky-poster/layouts 를 참고하면 된다.
