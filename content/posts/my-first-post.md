@@ -10,7 +10,7 @@ tags = [
     "Test"
 ]
 images = [
-    "/images/iOS_developing_mac.png"
+    "iOS_developing_mac.png"
 ]
 draft: false
 +++
