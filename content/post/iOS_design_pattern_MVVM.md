@@ -233,15 +233,17 @@ func changeLocation(to newLocation: String) {
 >
 > 8. 그럼 여기서 실행할 클로저는 무엇이냐면,  `WeatherViewController` 클래스에서 View와 ViewModel을 바인드 해줬던 **👍🏻이 부분**이다. →<br>
 >
->    ~~~~swift
+>    ```swift
 >    override func viewDidLoad() {
 >        viewModel.locationName.bind { [weak self] locationName in // ❽ 👍🏻이 부분 
 >          self?.cityLabel.text = locationName 
 >        }
 >    }
->    ~~~~
+>    ```
 >
 > 9. 클로저에 담겨 온 `location.name` value를 `cityLabel.text `로 설정한다.
+
+
 
  <br>이 동작 흐름이 이해가 되셨다면 거의 다 오신겁니다!👍🏻 이 부분을 이해했다면 나머지 부분은 MVC와 비슷합니다.
 
