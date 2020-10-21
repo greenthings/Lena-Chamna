@@ -13,13 +13,14 @@ images = [
 ]
 draft = false
 +++
+<br><br>
 
 MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시다 🙌🏻
 
 <!--more-->
 
 <br><br>
-🗣 이 글은 MVC은 익숙하지만 MVVM은 처음 접한 분들을 위한 글입니다. 잘못된 부분이나 애매한 부분에 대해서 댓글로 피드백 주시면 감사하겠습니다🙌🏻 또한 댓글을 통한 토론도 환영입니다!
+🗣 이 글은 MVC 패턴은 익숙하지만 MVVM은 처음 접한 분들을 위한 글입니다. 잘못된 부분이나 애매한 부분에 대해서 댓글로 피드백 주시면 감사하겠습니다🙌🏻 또한 댓글을 통한 토론도 환영입니다!
 
 <br><br>
 
@@ -63,7 +64,7 @@ MVVM은 주로  RxSwift, RxCocoa, SwiftUI, Combine과 함께 사용합니다.
 
 **예제 화면**<br>
 
-<img src = "https://i.imgur.com/zfpmdb9.png" width = "30%"><br>**파일 구조**<br><img src="https://i.imgur.com/tCrpOft.png" /><br>
+<img src = "https://i.imgur.com/zfpmdb9.png" width = "30%"><br><br>**파일 구조**<br><br><img src="https://i.imgur.com/tCrpOft.png" /><br>
 
 인데요. 일단 MVVM에서 View인 ViewController를 먼저 봐볼까요? <br><br>
 
@@ -241,13 +242,13 @@ func changeLocation(to newLocation: String) {
 >    }
 >    ```
 >
-> 9. 클로저에 담겨 온 `location.name` value를 `cityLabel.text `로 설정한다.
+>  9. 클로저에 담겨 온 `location.name` value를 `cityLabel.text `로 설정한다.
 
 
 
  <br>이 동작 흐름이 이해가 되셨다면 거의 다 오신겁니다!👍🏻 이 부분을 이해했다면 나머지 부분은 MVC와 비슷합니다.
 
-<br><br><br>
+<br><br>
 
 ## 더 용이해진 테스트 
 
