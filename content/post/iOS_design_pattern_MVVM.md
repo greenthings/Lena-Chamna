@@ -36,8 +36,7 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
 
 ## MVVM이란? 
 <br>
-
-<img src = "https://i.imgur.com/84VHiS4.png" width = "60%">
+<img scr = "https://i.imgur.com/84VHiS4.png" width = "60%">
 
 (출처: [Stanford 강의](https://youtu.be/4GjXq2Sr55Q), 위 강의는 SwiftUI 기반으로 MVVM을 설명하고 있습니다. 이 글은 UIKit을 기반으로 작성되었습니다.)<br><br>
 
@@ -49,19 +48,18 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 ### MVC에서 MVVM을 찾게 된 과정
 
-  * 상황 
-    1. 입력/터치 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 구현 하고 싶었고, KVO/Notification을 이용해서 구현했습니다. 
-    2. 그런데 View와 Model이 자신들의 역할에 충실한 것(View는 화면을 그리는 것, Model은 앱 데이터, 비즈니르 로직)을 우선시하여 코드를 짰더니 View Controller가 점점 무거워졌습니다.
-    3. 또한 정상적으로 동작하는지 확인하기 위해 매번 시뮬레이터를 실행하면서 결과를 확인했었는데요. 화면이 많아지고 기능이 많아지다보니 이 작업이 상당히 비효율적이라고 느꼈었습니다. 
-    4. 그래서 테스트 코드를 작성하기 시작했습니다. 그런데 이 때 View나 ViewController 인스턴스를 생성해야 하고 생각보다 제약과 불편점이 많았습니다. 
-    5. 이를 테스트하기 위해서는 View와 비즈니스 로직을 분리하는 일이 필요하다는 걸 느꼈습니다.
-    6. 그러던 중 1-5번 고민을 해결할 수 있는 좀 더 좋은 방법을 찾아가 발견한 것이 MVVM 패턴입니다. <br>
+  1. 입력/터치 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 구현 하고 싶었고, KVO/Notification을 이용해서 구현했습니다. 
+  2. 그런데 View와 Model이 자신들의 역할에 충실한 것(View는 화면을 그리는 것, Model은 앱 데이터, 비즈니르 로직)을 우선시하여 코드를 짰더니 View Controller가 점점 무거워졌습니다.
+  3. 또한 정상적으로 동작하는지 확인하기 위해 매번 시뮬레이터를 실행하면서 결과를 확인했었는데요. 화면이 많아지고 기능이 많아지다보니 이 작업이 상당히 비효율적이라고 느꼈었습니다. 
+  4. 그래서 테스트 코드를 작성하기 시작했습니다. 그런데 이 때 View나 ViewController 인스턴스를 생성해야 하고 생각보다 제약과 불편점이 많았습니다. 
+  5. 이를 테스트하기 위해서는 View와 비즈니스 로직을 분리하는 일이 필요하다는 걸 느꼈습니다.
+  6. 그러던 중 1-5번 고민을 해결할 수 있는 좀 더 좋은 방법을 찾아가 발견한 것이 MVVM 패턴입니다. <br>
 
 <br><br>
 
 ## MVVM의 규칙들
 
-💡 MVVM에 대해서 공부하면서 MVVM이 뭔지, 어떻게 구현하는지 알아보기 위해 많은 예제와 자료를 봤는데요. 공부하면서 든 생각은 <br> **"MVVM에 정형화된 형식같은 건 없다. 다만 공통적으로 적용되는 규칙들이 있다."** 입니다.<br>
+💡 MVVM에 대해서 공부하면서 MVVM이 뭔지, 어떻게 구현하는지 알아보기 위해 많은 예제와 자료를 봤는데요. 공부하면서 든 생각은 <br> **"MVVM에 정형화된 형식같은 건 없다. 다만 공통적으로 적용되는 규칙들이 있다."** 입니다.<br><br>
 
 MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영상 [Stanford 강의](https://youtu.be/4GjXq2Sr55Q) 에서 MVVM에 대한 강의를 보면 MVVM에 대한 컨셉을 이해하기 좋습니다. 저의 경우 Stanford 강의에 나온 이미지와 함께 보면서 더 이해하기 쉬웠기 때문에 이미지도 함께 첨부하겠습니다. )<br>
 
@@ -70,15 +68,19 @@ MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영�
 
 | **<span style="color:orange">View</span>** |
 | -------- |
-| 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발표(publication)을  구독(subscribe)하고, 주시(관찰, observe)한다.**<br />     | 
+| 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발표(publication)을 구독(subscribe)하고, 주시(관찰, observe)한다.** <br>     | 
+
+<br>
 
 | **<span style="color:orange">ViewModel</span>** |
 | -------- |
 | 1. MVVM은 **ViewModel을 통해 UI 로직과 비즈니스 로직**을 분리했다.<br>2. MVVM은 MVC와 달리 ViewModel이 있다.<br>3.  ViewModel은 Model을 참조한다(반대는 X).<br>4. **View 없이 테스트가 가능**하다.<br>5. ViewModel은 View input으로부터 Model을 업데이트한다. <br>6. ViewModel은 Model이 변경되면 View에 반영한다. (Model output으로부터 View를 업데이트한다.) <br>7. ViewModel은 **View에 직접적으로 이야기하지 않는다. 무언가 바뀌었다고 발표(publish)** 한다. <br>9. 모든 UI 컨트롤의 상태를 알려주는 프로퍼티들을 포함한다.     |
 
+<br>
+
 | **<span style="color:orange">Model</span>** |
 | -------- |
-| 1. **UI에 독립적이다.**<br>2. **SwiftUI나 UIKit을 import 하지 않는다.**<br>3. **App이 하는 일에 대한 데이터와 로직을 캡슐화**하려고 한다.<br>4. Model이 변경됐을 때 ViewModel에게 알린다.     |
+| 1. **UI에 독립적이다.** <br> 2. **SwiftUI나 UIKit을 import 하지 않는다.** <br>3. **App이 하는 일에 대한 데이터와 로직을 캡슐화**하려고 한다.<br>4. Model이 변경됐을 때 ViewModel에게 알린다.     |
 <br><br><br>
 
 ## 간단한 MVVM 예제 
@@ -219,7 +221,7 @@ final class Observable<T> {
 
 <br>음... 어떻게 동작하는걸까요? 
 
-**위에 날씨를 검색할 "Paris"를 입력하고 Submit 버튼을 눌렀다고 가정해봅시다.**<br><br>
+**위에 날씨를 검색할 "Paris"를 입력하고 Submit 버튼을 눌렀다고 가정해봅시다.** <br><br>
 
 ~~~~swift
 // WeatherViewController 클래스
@@ -245,8 +247,8 @@ func changeLocation(to newLocation: String) {
 <br>
 좀 더 상세히 풀어서 설명해 볼께요.<br><br>  
 
-**이 부분을 이해하는게 중요한 포인트입니다**  ⭐️⭐️⭐️ <br><br>
-(각 번호에 해당하는 코드는 위에 코드블록에 주석으로 표시해놨습니다.)
+**이 부분을 이해하는게 중요한 포인트입니다**  ⭐️⭐️⭐️ 
+<br>(각 번호에 해당하는 코드는 위에 코드블록에 주석으로 표시해놨습니다.)
 
 > 1. 사용자가 날씨 검색을 할 도시로 "Paris"를 입력하고 Submit 버튼을 눌렀다.
 >
