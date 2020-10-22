@@ -36,7 +36,7 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
 
 ## MVVM이란? 
 <br>
-<img scr = "/images/Stanford_MVVM.png" width = "60%">
+<img scr = "https://i.imgur.com/84VHiS4.png" width = "60%">
 
 (출처: [Stanford 강의](https://youtu.be/4GjXq2Sr55Q), 위 강의는 SwiftUI 기반으로 MVVM을 설명하고 있습니다. 이 글은 UIKit을 기반으로 작성되었습니다.)<br><br>
 
@@ -63,7 +63,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영상 [Stanford 강의](https://youtu.be/4GjXq2Sr55Q) 에서 MVVM에 대한 강의를 보면 MVVM에 대한 컨셉을 이해하기 좋습니다. 저의 경우 Stanford 강의에 나온 이미지와 함께 보면서 더 이해하기 쉬웠기 때문에 이미지도 함께 첨부하겠습니다. )<br>
 
-<img src = "https://i.imgur.com/pW7dmjD.jpg" width = "80%"><br><br>
+<img src = "https://i.imgur.com/pW7dmjD.jpg" width = "70%"><br><br>
 
 
 | **<span style="color:orange">View</span>** |
