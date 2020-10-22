@@ -19,14 +19,14 @@ AppDelegate와 SceneDelegate에 대해서 알아봅시다 😁 <br><br>
 <!--more-->
 
 ##    <  📑 목차  >
-* [AppDelegate와 SceneDelegate](#AppDelegate와-SceneDelegate)
-  * [사전 지식 (용어)](#사전-지식-(용어))
-* [iOS13부터 바뀐 점](#iOS13부터-바뀐점)
-  * [Scene?](#Scene?)
-  * [Scene Session?](#Scene-Session?)
-  * [iOS13부터 AppDelegate가 하는 일?](#iOS13부터-AppDelegate가-하는-일?)
-  * [Deployment Target이 iOS 13 미만인 상황에서는?](#Deployment-Target이-iOS-13-미만인-상황에서는?)
-* [참고](#참고)
+* [AppDelegate와 SceneDelegate](##AppDelegate와-SceneDelegate)
+  * [사전 지식 (용어)](###사전-지식-(용어))
+  * [iOS13부터 바뀐 점](###iOS13부터-바뀐점)
+  * [Scene?](###Scene?)
+  * [Scene Session?](###Scene-Session?)
+  * [iOS13부터 AppDelegate가 하는 일?](###iOS13부터-AppDelegate가-하는-일?)
+  * [Deployment Target이 iOS 13 미만인 상황에서는?](###Deployment-Target이-iOS-13-미만인-상황에서는?)
+* [참고](###참고)
 
 <img scr = "https://images.velog.io/images/dev-lena/post/148cbeeb-9db2-42ff-a2c9-2bd8a10bc839/image.png" width = "60%">
 
