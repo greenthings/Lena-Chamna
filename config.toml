@@ -28,10 +28,6 @@ homepageImage = "/images/homepage-image.png"
 share = true
 showLanguageSwitcher = false
 
-[outputs] 
-home = ["HTML", "RSS", "JSON"]
-enableRobotsTXT = false
-
 [sitemap] 
 changefreq = "weekly" 
 filename = "sitemap.xml"
