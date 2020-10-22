@@ -30,7 +30,7 @@ showLanguageSwitcher = false
 
 [outputs] 
 home = ["HTML", "RSS", "JSON"]
-enableRobotsTXT = true
+enableRobotsTXT = false
 
 [sitemap] 
 changefreq = "weekly" 
