@@ -9,13 +9,14 @@ tags = [
     "Design Pattern", "Architecture Pattern", "MVVM"
 ]
 images = [
-  '/images/iOS_MVVM.png'
+  "/images/iOS_MVVM.png"
 ]
 draft = false
 +++
-<br><br>
 
 MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시다 🙌🏻<br><br>
+
+<!--more-->
 
 ##    <  📑 목차  >
 * [MVVM이란?](#MVVM이란?)
@@ -27,7 +28,6 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
 * [결론](#결론)
 * [참고](#참고)
 
-<!--more-->
 
 <br><br>
 🗣 이 글은 MVC 패턴은 익숙하지만 MVVM은 처음 접한 분들을 위한 글입니다. 잘못된 부분이나 애매한 부분에 대해서 댓글로 피드백 주시면 감사하겠습니다🙌🏻 또한 댓글을 통한 토론도 환영입니다!
@@ -57,7 +57,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
     5. 이를 테스트하기 위해서는 View와 비즈니스 로직을 분리하는 일이 필요하다는 걸 느꼈습니다.
     6. 그러던 중 1-5번 고민을 해결할 수 있는 좀 더 좋은 방법을 찾아가 발견한 것이 MVVM 패턴입니다. <br>
 
-<br><br><br>
+<br><br>
 
 ## MVVM의 규칙들
 
@@ -68,8 +68,8 @@ MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영�
 <img src = "https://i.imgur.com/pW7dmjD.jpg" width = "70%"><br><br>
 
 
-| **<span style="color:orange">View</span>** | 
-| -------- | 
+| **<span style="color:orange">View</span>** |
+| -------- |
 | 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발표(publication)을  구독(subscribe)하고, 주시(관찰, observe)한다.**<br />     | 
 
 | **<span style="color:orange">ViewModel</span>** |

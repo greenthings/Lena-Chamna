@@ -9,7 +9,7 @@ tags = [
     "hugo", "netlify" 
 ]
 images = [
-  '/images/hugo+netlify.png'
+  "/images/hugo+netlify.png"
 ]
 draft = false
 +++
@@ -254,4 +254,32 @@ false로 설정해야 배포시 글이 보입니다.
 <img src="https://i.imgur.com/ldyI3CP.png" style="width:50%"><br>
 로그를 통해 진행 과정을 확인할 수 있고 실패시 오류의 원인을 제시합니다.  
 <img src="https://i.imgur.com/XgmflFT.png" style="width:50%"><br>
-<img src="https://i.imgur.com/0E1QRkw.png" style="width:50%"><br>
+<img src="https://i.imgur.com/0E1QRkw.png" style="width:49%"><br>
+
+### 대표 이미지가 보이지 않을 때
+- [hugo-theme-chunky-poster](https://themes.gohugo.io/hugo-theme-chunky-poster/) 참고
+  1. `content/images/index.md` 추가
+```html
+---
+headless: true
+---
+```
+  2. 포스트에 이미지 프로퍼티 
+```html
+---
+images: ["/images/image.png"]
+---
+```
+### 내가 보려고 기록해놓는 명령어
+* 새 글 추가
+```terminal
+hugo new post/fileName.md
+```
+* local:1313에서 보기
+```terminal
+hugo server
+```
+* 도움!
+```terminal
+hugo help
+```
