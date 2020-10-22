@@ -20,12 +20,12 @@ AppDelegate와 SceneDelegate에 대해서 알아봅시다 😁 <br><br>
 
 ##    <  📑 목차  >
 * [AppDelegate와 SceneDelegate](#AppDelegate와-SceneDelegate)
-  * [사전 지식 (용어)](#사전-지식-(용어))
-  * [iOS13부터 바뀐 점](#iOS13부터-바뀐점)
-  * [Scene?](#Scene?)
-  * [Scene Session?](#Scene-Session?)
-  * [iOS13부터 AppDelegate가 하는 일?](#iOS13부터-AppDelegate가-하는-일?)
-  * [Deployment Target이 iOS 13 미만인 상황에서는?](#Deployment-Target이-iOS-13-미만인-상황에서는?)
+* [사전 지식 (용어)](#사전-지식-(용어))
+* [iOS13부터 바뀐 점](#iOS13부터-바뀐점)
+* [Scene?](#Scene?)
+* [Scene Session?](#Scene-Session?)
+* [iOS13부터 AppDelegate가 하는 일?](#iOS13부터-AppDelegate가-하는-일?)
+* [Deployment Target이 iOS 13 미만인 상황에서는?](#Deployment-Target이-iOS-13-미만인-상황에서는?)
 * [참고](#참고)
 
 <img scr = "https://i.imgur.com/GlXvqQQ.png" width = "60%">
