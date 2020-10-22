@@ -2,20 +2,30 @@
 authors = [
     "Lena"
 ]
-title = "간단한 예제로 살펴보는 MVVM Design Pattern"
+title = "간단한 예제로 살펴보는 iOS Design/Architecture Pattern: MVVM"
 date = 2020-10-21T23:26:10+09:00
-description = "MVVM Design Pattern with UIKit"
+description = "MVVM Design/Architecture Pattern with UIKit"
 tags = [
     "Design Pattern", "Architecture Pattern", "MVVM"
 ]
 images = [
-    "iOS_MVVM.png"
+  '/images/iOS_MVVM.png'
 ]
 draft = false
 +++
 <br><br>
 
-MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시다 🙌🏻
+MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시다 🙌🏻<br><br>
+
+##    <  📑 목차  >
+* [MVVM이란?](#MVVM이란?)
+  * [MVC에서 MVVM을 찾게 된 과정](#MVC에서-MVVM을-찾게-된-과정)
+* [MVVM의 규칙들](#MVVM의-규칙들)
+* [간단한 MVVM 예제](#간단한-MVVM-예제)
+* [View와 ViewModel 바인딩 이해하기](#View와-ViewModel-바인딩-이해하기)
+* [더 용이해진 테스트](#더-용이해진-테스트)
+* [결론](#결론)
+* [참고](#참고)
 
 <!--more-->
 
@@ -24,7 +34,8 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
 
 <br><br>
 
-## MVVM이란?<br><br>
+## MVVM이란? 
+<br>
 
 <img src = "https://i.imgur.com/84VHiS4.png" width = "60%">
 
@@ -32,9 +43,19 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
 
 위 이미지에서 **Works in concert with the concept of "reactive" user-interfaces.** 이 부분이 중요한 포인트입니다.<br>
 
-MVVM을 제가 한마디로 정리해보자면 **UI 로직과 비즈니스 로직을 분리하고, 리액티브한 UI 컨셉과 함께 협력하여 작동하는 디자인 패턴(아키텍쳐 패턴)** 라고 할 수 있을 것 같습니다.<br><br>
+MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하고, ❷ 리액티브한 UI 컨셉과 함께 협력하여 작동하는 디자인 패턴(아키텍쳐 패턴)** 라고 할 수 있을 것 같습니다.<br><br>
 
-개인적으로 제가 MVVM에 대해서 찾아보게 된 계기도 바로 이 때문인데요. 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 하고 싶었고, KVO와 Notification을 이용해서 구현했습니다. 그리고 정상적으로 동작하는지 확인하기 위해 매번 시뮬레이터를 실행하면서 결과를 확인했었는데요. 화면이 많아지고 기능이 많아지다보니 이 작업이 상당히 비효율적이라고 느꼈졌었습니다. 그래서 테스트 코드를 작성하기 시작했는데, 이 때 필요한 선 과정이 View와 비즈니스 로직을 분리하는 일이었어요. 그러다 진행하던 프로젝트를 종료하고 더 좋은 방법을 고민하다가 찾은 것이 MVVM입니다. 그 전에 많이 들어왔지만 어떤 개념인지 알고있지는 못했는데, 앞서 구현을 하면서 고민하던 과정과 MVC 패턴에 대한 단점을 느끼고 있어 MVVM의 필요성과 장점이 와닿았어요.
+제가 MVVM에 대해서 찾아보게 된 계기도 바로 이 때문인데요. 그럼 본격적으로 MVVM에 대해서 좀 더 알아봅시다 🙌🏻
+
+### MVC에서 MVVM을 찾게 된 과정
+
+  * 상황 
+    1. 입력/터치 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 구현 하고 싶었고, KVO/Notification을 이용해서 구현했습니다. 
+    2. 그런데 View와 Model이 자신들의 역할에 충실한 것(View는 화면을 그리는 것, Model은 앱 데이터, 비즈니르 로직)을 우선시하여 코드를 짰더니 View Controller가 점점 무거워졌습니다.
+    3. 또한 정상적으로 동작하는지 확인하기 위해 매번 시뮬레이터를 실행하면서 결과를 확인했었는데요. 화면이 많아지고 기능이 많아지다보니 이 작업이 상당히 비효율적이라고 느꼈었습니다. 
+    4. 그래서 테스트 코드를 작성하기 시작했습니다. 그런데 이 때 View나 ViewController 인스턴스를 생성해야 하고 생각보다 제약과 불편점이 많았습니다. 
+    5. 이를 테스트하기 위해서는 View와 비즈니스 로직을 분리하는 일이 필요하다는 걸 느꼈습니다.
+    6. 그러던 중 1-5번 고민을 해결할 수 있는 좀 더 좋은 방법을 찾아가 발견한 것이 MVVM 패턴입니다. <br>
 
 <br><br><br>
 
@@ -47,11 +68,17 @@ MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영�
 <img src = "https://i.imgur.com/pW7dmjD.jpg" width = "70%"><br><br>
 
 
+| **<span style="color:orange">View</span>** | 
+| -------- | 
+| 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발표(publication)을  구독(subscribe)하고, 주시(관찰, observe)한다.**<br />     | 
 
-| View                                                         | ViewModel                                                    | Model                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발표(publication)을  구독(subscribe)하고, 주시(관찰, observe)한다.**<br /> | 1. MVVM은 **ViewModel을 통해 UI 로직과 비즈니스 로직**을 분리했다.<br>2. MVVM은 MVC와 달리 ViewModel이 있다.<br>3.  ViewModel은 Model을 참조한다(반대는 X).<br>4. **View 없이 테스트가 가능**하다.<br>5. ViewModel은 View input으로부터 Model을 업데이트한다. <br>6. ViewModel은 Model이 변경되면 View에 반영한다. (Model output으로부터 View를 업데이트한다.) <br>7. ViewModel은 **View에 직접적으로 이야기하지 않는다. 무언가 바뀌었다고 발표(publish)**한다. <br>9. 모든 UI 컨트롤의 상태를 알려주는 프로퍼티들을 포함한다. | 1. **UI에 독립적이다.**<br>2. **SwiftUI나 UIKit을 import 하지 않는다.**<br>3. App이 하는 일에 대한 데이터와 로직을 캡슐화하려고 한다.<br>4. **Model이 변경됐을 때 ViewModel에게 알린다.** |
+| **<span style="color:orange">ViewModel</span>** |
+| -------- |
+| 1. MVVM은 **ViewModel을 통해 UI 로직과 비즈니스 로직**을 분리했다.<br>2. MVVM은 MVC와 달리 ViewModel이 있다.<br>3.  ViewModel은 Model을 참조한다(반대는 X).<br>4. **View 없이 테스트가 가능**하다.<br>5. ViewModel은 View input으로부터 Model을 업데이트한다. <br>6. ViewModel은 Model이 변경되면 View에 반영한다. (Model output으로부터 View를 업데이트한다.) <br>7. ViewModel은 **View에 직접적으로 이야기하지 않는다. 무언가 바뀌었다고 발표(publish)** 한다. <br>9. 모든 UI 컨트롤의 상태를 알려주는 프로퍼티들을 포함한다.     |
 
+| **<span style="color:orange">Model</span>** |
+| -------- |
+| 1. **UI에 독립적이다.**<br>2. **SwiftUI나 UIKit을 import 하지 않는다.**<br>3. **App이 하는 일에 대한 데이터와 로직을 캡슐화**하려고 한다.<br>4. Model이 변경됐을 때 ViewModel에게 알린다.     |
 <br><br><br>
 
 ## 간단한 MVVM 예제 
@@ -60,13 +87,13 @@ MVVM은 주로  RxSwift, RxCocoa, SwiftUI, Combine과 함께 사용합니다.
 
 그렇다면 RxSwift, RxCocoa, SwiftUI, Combine을 알아야만 MVVM을 사용할 수 있을까요? 그렇지 않습니다.
 
-[raywenderlich - iOS MVVM Tutorial: Refactoring from MVC]( https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc )에 위 4가지 라이브러리, 프레임워크 없이 MVVM을 구현한 예제가 나와있습니다. <br>자세한 구현 사항은 튜토리얼을 따라하면서 보면 될 것 같습니다. 여기서 얘기할 것은 이 예제를 바탕으로 한 MVVM을 설명해보고자 합니다. <br>(이 글을 읽고 위 튜토리얼을 따라하면 이해가 더 잘 될것 같네요.)<br><br>
+[raywenderlich - iOS MVVM Tutorial: Refactoring from MVC]( https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc )에 위 4가지 라이브러리, 프레임워크 없이 MVVM을 구현한 예제가 나와있습니다. <br>자세한 구현 사항은 튜토리얼을 따라하면서 보면 될 것 같습니다. 여기서 얘기할 것은 이 예제를 바탕으로 한 MVVM을 설명해보고자 합니다. <br>이 글을 읽고 위 튜토리얼을 따라하면 이해가 더 잘 될것 같네요.<br><br>
 
-**예제 화면**<br>
+**예제 화면과 파일 구조**<br>
 
-<img src = "https://i.imgur.com/zfpmdb9.png" width = "30%"><br><br>**파일 구조**<br><br><img src="https://i.imgur.com/tCrpOft.png" /><br>
+<img src = "https://i.imgur.com/zfpmdb9.png" width = "40%"><img src = "https://i.imgur.com/GZ9Nrzi.png" width = "32.5%"><br>
 
-인데요. 일단 MVVM에서 View인 ViewController를 먼저 봐볼까요? <br><br>
+인데요. 이 파일들 중 `WeatherViewController`, `WeatherViewModel`, `Observable` 클래스를 살펴볼 것입니다. 일단 `WeatherViewController`를 먼저 봐볼까요? <br><br>
 
 ~~~~swift
 import UIKit
@@ -121,12 +148,12 @@ class WeatherViewController: UIViewController {
 ~~~~
 
 1. ViewModel을 소유하고 있습니다.
-2. ViewController가 가지고 있는 View들(여기에서는 IBOutlet으로 연결된 View들)을 viewDidLoad() 에서 ViewModel과 바인드 해주고 있습니다.
-3. IBAction에서도 보면 ViewModel을 업데이트(changeLocation(to:))해주고 있네요.
+2. ViewController가 가지고 있는 View들(여기에서는 IBOutlet으로 연결된 View들)을 `viewDidLoad()` 에서 ViewModel과 바인드(bind) 해주고 있습니다.
+3. `IBAction func promptForLocation(_:)`에서도 보면 ViewModel을 업데이트(`changeLocation(to:)`)해주고 있네요.
 
 <br><br>
 
-여기서 View들과 ViewModel을 바인드하는 부분을 좀 더 살펴 봐야겠네요.<br>
+여기서 View들과 ViewModel을 바인드하는 부분을 좀 더 살펴보죠.<br>
 
 ~~~~swift
 import Foundation
@@ -167,7 +194,7 @@ public class WeatherViewModel {
 }
 ~~~~
 
-ViewModel 클래스입니다. 여기에 프로퍼티들을 보니까 Observable 타입이네요. 그렇다면 Observable 클래스도 어떻게 생겼는지 보죠.<br><br>
+`WeatherViewModel` 클래스입니다. 여기에 프로퍼티들을 보니까 `Observable` 타입이네요. 그렇다면 `Observable` 클래스도 어떻게 생겼는지 보죠.<br><br>
 
 ~~~~swift
 import Foundation
@@ -192,7 +219,7 @@ final class Observable<T> {
 
 <br>음... 어떻게 동작하는걸까요? 
 
-위에 날씨를 검색할 "Paris"를 입력하고 Submit 버튼을 눌렀다고 가정해봅시다.<br><br>
+**위에 날씨를 검색할 "Paris"를 입력하고 Submit 버튼을 눌렀다고 가정해봅시다.**<br><br>
 
 ~~~~swift
 // WeatherViewController 클래스
@@ -216,7 +243,10 @@ func changeLocation(to newLocation: String) {
 
 ## View와 ViewModel 바인딩 이해하기
 <br>
-상황을 구체적으로 가정한 다음에 좀 더 상세히 풀어서 설명해 볼께요. **이 부분을 이해하는게 중요한 포인트입니다**⭐️⭐️⭐️.<br><br>
+좀 더 상세히 풀어서 설명해 볼께요.<br><br>  
+
+**이 부분을 이해하는게 중요한 포인트입니다**  ⭐️⭐️⭐️ <br><br>
+(각 번호에 해당하는 코드는 위에 코드블록에 주석으로 표시해놨습니다.)
 
 > 1. 사용자가 날씨 검색을 할 도시로 "Paris"를 입력하고 Submit 버튼을 눌렀다.
 >
@@ -242,7 +272,7 @@ func changeLocation(to newLocation: String) {
 >    }
 >    ```
 >
->  9. 클로저에 담겨 온 `location.name` value를 `cityLabel.text `로 설정한다.
+>   9. 클로저에 담겨 온 `location.name` value를 `cityLabel.text `로 설정한다.
 
 
 
@@ -252,7 +282,7 @@ func changeLocation(to newLocation: String) {
 
 ## 더 용이해진 테스트 
 
-자 이렇게 되면 View 없이 ViewModel만 가지고 테스트하기 훨씬 용이합니다. 정상적으로 동작하는지 확인할 때마다 시뮬레이터를 실행해서 장소 이름을 변경하면서 `cityLabel`의 text가 장소 이름에 맞게 제대로 업데이트 되는지 확인하지 않아도 됩니다. 또한, (과장 조금 보태서) MVC에서 View와 비즈니스 로직이 혼재되어 있어 테스트 코드를 작성하기 어렵다고 생각하지 않아도 됩니다. 아래와 같은 테스트만 거치면 확인할 수 있으니까요. 🎉 <br>
+자 이렇게 되면 View 없이 ViewModel만 가지고 테스트하기 훨씬 용이합니다. 시뮬레이터를 실행하거나 View나 ViewController 인스턴스를 생성해서 장소 이름을 변경하면서 `cityLabel`의 text가 장소 이름에 맞게 제대로 업데이트 되는지 확인하는 것 보다 정상적으로 동작하는지 확인하기 위해 아래와 같이 ViewModel에서 장소 이름을 설정하면 올바른 locationName을 가지고 오는지 ViewModel만 가지고 확인할 수 있으니까요. 🎉 <br>
 
 ~~~~swift
 import XCTest
@@ -284,7 +314,7 @@ class WeatherViewModelTests: XCTestCase {
 
 ## 결론
 
-MVVM 맛보기 정도의 글이라고 생각해주시면 좋을 것 같습니다. 지금까지 줄곧 MVC 패턴으로 개발을 해왔었는데요. MVC에서 단점이라고 느꼈던 점들(무거운 ViewController 라던가 위에 언급한 부분들)에 대해서 MVVM에서는 이렇게 할 수 있구나 느끼고 있어 재미있네요. 저도 MVVM에 대해서 잘 알려면 아직 멀었지만 앞으로 MVVM 관련해서 더 공부하면서 점점 더 나은 코드와 구조, 성능의 앱을 만들기 위해서 고민할 수 있을 것 같아 많이 기대가 됩니다.👻 
+MVVM 맛보기 정도의 글이라고 생각해주시면 좋을 것 같습니다. MVC에서 단점이라고 느꼈던 점들([MVC에서 MVVM을 찾게 된 과정](#MVC에서-MVVM을-찾게-된-과정))에 대해서 MVVM에서는 이렇게 할 수 있구나 느낀 점이 있는데 혹시 저처럼 MVVM이 처음이신 분들에게 공유하면 좋을 것 같아서 정리해봤습니다. 저도 MVVM에 대해서 잘 알려면 아직 멀었지만 앞으로 MVVM 관련해서 더 공부하면서 점점 더 나은 코드와 구조, 성능의 앱을 만들기 위해서 고민할 수 있을 것 같아 많이 기대가 됩니다.👻 
 <br><br>
 
 ## 참고

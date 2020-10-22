@@ -9,7 +9,7 @@ tags = [
     "hugo", "netlify" 
 ]
 images = [
-    "hugo+netlify.png"
+  '/images/hugo+netlify.png'
 ]
 draft = false
 +++
