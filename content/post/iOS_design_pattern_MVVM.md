@@ -8,6 +8,10 @@ description = "MVVM Design/Architecture Pattern with UIKit"
 tags = [
     "Design Pattern", "Architecture Pattern", "MVVM"
 ]
+categories = [
+    "iOS"
+]
+series = ["iOS Design Pattern"]
 images = [
   "/images/iOS_MVVM.png"
 ]
@@ -36,7 +40,8 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
 
 ## MVVM이란? 
 <br>
-<img scr = "https://i.imgur.com/84VHiS4.png" width = "60%">
+<img scr = "https://user-images.githubusercontent.com/52783516/97255194-6e7d7500-1853-11eb-820b-9930a9ea5d49.png" width = "60%">
+
 
 (출처: [Stanford 강의](https://youtu.be/4GjXq2Sr55Q), 위 강의는 SwiftUI 기반으로 MVVM을 설명하고 있습니다. 이 글은 UIKit을 기반으로 작성되었습니다.)<br><br>
 
@@ -46,7 +51,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 제가 MVVM에 대해서 찾아보게 된 계기도 바로 이 때문인데요. 그럼 본격적으로 MVVM에 대해서 좀 더 알아봅시다 🙌🏻
 
-### MVC에서 MVVM을 찾게 된 과정
+### MVC에서 MVVM을 찾게 된 과정 
 
   1. 입력/터치 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 구현 하고 싶었고, KVO/Notification을 이용해서 구현했습니다. 
   2. 그런데 View와 Model이 자신들의 역할에 충실한 것(View는 화면을 그리는 것, Model은 앱 데이터, 비즈니르 로직)을 우선시하여 코드를 짰더니 View Controller가 점점 무거워졌습니다.
@@ -57,7 +62,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 <br><br>
 
-## MVVM의 규칙들
+## MVVM의 규칙들 
 
 💡 MVVM에 대해서 공부하면서 MVVM이 뭔지, 어떻게 구현하는지 알아보기 위해 많은 예제와 자료를 봤는데요. 공부하면서 든 생각은 <br> **"MVVM에 정형화된 형식같은 건 없다. 다만 공통적으로 적용되는 규칙들이 있다."** 입니다.<br><br>
 
@@ -243,7 +248,7 @@ func changeLocation(to newLocation: String) {
 
 이 부분에서 ViewModel을 업데이트 해주고 있죠? <br> 그럼 이제 ViewModel에서 변경된 value에 맞게 View를 업데이트 해줍니다.<br><br><br>
 
-## View와 ViewModel 바인딩 이해하기
+## View와 ViewModel 바인딩 이해하기 
 <br>
 좀 더 상세히 풀어서 설명해 볼께요.<br><br>  
 
