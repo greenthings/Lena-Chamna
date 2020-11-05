@@ -4,7 +4,7 @@ authors = [
     "Lena"
 ]
 title = "간단한 예제로 살펴보는 iOS Design/Architecture Pattern: Coordinator - Basic"
-date = 2020-11-05T14:34:32+09:00
+date = 2020-11-03T14:34:32+09:00
 description = "Coordinator Design/Architecture Pattern with UIKit - Basic"
 tags = [
     "Design Pattern", "Architecture Pattern", "Coordinator"
