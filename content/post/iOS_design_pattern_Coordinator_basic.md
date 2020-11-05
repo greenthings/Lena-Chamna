@@ -42,7 +42,7 @@ draft = false
 
 <br>
 
-[전체 코드](https://github.com/dev-Lena/Coordinator)는 이곳에서 확인할 수 있습니다.<br>추가적인 내용은 간단한 예제로 살펴보는 [iOS Design/Architecture Pattern: Coordinator - Advanced]() 에 있습니다 👍🏻
+[전체 코드](https://github.com/dev-Lena/Coordinator)는 이곳에서 확인할 수 있습니다.<br>추가적인 내용은 간단한 예제로 살펴보는 [iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced) 에 있습니다 👍🏻
 
 <br><br>
 
@@ -77,7 +77,7 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 <br>
 
-## Coordinator 소개<br>
+## Coordinator 소개<br><br>
 
 ### Coordinator 특징<br>
 
@@ -86,8 +86,6 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 - 각 View Controller에는 coordinator에 대한 **delegate** reference가 있습니다.
 - 각 coordinator는 **child** coordinators 배열을 가지고 있습니다.
 - 각 child coordinator는 **parent** coordinator에 대한 delegate reference가 있습니다.
-
-<br>
 
 ### 추가로<br>
 
@@ -104,11 +102,13 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 > app coordinator는 iOS를 위해 특별히 만들어진 Application Controller의 스페셜 버전입니다.
 > app coordinator는 View Controller를 생성하고 구성할 수 있고 하위 작업을 수행하기 위해 새로운 하위 coordinator를 생성할 수 있습니다.
 
+<br>
+
 ## 간단한 Coordinator 예제
 
 <br>
 
- ![coordinator basic](/images/coordinator_basic.gif)
+<img src="/images/coordinator_basic.gif" width="40%">
 
 <br>
 이 예제는 [How to use the coordinator pattern in iOS apps](https://www.hackingwithswift.com/articles/71/how-to-use-the-coordinator-pattern-in-ios-apps) 를 참고하여 만들었습니다.<br>
@@ -124,10 +124,11 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 1. **Initial Setting**
 
-   본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. 
-   → [SceneDelegate 삭제 방법](https://github.com/dev-Lena/Coordinator/issues/4)
+   본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br><br>
 
-   SceneDelegate와 AppDelegate에 대해 궁금하다면 [여기](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)를 참고해주세요.
+   → [SceneDelegate 삭제 방법](https://github.com/dev-Lena/Coordinator/issues/4) <br>
+
+   (혹시, [SceneDelegate와 AppDelegate](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)에 대해 궁금하다면 참고해주세요.)
 
 2. **첫 화면 열기**
    <br>
@@ -242,7 +243,8 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
    }
    ```
 
-   
+
+   <br><br>
 
 ## 추가적으로 고민해볼만한 점
 
