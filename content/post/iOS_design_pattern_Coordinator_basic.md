@@ -48,6 +48,8 @@ draft = false
 
 ## Coordinator란?
 
+<br>
+
 *Soroush Khanlou*가 NSSpain conference 2015에서 iOS 커뮤니티에 소개한 패턴으로 [Soroush Khanlou](https://khanlou.com/2015/10/coordinators-redux/) 의 글에 보면 코디네이터(Coordinator)를 이렇게 소개하고 있습니다.
 
 > So what is a coordinator? ***A coordinator is an object that bosses one or more view controllers around.*** Taking all of the driving logic out of your view controllers, and moving that stuff one layer up is gonna make your life a lot more awesome.
@@ -108,9 +110,11 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 <br>
 
-<img src="/images/coordinator_basic.gif" width="40%">
+### 동작 화면
 
-<br>
+![coordinator_basic](/images/coordinator_basic.gif)
+
+<br><br>
 이 예제는 [How to use the coordinator pattern in iOS apps](https://www.hackingwithswift.com/articles/71/how-to-use-the-coordinator-pattern-in-ios-apps) 를 참고하여 만들었습니다.<br>
 전체 코드는 제 [깃허브 레파지토리](https://github.com/dev-Lena/Coordinator)에 있고 Basic에 대한 내용은 [coordinator-basic 브랜치](https://github.com/dev-Lena/Coordinator/tree/basic-coordinator)에서 확인할 수 있습니다. <br>첫 세팅 이후 구현 과정은 [PR](https://github.com/dev-Lena/Coordinator/pull/2) 에 커밋으로 남겨놓았습니다. <br>
 
