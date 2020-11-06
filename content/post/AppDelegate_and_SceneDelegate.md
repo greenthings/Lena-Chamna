@@ -128,18 +128,19 @@ AppDelegate 클래스는 새로운 프로젝트를 생성할 때마다 자동으
 iOS 12 이하는 하나의 앱에 하나의 window를 가지고 있기 때문에(즉, multi window를 사용하지 않기 때문에) iOS 13에서 추가된 부분을 삭제하고 이전 버전(~iOS12)과 설정을 똑같이 바꿔주면 이전 방식대로과 동일하게 할 수 있습니다.<br><br>
 방법은 Xcode를 새로 열고<br><br>
 
-1. iOS13에서 새로 생긴 `SceneDelegate.swift` 파일 삭제
+[ step 1 ] iOS13에서 새로 생긴 `SceneDelegate.swift` 파일 삭제
 
-2. iOS13에서 `AppDelegate`에 추가된  `UISceneSession`과 관련된 두 메소드 삭제
+[ step 2 ]iOS13에서 `AppDelegate`에 추가된  `UISceneSession`과 관련된 두 메소드 삭제
 
-  <img src = "https://i.imgur.com/5JCf9LM.png" width = "90%">
+<img src = "https://i.imgur.com/5JCf9LM.png" width = "90%">
 
-3. iOS13에서 `SceneDelegate`로 옮겨진 `window` 프로퍼티를 AppDelegate로 다시 옮기기
+[ step 3 ] iOS13에서 `SceneDelegate`로 옮겨진 `window` 프로퍼티를 AppDelegate로 다시 옮기기
 
-   ```swift
-         var window: UIWindow?
-   ```
-4. `info.plist`에서 Scene과 관련된 Manifest인 `Application Scene Manifest `삭제
+```swift
+      var window: UIWindow?
+```
+
+[ step 4  ]`info.plist`에서 Scene과 관련된 Manifest인 `Application Scene Manifest `삭제
 <br><br>
 
 직접 해봤는데 Build Success가 뜨네요! iOS13 미만인 경우 이렇게 하면 될 것 같습니다.

@@ -28,17 +28,18 @@ MVVM을 구현한 간단한 예제를 살펴보며 MVVM에 대해 알아봅시�
   * [MVC에서 MVVM을 찾게 된 과정](#MVC에서-MVVM을-찾게-된-과정)
 * [MVVM의 규칙들](#MVVM의-규칙들)
 * [간단한 MVVM 예제](#간단한-MVVM-예제)
-* [View와 ViewModel 바인딩 이해하기](#View와-ViewModel-바인딩-이해하기)
+* [⭐️View와 ViewModel 바인딩 이해하기](#⭐️View와-ViewModel-바인딩-이해하기)
 * [더 용이해진 테스트](#더-용이해진-테스트)
 * [결론](#결론)
 * [참고](#참고)
+
 
 <br><br>
 🗣 이 글은 MVC 패턴은 익숙하지만 MVVM은 처음 접한 분들을 위한 글입니다. 잘못된 부분이나 애매한 부분에 대해서 댓글로 피드백 주시면 감사하겠습니다🙌🏻 또한 댓글을 통한 토론도 환영입니다!
 
 <br><br>
 
-## MVVM이란? 
+## <span style="color: #6666FF">MVVM이란? </span>
 
 <br>
 
@@ -52,7 +53,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 제가 MVVM에 대해서 찾아보게 된 계기도 바로 이 때문인데요. 그럼 본격적으로 MVVM에 대해서 좀 더 알아봅시다 🙌🏻
 
-### MVC에서 MVVM을 찾게 된 과정 
+### <span style="color: #6666FF">MVC에서 MVVM을 찾게 된 과정 </span>
 
 
   1. 입력/터치 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 구현 하고 싶었고, KVO/Notification을 이용해서 구현했습니다. 
@@ -64,7 +65,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 <br><br>
 
-## MVVM의 규칙들 
+## <span style="color: #6666FF">MVVM의 규칙들 </span>
 
 💡 MVVM에 대해서 공부하면서 MVVM이 뭔지, 어떻게 구현하는지 알아보기 위해 많은 예제와 자료를 봤는데요. 공부하면서 든 생각은 <br> **"MVVM에 정형화된 형식같은 건 없다. 다만 공통적으로 적용되는 규칙들이 있다."** 입니다.<br><br>
 
@@ -90,7 +91,7 @@ MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영�
 | 1. **UI에 독립적이다.** <br> 2. **SwiftUI나 UIKit을 import 하지 않는다.** <br>3. **App이 하는 일에 대한 데이터와 로직을 캡슐화**하려고 한다.<br>4. Model이 변경됐을 때 ViewModel에게 알린다.     |
 <br><br><br>
 
-## 간단한 MVVM 예제 
+## <span style="color: #6666FF">간단한 MVVM 예제 </span>
 
 MVVM은 주로  RxSwift, RxCocoa, SwiftUI, Combine과 함께 사용합니다. 
 
@@ -250,12 +251,12 @@ func changeLocation(to newLocation: String) {
 
 이 부분에서 ViewModel을 업데이트 해주고 있죠? <br> 그럼 이제 ViewModel에서 변경된 value에 맞게 View를 업데이트 해줍니다.<br><br><br>
 
-## View와 ViewModel 바인딩 이해하기 
+## <span style="color: #6666FF">⭐️View와 ViewModel 바인딩 이해하기 </span>
 
 <br>
 좀 더 상세히 풀어서 설명해 볼께요.<br><br>  
 
-**이 부분을 이해하는게 중요한 포인트입니다**  ⭐️⭐️⭐️ 
+**<span style="color: orange">이 부분을 이해하는게 중요한 포인트입니다</span>**  ⭐️⭐️⭐️ 
 <br>(각 번호에 해당하는 코드는 위에 코드블록에 주석으로 표시해놨습니다.)
 
 > 1. 사용자가 날씨 검색을 할 도시로 "Paris"를 입력하고 Submit 버튼을 눌렀다.
@@ -272,7 +273,7 @@ func changeLocation(to newLocation: String) {
 >
 > 7. `listener?(value)` 는 `Listener` 타입이다. → `Listener = (T) -> Void`
 >
-> 8. 그럼 여기서 실행할 클로저는 무엇이냐면,  `WeatherViewController` 클래스에서 View와 ViewModel을 바인드 해줬던 **👍🏻이 부분**이다. →<br>
+> 8. <span style="color: orange">그럼 여기서 실행할 클로저는 무엇이냐면,  `WeatherViewController` 클래스에서 View와 ViewModel을 바인드 해줬던 **👍🏻이 부분**이다.</span> →<br>
 >
 >    ```swift
 >    override func viewDidLoad() {
@@ -286,11 +287,11 @@ func changeLocation(to newLocation: String) {
 
 
 
- <br>이 동작 흐름이 이해가 되셨다면 거의 다 오신겁니다!👍🏻 이 부분을 이해했다면 나머지 부분은 MVC와 비슷합니다.
+ <br>이 동작 흐름이 이해가 되셨다면 거의 다 오신겁니다!👍🏻 이 과정을 이해했다면 나머지 부분은 MVC와 비슷합니다.
 
 <br><br>
 
-## 더 용이해진 테스트 
+## <span style="color: #6666FF">더 용이해진 테스트 </span>
 
 자 이렇게 되면 View 없이 ViewModel만 가지고 테스트하기 훨씬 용이합니다. 시뮬레이터를 실행하거나 View나 ViewController 인스턴스를 생성해서 장소 이름을 변경하면서 `cityLabel`의 text가 장소 이름에 맞게 제대로 업데이트 되는지 확인하는 것 보다 정상적으로 동작하는지 확인하기 위해 아래와 같이 ViewModel에서 장소 이름을 설정하면 올바른 locationName을 가지고 오는지 ViewModel만 가지고 확인할 수 있으니까요. 🎉 <br>
 
