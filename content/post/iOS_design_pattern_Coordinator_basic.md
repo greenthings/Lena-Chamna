@@ -42,11 +42,11 @@ draft = false
 
 <br>
 
-[전체 코드](https://github.com/dev-Lena/Coordinator)는 이곳에서 확인할 수 있습니다.<br>추가적인 내용은 간단한 예제로 살펴보는 [iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced) 에 있습니다 👍🏻
+**<span style="color:orange">[전체 코드](https://github.com/dev-Lena/Coordinator)는 이곳에서 확인할 수 있습니다. <br>추가적인 내용은 간단한 예제로 살펴보는 [iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced) 에 있습니다 👍🏻</span>**
 
 <br><br>
 
-## Coordinator란?
+## <span style="color: #6666FF">Coordinator란?</span>
 
 <br>
 
@@ -57,11 +57,11 @@ draft = false
 > 코디네이터란? ***코디네이터는 하나 이상의 뷰 컨트롤러에게 지시를 내리는 객체입니다***.
 > ... 이하 생략
 
-여기서 말하는 지시는 화면 전환에 대한 지시를 말합니다. **Coordinator 패턴에서는 현재 View Controller에서 다음 View Controller로 이동할 때 직접 push / present 등의 화면 전환을 하는 대신 모든 화면 내비게이션을 코디네이터가 관리합니다.**  즉, View Controller에서 Navigation의 책임을 다른 클래스로 분리합니다. 따라서 View Controller들이 서로 분리될 수 있고 쉽게 재사용될 수 있습니다. 
+여기서 말하는 지시는 화면 전환에 대한 지시를 말합니다. <span style="color:orange">**Coordinator 패턴에서는 현재 View Controller에서 다음 View Controller로 이동할 때 직접 push / present 등의 화면 전환을 하는 대신 모든 화면 내비게이션을 코디네이터가 관리합니다.**  즉, View Controller에서 Navigation의 책임을 다른 클래스로 분리합니다. 따라서 View Controller들이 서로 분리될 수 있고 쉽게 재사용될 수 있습니다.</span>
 
 <br>
 
-## Coordinator Pattern을 찾게 된 과정
+## <span style="color: #6666FF">Coordinator Pattern을 찾게 된 과정</span>
 
 <br>
 
@@ -75,13 +75,13 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 **2. 화면 전환하는 코드가 흩어져 있어 파악하고 관리하기 어렵다.** 
 
-화면이 많아지면 각 View Controller에 화면을 전환하는 코드가 흩어져있어 파악/관리하기가 어렵죠. 그래서 이를 관리하는 객체가 있으면 좋겠다는 생각이 들었습니다. 그러다가 발견한게 Coordinator인데요! Coordinator에는 화면 내비게이션에 대한 코드가 모여있어서 파악/관리하기 용이합니다. 게다가 다음 포스팅에서 소개하겠지만 책임과 구분(역할)에 따라서 여러 개의 Coordinator를 사용할 수 있어 객체지향적으로 구현하기 더 수훨해집니다. 
+화면이 많아지면 각 View Controller에 화면을 전환하는 코드가 흩어져있어 파악/관리하기가 어렵죠. 그래서 이를 관리하는 객체가 있으면 좋겠다는 생각이 들었습니다. 그러다가 발견한게 Coordinator인데요! Coordinator에는 화면 내비게이션에 대한 코드가 모여있어서 파악/관리하기 용이합니다. 게다가 [다음 포스팅](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced)에서 소개하겠지만 책임과 구분(역할)에 따라서 여러 개의 Coordinator를 사용할 수 있어 객체지향적으로 구현하기 더 수훨해집니다. 
 
 <br>
 
-## Coordinator 소개<br><br>
+## <span style="color: #6666FF">Coordinator 소개</span><br><br>
 
-### Coordinator 특징<br>
+### <span style="color:orange">Coordinator 특징</span><br>
 
 - coordinator 별로 하나 또는 그 이상의 View Controller를 보유합니다. 
 - 각 coordinator는 일반적으로 “**start**”라고 불리는 메서드를 사용하여 View Controller를 표시합니다.
@@ -106,17 +106,11 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 <br>
 
-## 간단한 Coordinator 예제
+## <span style="color: #6666FF">간단한 Coordinator 예제</span>
 
 <br>
-
-### 동작 화면
-
-![coordinator_basic](/images/coordinator_basic.gif)
-
-<br><br>
 이 예제는 [How to use the coordinator pattern in iOS apps](https://www.hackingwithswift.com/articles/71/how-to-use-the-coordinator-pattern-in-ios-apps) 를 참고하여 만들었습니다.<br>
-전체 코드는 제 [깃허브 레파지토리](https://github.com/dev-Lena/Coordinator)에 있고 Basic에 대한 내용은 [coordinator-basic 브랜치](https://github.com/dev-Lena/Coordinator/tree/basic-coordinator)에서 확인할 수 있습니다. <br>첫 세팅 이후 구현 과정은 [PR](https://github.com/dev-Lena/Coordinator/pull/2) 에 커밋으로 남겨놓았습니다. <br>
+전체 코드와 동작 예시 화면은 제 [깃허브 레파지토리](https://github.com/dev-Lena/Coordinator)에 있고 Basic에 대한 내용은 [basic-coordinator 브랜치](https://github.com/dev-Lena/Coordinator/tree/basic-coordinator)에서 확인할 수 있습니다. <br>첫 세팅 이후 구현 과정은 [PR](https://github.com/dev-Lena/Coordinator/pull/2) 에 커밋으로 남겨놓았습니다. <br>
 
 <br>
 
@@ -124,136 +118,148 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 예제 프로젝트의 구조입니다. 먼저 구조를 그리고 구현하면 훨씬 도움이 될 것 같네요!
 
+<br>**[ step 1 ]**
+
+**Initial Setting**
+
+본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br><br>
+
+→ [SceneDelegate 삭제 방법](https://github.com/dev-Lena/Coordinator/issues/4) <br>
+
+(혹시, [SceneDelegate와 AppDelegate](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)에 대해 궁금하다면 참고해주세요.)
+
+**[ step 2 ]**
+
+**첫 화면 열기**
+
+아참! SceneDelegate를 없앴기 때문에 SceneDelegate에 있던 window를 AppDelegate로 옮겨와서 사용해야 합니다. 그리고 AppDelegate에서 MainCoordinator를 생성 / Navigation Controller를 window의 rootViewController로 지정, MainCoordinator의 인스턴스를 통한 첫 화면 시작까지 해줍니다. 차근 차근 해보죠!
+
+<br>
+**Coordinator 프로토콜**
+
+```swift
+import UIKit
+
+protocol Coordinator {
+    var childCoordinators: [Coordinator] { get set }
+    var navigationController: UINavigationController { get set }
+
+    func start()
+}
+```
+
+<br>
+**MainCoordinator 클래스**
+
+```swift
+class MainCoordinator: NSObject, Coordinator {
+    
+    var childCoordinators = [Coordinator]()
+    var navigationController: UINavigationController
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+
+    func start() {
+        let vc = ViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
+  // 나머지 구현부 생략
+}
+```
+
+<br>
+**AppDelegate에서 첫 화면 띄우기**
+
+```swift
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var coordinator: MainCoordinator?
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let navController = UINavigationController()
+
+      // coordinator 인스턴스 생성
+        coordinator = MainCoordinator(navigationController: navController)
+      // Coordinator로 첫 화면 열기
+        coordinator?.start()
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+
+        return true
+    }
+}
+```
+
+**[ step 3 ]**
+
+**첫 화면에서 다음 화면으로 이동하기**
+
+첫 화면에 버튼이 두 개가 있고 각 버튼마다 이동하는 화면이 다릅니다.
+
+<br>
+**MainCoordinator 클래스**
+
+```swift
+class MainCoordinator: NSObject, Coordinator {
+  // 나머지 구현부 생략
+      func buySubscription() {
+        let vc = BuyViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    func createAccount() {
+        let vc = CreateAccountViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+}
+```
+
+<br>
+**ViewController**
+
+```swift
+class ViewController: UIViewController, Storyboarded {
+    
+    weak var coordinator: MainCoordinator?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    @IBAction func buyTapped(_ sender: Any) {
+      // coordinator를 통해 화면 전환
+        self.coordinator?.buySubscription()
+    }
+
+    @IBAction func createAccount(_ sender: Any) {
+      // coordinator를 통해 화면 전환
+        self.coordinator?.createAccount()
+    }
+}
+```
+
 <br><br>
 
-1. **Initial Setting**
+이게 끝입니다! 간단하죠?! 
 
-   본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br><br>
+SceneDelegate를 없애고 AppDelegate를 사용하여 하기 때문에 Coordinator
 
-   → [SceneDelegate 삭제 방법](https://github.com/dev-Lena/Coordinator/issues/4) <br>
-
-   (혹시, [SceneDelegate와 AppDelegate](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)에 대해 궁금하다면 참고해주세요.)
-
-2. **첫 화면 열기**
-   <br>
-   **Coordinator 프로토콜**
-
-   ```swift
-   import UIKit
-   
-   protocol Coordinator {
-       var childCoordinators: [Coordinator] { get set }
-       var navigationController: UINavigationController { get set }
-   
-       func start()
-   }
-   ```
-
-   <br>
-   **MainCoordinator 클래스**
-
-   ```swift
-   class MainCoordinator: NSObject, Coordinator {
-       
-       var childCoordinators = [Coordinator]()
-       var navigationController: UINavigationController
-   
-       init(navigationController: UINavigationController) {
-           self.navigationController = navigationController
-       }
-   
-       func start() {
-           let vc = ViewController.instantiate()
-           vc.coordinator = self
-           navigationController.pushViewController(vc, animated: false)
-       }
-     // 나머지 구현부 생략
-   }
-   ```
-
-   <br>
-   **AppDelegate에서 첫 화면 띄우기**
-
-   ```swift
-   @main
-   class AppDelegate: UIResponder, UIApplicationDelegate {
-   
-       var coordinator: MainCoordinator?
-       var window: UIWindow?
-   
-       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-           
-           window = UIWindow(frame: UIScreen.main.bounds)
-           let navController = UINavigationController()
-   
-         // coordinator 인스턴스 생성
-           coordinator = MainCoordinator(navigationController: navController)
-         // Coordinator로 첫 화면 열기
-           coordinator?.start()
-   
-           window = UIWindow(frame: UIScreen.main.bounds)
-           window?.rootViewController = navController
-           window?.makeKeyAndVisible()
-   
-           return true
-       }
-   }
-   ```
-
-   
-
-3. **첫 화면에서 다음 화면으로 이동하기**
-   <br>
-   **MainCoordinator 클래스**
-
-   ```swift
-   class MainCoordinator: NSObject, Coordinator {
-     // 나머지 구현부 생략
-         func buySubscription() {
-           let vc = BuyViewController.instantiate()
-           vc.coordinator = self
-           navigationController.pushViewController(vc, animated: true)
-       }
-   
-       func createAccount() {
-           let vc = CreateAccountViewController.instantiate()
-           vc.coordinator = self
-           navigationController.pushViewController(vc, animated: true)
-       }
-   }
-   ```
-
-   <br>
-   **ViewController**
-
-   ```swift
-   class ViewController: UIViewController, Storyboarded {
-       
-       weak var coordinator: MainCoordinator?
-   
-       override func viewDidLoad() {
-           super.viewDidLoad()
-       }
-       
-       @IBAction func buyTapped(_ sender: Any) {
-         // coordinator를 통해 화면 전환
-           self.coordinator?.buySubscription()
-       }
-   
-       @IBAction func createAccount(_ sender: Any) {
-         // coordinator를 통해 화면 전환
-           self.coordinator?.createAccount()
-       }
-   }
-   ```
-
-
-   <br><br>
-
-## 추가적으로 고민해볼만한 점
+## <span style="color: #6666FF">추가적으로 고민해볼 점</span>
 
 1. MVVM과 함께 MVVM-C 패턴으로도 사용되는데요. 어떻게 MVVM과 함께 사용할지 고민해보는 것도 좋을 것 같습니다.
 2. childCoordinators를 언제 어떻게 쓰는지에 대해서 고민해보면 좋을 것 같습니다. 
+3. SceneDelegate를 없애고 AppDelegate를 사용하게 되면 SceneDelegate를 사용해야하는 상황에서는 어떻게 하면 좋을까요? 궁금해서 슬쩍 찾아봤는데요 [SceneDelegate는 iOS13](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)에서 추가되었기 때문에 [AppDelegate 메서드](https://zeddios.tistory.com/1023)를 찾을 수 있다고 하네요.
 
 <br>
 

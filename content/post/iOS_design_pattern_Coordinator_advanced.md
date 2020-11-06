@@ -50,7 +50,7 @@ draft = false
 
 여러 개의 Coordinator를 두었을 때의 구조는 이렇습니다. 이번 예제에서는 parent Coordinator(Main Coordinator)와 child Coordinator(Buy Coordinator) 두 개의 Coordinator를 사용합니다.
 
-이번 글에서는 예제 코드에 대해 설명하고자 합니다. 전체 예제 코드 및 동작 예시 화면은 제 [깃허브](https://github.com/dev-Lena/Coordinator)에서 확인할 수 있습니다. 구현 과정은 [PR](https://github.com/dev-Lena/Coordinator/pull/7)에 커밋으로 남겨놨습니다. <br>
+이번 글에서는 예제 코드에 대해 설명하고자 합니다. 전체 예제 코드 및 동작 예시 화면은 제 [깃허브](https://github.com/dev-Lena/Coordinator)에서 확인할 수 있습니다. Advanced에 대한 내용은 [advanced-coordinator 브랜치](https://github.com/dev-Lena/Coordinator/tree/advanced-coordinator)에서 확인할 수 있습니다.구현 과정은 [PR](https://github.com/dev-Lena/Coordinator/pull/7)에 커밋으로 남겨놨습니다. <br>
 
 **<span style="color:orange">아래 부터는 [이전 과정](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_basic/) 을 리팩토링하는 방식으로 진행하겠습니다.</span>**<br>
 
