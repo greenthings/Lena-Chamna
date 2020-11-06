@@ -42,7 +42,7 @@ draft = false
 
 <br><br>
 
-## <span style="color: #7f00ff">Coordinator를 책임과 역할에 따라 분리할 수 없을까?</span>
+## <span style="color: #6666FF">Coordinator를 책임과 역할에 따라 분리할 수 없을까?</span>
 
 하나의 Coordinator만 사용하다가 '용도별로 화면별로 Coordinator를 여러개 두고 사용할 수는 없을까?'라는 생각이 들어서 Coordinator에 대해서 좀 더 알아봤는데요. 뭔가 childCoordinators를 이용하면 여러 개를 둘 수 있을 것 같더라구요. 그래서 좀 더 알아봤습니다.<br>
 
@@ -54,7 +54,11 @@ draft = false
 
 **<span style="color:orange">아래 부터는 [이전 과정](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_basic/) 을 리팩토링하는 방식으로 진행하겠습니다.</span>**<br>
 
-## <span style="color: #7f00ff">Parent Coordinator와 Child Coordinator 이해하기</span>
+<br>
+
+<br>
+
+## <span style="color: #6666FF">Parent Coordinator와 Child Coordinator 이해하기</span>
 
 2개 이상의 여러 개의 Coordinator를 사용할 경우, 이런 구조로 확장해서 사용할 수 있습니다. 
 
@@ -66,63 +70,73 @@ draft = false
 
 <br>
 
-1. 먼저 `BuyCoordinator`라는 새로운 `Coordinator` 클래스를 만듭니다. 이 coordinator는 `MainCoordinator`의 child coordinator입니다.
+**[ Step 1 ]**
 
-   ```swift
-   class BuyCoordinator: Coordinator {
-     // 나머지 구현부 생략
-       func start() {
-           // MainCoordinator.buySubscription()의 코드를 이곳으로 옮겨왔습니다.
-           let vc = BuyViewController.instantiate()
-       	  vc.coordinator = self
-           navigationController.pushViewController(vc, animated: true)
-       }
-   }
-   ```
+먼저 `BuyCoordinator`라는 새로운 `Coordinator` 클래스를 만듭니다. 이 coordinator는 `MainCoordinator`의 child coordinator입니다.
 
-2. 그리고 `BuyViewController`에서는 `BuyCoordinator`를 사용할 것이기 때문에 `BuyViewController`가 가지고 있던 coordinator 변수의 타입을 `BuyCoordinator`로 변경합니다. 
+```swift
+class BuyCoordinator: Coordinator {
+  // 나머지 구현부 생략
+    func start() {
+        // MainCoordinator.buySubscription()의 코드를 이곳으로 옮겨왔습니다.
+        let vc = BuyViewController.instantiate()
+    	  vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+}
+```
 
-   ```swift
-   class BuyViewController: UIViewController, Storyboarded {
-       weak var coordinator: BuyCoordinator?
-       override func viewDidLoad() {
-           super.viewDidLoad()
-       }   
-   }
-   ```
+**[ Step 2 ]**
 
-3. `BuyCoordinator`에서 `parentCoordinator`를 선언해줍니다. 이때, `MainCoordinator`에서 child를 소유하고 있기 때문에 retain cycle을 피하기 위해서 `weak` 참조로 선언해줍니다. 
+그리고 `BuyViewController`에서는 `BuyCoordinator`를 사용할 것이기 때문에 `BuyViewController`가 가지고 있던 coordinator 변수의 타입을 `BuyCoordinator`로 변경합니다. 
 
-   ~~~swift
-   class BuyCoordinator: Coordinator {
-       weak var parentCoordinator: MainCoordinator? // retain cycle을 피하기 위해 weak 참조로 선언해주세요.
-       // 나머지 구현부 생략
-   }
-   ~~~
+```swift
+class BuyViewController: UIViewController, Storyboarded {
+    weak var coordinator: BuyCoordinator?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }   
+}
+```
 
-4. MainCoordinator 클래스에서 To Buy 버튼을 눌렀을 때 BuyCoordinator를 통해 화면이 전환하는 코드를 삽입합니다. 이때, **<span style="color:orange">parent coordinator(`MainCoordinator`)와 child coordinator(`BuyCoordinator`) 간 커뮤니케이션을 할 수 있도록 관계를 맺어줘야 합니다.</span>**
+**[ Step 3 ]**
 
-   ```swift
-   class MainCoordinator: NSObject, Coordinator {
-       var childCoordinators = [Coordinator]()
-       
-       func buySubscription() {
-           // BuyCoordinator 타입의 인스턴스 생성
-           let child = BuyCoordinator(navigationController: navigationController)
-           // BuyCoordinator의 parent coordinator로 self 지정
-           child.parentCoordinator = self
-           // BuyCoordinator을 자신의 child coordinator로 추가 
-           childCoordinators.append(child)
-           // BuyViewController로 전환
-           child.start()
-       }
-       // 나머지 구현부 생략
-   }
-   ```
+`BuyCoordinator`에서 `parentCoordinator`를 선언해줍니다. 이때, `MainCoordinator`에서 child를 소유하고 있기 때문에 retain cycle을 피하기 위해서 `weak` 참조로 선언해줍니다. 
+
+~~~swift
+class BuyCoordinator: Coordinator {
+    weak var parentCoordinator: MainCoordinator? // retain cycle을 피하기 위해 weak 참조로 선언해주세요.
+    // 나머지 구현부 생략
+}
+~~~
+
+**[ Step 4 ]**
+
+`MainCoordinator` 클래스에서 To Buy 버튼을 눌렀을 때 BuyCoordinator를 통해 화면이 전환하는 코드를 삽입합니다. 이때, **<span style="color:orange">parent coordinator(`MainCoordinator`)와 child coordinator(`BuyCoordinator`) 간 커뮤니케이션을 할 수 있도록 관계를 맺어줘야 합니다.</span>**
+
+```swift
+class MainCoordinator: NSObject, Coordinator {
+    var childCoordinators = [Coordinator]()
+    
+    func buySubscription() {
+        // BuyCoordinator 타입의 인스턴스 생성
+        let child = BuyCoordinator(navigationController: navigationController)
+        // BuyCoordinator의 parent coordinator로 self 지정
+        child.parentCoordinator = self
+        // BuyCoordinator을 자신의 child coordinator로 추가 
+        childCoordinators.append(child)
+        // BuyViewController로 전환
+        child.start()
+    }
+    // 나머지 구현부 생략
+}
+```
 
 <br>
 
-## <span style="color: #7f00ff">Child Coordinator의 일이 끝났을 때는?</span>
+<br>
+
+## <span style="color: #6666FF">Child Coordinator의 일이 끝났을 때는?</span>
 
 지금까지는 coordinator를 추가하는 작업을 해줬는데요. 그렇다면 child coordinator가 작업을 끝냈을 때는 어떻게 할까요? 예를 들어 `BuyViewController`에서 다시 첫화면인 `ViewController`로 돌아간다면? parent coordinator에게 알리고 child coordinator에서 지워야합니다. 아래는 두 가지 방법을 소개합니다.
 
@@ -149,9 +163,11 @@ protocol Coordinator: AnyObject {
 
 <br>
 
-### 자 그렇다면 언제 이 메서드를 호출할까요?
+#### 자 그렇다면 언제 이 메서드를 호출할까요?
 
 바로 화면이 사라질 때 호출하면 됩니다. 화면이 사라질 시점에 이 작업을 하기 위해서는 ViewController의 `viewDidDisappear()` 메서드나 `Navigation Controller Delegate`의 `didShow()` 메서드에서 위 메서드를 호출하면 됩니다. <br>
+
+<br>
 
 **첫번째: UIViewController의 viewDidDisappear() 사용**
 
@@ -180,7 +196,7 @@ class BuyViewController: UIViewController, Storyboarded {
 
 이 방법은 child coordinator에서 여러 개의 ViewController를 관리할 때 `viewDidDisappear()` 메서드가 이르게 호출될 수 있는 가능성이 있기 때문에 유의해야합니다.
 
-<br><br>
+<br>
 
 **두번째: `UINavigationControllerDelegate`의 `didShow()` 사용**
 
@@ -224,9 +240,9 @@ extension MainCoordinator: UINavigationControllerDelegate {
 }
 ```
 
-## <br><br>
+## <br>
 
-### 이제 의도한 대로 동작하는지 확인해봅시다.
+#### 이제 의도한 대로 동작하는지 확인해봅시다.
 
 `viewDidDisappear()` 를 이용한 방법이나 `UINavigationControllerDelegate`를 이용한 방법 모두 `childCoordinators`를 잘 처리해주는지 확인해봤는데요.
 
@@ -236,18 +252,18 @@ extension MainCoordinator: UINavigationControllerDelegate {
 
 <img src="https://user-images.githubusercontent.com/52783516/98250878-5c21da80-1fbb-11eb-8aef-4bb77de4acae.png" alt="image" style="zoom:80%;" />
 
-`UINavigationControllerDelegate` 를 이용한 방법: 에서도 childCoordinators가 `0 element` 
+`UINavigationControllerDelegate` 를 이용한 방법:  childCoordinators가 `0 element` 
 
 두 경우 모두 잘 처리 됐네요! 👍🏻 더이상 사용하지 않는 child coordinator가 childCoordinators에서 지워졌습니다.
 
 
 <br>
 
-## <span style="color: #7f00ff">커스텀 Back 버튼을 따로 만들었을 때는?</span>
+## <span style="color: #6666FF">커스텀 Back 버튼을 따로 만들었을 때는?</span>
 
 추가적으로 구현을 하다가 navigation bar에 있는 back 버튼( `<` )이 아니라 제가 만든 이전화면으로 돌아가는 버튼을 만들었을 경우가 있었는데요. 이 내용도 소개하면 좋을 것 같아서 예제 프로젝트에 버튼을 추가해서 해봤습니다. 이 때에는	`self.navigationController?.popViewController(animated: true)` 이 메서드를 사용하면 되는데요. 이 메서드를 사용하면 navigation bar에 있는 back 버튼( `<` )을 눌렀을 때와 동일하게 `didShow()`와  `childDidFinish()`가 호출됩니다. 
 
-<img src="/Users/keunnalee/Library/Application Support/typora-user-images/image-20201106191338269.png" alt="image-20201106191338269" style="zoom: 85%;" />
+<img src="https://user-images.githubusercontent.com/52783516/98359294-5683cd80-206b-11eb-9ac5-f9dc3827c2f6.png" alt="image" style="zoom:90%;" />
 
 
 
