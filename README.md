@@ -1,5 +1,7 @@
 # 레나참나
 
+👉🏻 [레나참나✨ 블로그](https://lena-chamna.netlify.app/)
+
 학습한 내용을 기록하고 공유합니다.
 
 
