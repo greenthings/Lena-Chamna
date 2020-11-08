@@ -42,7 +42,7 @@ draft = false
 
 <br>
 
-**<span style="color:orange">[전체 코드](https://github.com/dev-Lena/Coordinator)는 이곳에서 확인할 수 있습니다. <br>추가적인 내용은 간단한 예제로 살펴보는 [iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced) 에 있습니다 👍🏻</span>**
+**<span style="color:orange">[전체 코드](https://github.com/dev-Lena/Coordinator)는 이곳에서 확인할 수 있습니다. <추가적인 내용은 간단한 예제로 살펴보는 [iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced) 에 있습니다 👍🏻</span>**
 
 <br><br>
 
@@ -57,7 +57,7 @@ draft = false
 > 코디네이터란? ***코디네이터는 하나 이상의 뷰 컨트롤러에게 지시를 내리는 객체입니다***.
 > ... 이하 생략
 
-여기서 말하는 지시는 화면 전환에 대한 지시를 말합니다. <span style="color:orange">**Coordinator 패턴에서는 현재 View Controller에서 다음 View Controller로 이동할 때 직접 push / present 등의 화면 전환을 하는 대신 모든 화면 내비게이션을 코디네이터가 관리합니다.**  즉, View Controller에서 Navigation의 책임을 다른 클래스로 분리합니다. 따라서 View Controller들이 서로 분리될 수 있고 쉽게 재사용될 수 있습니다.</span>
+여기서 말하는 지시는 화면 전환에 대한 지시를 말합니다. <span style="color:orange">*Coordinator 패턴에서는 현재 View Controller에서 다음 View Controller로 이동할 때 직접 push / present 등의 화면 전환을 하는 대신 모든 화면 내비게이션을 코디네이터가 관리합니다.**  즉, View Controller에서 Navigation의 책임을 다른 클래스로 분리합니다. 따라서 View Controller들이 서로 분리될 수 있고 쉽게 재사용될 수 있습니다.</span>
 
 <br>
 
@@ -81,13 +81,15 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 ## <span style="color: #6666FF">Coordinator 소개</span><br><br>
 
-### <span style="color:orange">Coordinator 특징</span><br>
+### <span style="color:orange">Coordinator 특징</span>><br>
 
 - coordinator 별로 하나 또는 그 이상의 View Controller를 보유합니다. 
 - 각 coordinator는 일반적으로 “**start**”라고 불리는 메서드를 사용하여 View Controller를 표시합니다.
 - 각 View Controller에는 coordinator에 대한 **delegate** reference가 있습니다.
 - 각 coordinator는 **child** coordinators 배열을 가지고 있습니다.
 - 각 child coordinator는 **parent** coordinator에 대한 delegate reference가 있습니다.
+
+<br>
 
 ### 추가로<br>
 
@@ -122,7 +124,7 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 **Initial Setting**
 
-본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br><br>
+본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br>
 
 → [SceneDelegate 삭제 방법](https://github.com/dev-Lena/Coordinator/issues/4) <br>
 
@@ -203,7 +205,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 **첫 화면에서 다음 화면으로 이동하기**
 
-첫 화면에 버튼이 두 개가 있고 각 버튼마다 이동하는 화면이 다릅니다.
+첫 화면에 버튼이 두 개가 있고 각 버튼마다 이동
 
 <br>
 **MainCoordinator 클래스**
@@ -253,13 +255,10 @@ class ViewController: UIViewController, Storyboarded {
 
 이게 끝입니다! 간단하죠?! 
 
-SceneDelegate를 없애고 AppDelegate를 사용하여 하기 때문에 Coordinator
-
-## <span style="color: #6666FF">추가적으로 고민해볼 점</span>
+## <span style="color: #6666FF">추가적으로 고민해볼만 점</span>
 
 1. MVVM과 함께 MVVM-C 패턴으로도 사용되는데요. 어떻게 MVVM과 함께 사용할지 고민해보는 것도 좋을 것 같습니다.
 2. childCoordinators를 언제 어떻게 쓰는지에 대해서 고민해보면 좋을 것 같습니다. 
-3. SceneDelegate를 없애고 AppDelegate를 사용하게 되면 SceneDelegate를 사용해야하는 상황에서는 어떻게 하면 좋을까요? 궁금해서 슬쩍 찾아봤는데요 [SceneDelegate는 iOS13](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)에서 추가되었기 때문에 [AppDelegate 메서드](https://zeddios.tistory.com/1023)를 찾을 수 있다고 하네요.
 
 <br>
 
