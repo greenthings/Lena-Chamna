@@ -24,6 +24,8 @@ draft = false
 
 <br>
 
+<!--more-->
+
 ##    <  📑 목차  >
 
 * [Coordinator를 책임과 역할에 따라 분리할 수 없을까?](#Coordinator를-책임과-역할에-따라-분리할-수-없을까?)
