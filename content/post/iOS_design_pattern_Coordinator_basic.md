@@ -81,7 +81,7 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 ## <span style="color: #6666FF">Coordinator 소개</span><br><br>
 
-### <span style="color:orange">Coordinator 특징</span>><br>
+### <span style="color:orange">Coordinator 특징</span><br>
 
 - coordinator 별로 하나 또는 그 이상의 View Controller를 보유합니다. 
 - 각 coordinator는 일반적으로 “**start**”라고 불리는 메서드를 사용하여 View Controller를 표시합니다.
