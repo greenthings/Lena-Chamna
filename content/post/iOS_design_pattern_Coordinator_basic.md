@@ -124,11 +124,34 @@ UIViewController에서는 이렇게 많은 일을 할 수 있습니다. 반대�
 
 **Initial Setting**
 
-본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br>
+예제에서는 SceneDelegate를 삭제한 후 window를 AppDelegate로 옮겨와 설명하고 있습니다.<br>본격적으로 구현을 시작하기 전에 Scene Delegate를 삭제해주세요. <br>
 
 → [SceneDelegate 삭제 방법](https://github.com/dev-Lena/Coordinator/issues/4) <br>
 
 (혹시, [SceneDelegate와 AppDelegate](https://lena-chamna.netlify.app/post/appdelegate_and_scenedelegate/)에 대해 궁금하다면 참고해주세요.)
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let navController = UINavigationController()
+        coordinator = MainCoordinator(navigationController: navController)
+        coordinator?.start()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+        return true
+    }
+```
+
+
+
+ 참고로,**반드시 SceneDelegate를 삭제해야하는 것은 아닙니다.**
+
+_**포인트**⭐️는 window와 화면 전환에 사용할 navigationController(혹은 TabBarController 등)의 인스턴스 생성 후 
+이 navigationController를 주입한 coordinator를 만든 다음에 
+이 coordinator를 통해 화면을 시작하는 것입니다.
+그리고 window의 rootViewController를 navigationController로 지정하는 것입니다._
+
+SceneDelegate를 지우지 않고 진행하려면 이곳을 [참고](https://markstruzinski.com/2019/08/using-coordinator-with-scene-delegates/)해주세요.
 
 **[ step 2 ]**
 
@@ -261,6 +284,12 @@ class ViewController: UIViewController, Storyboarded {
 2. childCoordinators를 언제 어떻게 쓰는지에 대해서 고민해보면 좋을 것 같습니다. 
 
 <br>
+
+**Thanks To** 🙏🏻
+
+[또치](https://github.com/TTOzzi)
+
+
 
 ## 참고
 
