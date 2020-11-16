@@ -15,6 +15,12 @@ theme = "hugo-theme-chunky-poster"
       name = "Home"
       url = "/"
       weight = 10
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 0
+
 [taxonomies]
 category = "categories"
 tag = "tags"
@@ -29,7 +35,7 @@ share = true
 showLanguageSwitcher = false
 
 [sitemap] 
-changefreq = "weekly" 
+changefreq = "daily" 
 filename = "sitemap.xml"
 
 # Custom CSS and JS. Relative to /static/css and /static/js respectively.
@@ -39,10 +45,8 @@ customJS = []
 rss = true
 email = "keunnalee@gmail.com"
 facebook = "https://www.facebook.com/devlena.lee"
-linkedin = "https://linkedin.com"
 instagram = "https://www.instagram.com/dev_lena_lee"
 github = "https://github.com/dev-Lena"
-medium = "https://medium.com"
 [params.prismJS]
    enable = true
    theme = "okaidia"

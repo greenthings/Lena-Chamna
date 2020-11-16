@@ -1,7 +1,7 @@
 ---
 name: Hugo Authors
 images: ["hugo-authors.png"]
-twitter: 'hugo_authors'
 ---
 
-블로그 공사중입니다.
+안녕하세요 iOS 개발자 레나라고 합니다.
+
