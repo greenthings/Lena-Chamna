@@ -57,7 +57,7 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 
   1. 입력/터치 이벤트가 발생했을 때 Model의 State가 변경되고 View가 State의 변화를 감지하고 있다가 변경되면 State에 맞게 View를 업데이트 하도록 구현 하고 싶었고, KVO/Notification을 이용해서 구현했습니다. 
-  2. 그런데 View와 Model이 자신들의 역할에 충실한 것(View는 화면을 그리는 것, Model은 앱 데이터, 비즈니르 로직)을 우선시하여 코드를 짰더니 View Controller가 점점 무거워졌습니다.
+  2. 그런데 View와 Model이 자신들의 역할에 충실한 것(View는 화면을 그리는 것, Model은 앱 데이터, 비즈니스 로직)을 우선시하여 코드를 짰더니 View Controller가 점점 무거워졌습니다.
   3. 또한 정상적으로 동작하는지 확인하기 위해 매번 시뮬레이터를 실행하면서 결과를 확인했었는데요. 화면이 많아지고 기능이 많아지다보니 이 작업이 상당히 비효율적이라고 느꼈었습니다. 
   4. 그래서 테스트 코드를 작성하기 시작했습니다. 그런데 이 때 View나 ViewController 인스턴스를 생성해야 하고 생각보다 제약과 불편점이 많았습니다. 
   5. 이를 테스트하기 위해서는 View와 비즈니스 로직을 분리하는 일이 필요하다는 걸 느꼈습니다.
@@ -71,12 +71,12 @@ MVVM을 정리해보자면 **❶ UI 로직과 비즈니스 로직을 분리하�
 
 MVVM에 대한 설명을 모아보면 이렇습니다. <br>(참고로, 위 영상 [Stanford 강의](https://youtu.be/4GjXq2Sr55Q) 에서 MVVM에 대한 강의를 보면 MVVM에 대한 컨셉을 이해하기 좋습니다. 저의 경우 Stanford 강의에 나온 이미지와 함께 보면서 더 이해하기 쉬웠기 때문에 이미지도 함께 첨부하겠습니다. )<br>
 
-<img src = "https://i.imgur.com/pW7dmjD.jpg" width = "70%"><br><br>
+<img src = "https://i.imgur.com/pW7dmjD.jpg" width = "90%"><br><br>
 
 
-| **<span style="color:orange">View</span>** |
-| -------- |
-| 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발표(publication)을 구독(subscribe)하고, 주시(관찰, observe)한다.** <br>     |
+| **<span style="color:orange">View</span>**                   |
+| ------------------------------------------------------------ |
+| 1. MVVM은 MVC와 달리 ViewController를 View로 취급한다. <br>2. 모든 UI 로직이 ViewModel에 있으므로 View/ViewController가 가벼워진다.(MVC에서보다)<br>3. View는 ViewModel을 참조한다(반대는 X).<br>4. View는 Model을 참조하지 않는다(반대도 O).<br>5. **View는 발행(publication)을 구독(subscribe)하고, 주시(관찰, observe)한다.** <br> |
 
 <br>
 
