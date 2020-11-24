@@ -40,14 +40,31 @@ Hugo + Netlify로 블로그 만드는 방법을 소개합니다.
 <br>
 
 ### <span style="color: #6666FF">🧐  이런 분한테는 hugo + netlify 조합이 별로일 것입니다.  </span>
-1. netlify로 배포하면 url endpoin가 netlify.app 또는 netlify.com이 됩니다. github.io 로 된 url을 갖고 싶으시다면 netlify를 추천하지 않습니다.  
+1. netlify로 배포하면 url endpoint가 netlify.app 또는 netlify.com이 됩니다. github.io 로 된 url을 갖고 싶으시다면 netlify를 추천하지 않습니다.  
 2. hugo는 한국어로된 자료가 jekyll에 비해 많이 적습니다. 대신에 hugo 사이트에 정말 친절하게 나와있긴 합니다.  영어로 자료를 읽는데에 거부감이 있거나 어려움이 있으시다면 별로 일 수 있습니다.  
+3. 중간 중간에 go가 섞여있습니다. go로 작성된 코드를 크게 건들일 필요는 없지만 커스텀에 본격적인 분들은 go를 배워야할 수 있습니다.(새로운 언어를 배우는게 부담스러우시는 분들에게는 단점일 수 있겠네요.)
 
 * 참고로 커스텀하는 과정에서 themes/hugo-theme-chunky-poster 하위에 있는 모든 파일들은 참고만 하고 수정하지는 않습니다. (제가 많이 삽질한 부분...)
 
+
+
 <br>
 
-### <span style="color: orange">🌱 준비</span>
+### <span style="color: orange">🌱 hugo 블로그 시작하기</span>
+
+
+* 참고 자료를 먼저 적겠습니다. 아래 자료만 보고 따라서 만들면 충분히 hugo 블로그를 만들 수 있다고 생각합니다. <br><br><span style="color: red">⭐️⭐️[hugo quick start](https://gohugo.io/getting-started/quick-start/)에 자세한 설명이 나와있습니다. 여기를 보고 따라서 만들면 됩니다.⭐️⭐️</span><br>  
+  <span style="color: red">⭐️⭐️[hugo + netlify로 블로그 만드는 방법 참고한 youtube](https://www.youtube.com/watch?v=gSiAcyTWU3c)를 보면 hugo와 netlify를 이용해서 배포하는 과정을 이해하기 쉽습니다. ⭐️⭐️</span><br><span style="color: red">⭐️⭐️[각 폴더의 역할 참고한 블로그](https://medium.com/@fgrgic/how-to-create-your-online-portfolio-the-fun-way-fb47ef0fb3c8)를 참고하면 블로그를 커스텀할 때 도움이 됩니다. ⭐️⭐️</span><br>
+
+<br>
+
+### **이후 내용은 제가 삽질하면서 알게된 내용들입니다. 참고용으로 봐주시면 감사하겠습니다 :)** 
+
+
+
+<br>
+
+### <span style="color: orange">🌱 삽질 기록 </span>
 
 1. hugo 설치
 ```
@@ -59,14 +76,6 @@ brew install go
 ```
 3. [Netlify](https://app.netlify.com/) 가입  
 4. [hugo theme](https://themes.gohugo.io/) 정하기 + 깃허브에서 HTTPS url이나 SSH key 복사해놓기
-
-<br>
-
-### <span style="color: orange">🌱 hugo 블로그 시작하기</span>
-
-
-* 참고 자료를 먼저 적겠습니다. 아래 자료를 순서대로 본다면 더 이해하기 쉽습니다.<br><br><span style="color: red">⭐️⭐️[hugo quick start](https://gohugo.io/getting-started/quick-start/)에 자세한 설명이 나와있습니다.⭐️⭐️</span><br>  
-<span style="color: red">⭐️⭐️[hugo + netlify로 블로그 만드는 방법 참고한 youtube](https://www.youtube.com/watch?v=gSiAcyTWU3c)를 보면 hugo와 netlify를 이용해서 배포하는 과정을 이해하기 쉽습니다. ⭐️⭐️</span><br><span style="color: red">⭐️⭐️[각 폴더의 역할 참고한 블로그](https://medium.com/@fgrgic/how-to-create-your-online-portfolio-the-fun-way-fb47ef0fb3c8)를 참고하면 블로그를 커스텀할 때 도움이 됩니다. ⭐️⭐️</span><br>
 
 <br>
 
@@ -105,6 +114,8 @@ https://stackoverflow.com/questions/20929336/git-submodule-add-a-git-directory-i
 <br>
 
 <br>
+
+### **<span style="color: orange">🌱 커스텀 </span>**
 
 #### <span style="color: orange">👩🏻‍💻  커스텀하기</span>
 
