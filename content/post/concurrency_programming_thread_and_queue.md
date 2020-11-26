@@ -57,8 +57,9 @@ draft = false
 * 스레드의 작업 처리 방식과 큐의 작업 분산 방식 조합
 * 디스패치큐(GCD) 사용시 알아야 할 점들과 이유
   * UI업데이트는 메인큐에서 해야하는 이유
-  * 메인큐에서 sync 메서드를 사용하면 안되는 이유
-  * weak, strong 캡처 주의
+  * 메인큐에서 다른큐로 보낼때 sync 메서드를 사용하면 안되는 이유
+  * 현재의 큐에서 현재의 큐로 동기적으로 보내면 안되는 이유
+* 정리
 * 함께보면 좋을 자료들
 * 참고
 
@@ -206,10 +207,51 @@ GCD는 간단한 일이나 위에 예제 코드에서 처럼 클로저로 묶은
 
 ### UI업데이트는 메인큐에서 해야하는 이유
 
+ UI관련 일들은 "메인큐"에서 처리해야 합니다. iOS 뿐만 아니라 모든 OS에서 화면을 표시하는 일은 한 개의 스레드에서만 담당해야하는데요. 그래야 간섭이 일어나지 않기 때문이라고 합니다. (간섭이 일어나면 화면이 정상적으로 표시되지 않고 화면이 깜빡일 수 있다고 하네요!) 그렇기 때문에 다른 스레드로 보낸 작업에서 UI 업데이트를 해야하는 상황이 있을 때에는 UI 업데이트에 대한 작업을 메인 스레드로 보내 처리를 해야합니다.
 
 
-* 메인큐에서 sync 메서드를 사용하면 안되는 이유
-* weak, strong 캡처 주의
+
+```swift
+// API에서 비동기로 이미지를 받아와 imageView에 넣어주는 예시
+
+URLSession.shared.dataTask(with: url){
+  //이미지 다운로드 
+  DispatchQueue.main.async{
+    // 다운로드한 이미지를 이미지뷰에 표시(UI업데이트)
+    self.imageView.image = image
+  }
+}
+```
+
+
+
+### 메인큐에서 다른큐로 보낼때 sync 메서드를 사용하면 안되는 이유
+
+메인큐에서 다른큐로 작업을 보낼 때 동기적으로 보내면 안됩니다. 항상 비동기적으로 보내야합니다.
+
+위에서 메인큐는 Serial직렬이라고 언급했었죠? 시리얼큐에서 동기적으로 작업을 다른큐로 보내게되면 작업의 흐름이 이렇게 됩니다.
+
+<img src="https://i.imgur.com/T7vV1yN.png" style="zoom:50%;" />
+
+메인 스레드는 즉각적으로 반응해야하는 UI 관련 작업을 수행하고 있는데 동기적으로(sync로) 작업을 다른 큐에 보내버리면 메인 큐에서 다른 큐로 보낸 작업이 끝날 때까지 메인 스레드는 block상태가 되어버립니다. 즉,  UI 반응이 멈출 수 밖에 없습니다. 그렇기 때문에 메인큐에서 다른큐로 작업을 보낼 때 Sync를 사용하면 안됩니다. 
+
+### 현재의 큐에서 현재의 큐로 동기적으로 보내면 안되는 이유
+
+현재 큐에서 현재 큐로 동기적으로 작업을 보내면 안됩니다. 만약 그럴 경우 현재의 큐를 block하는 동시에 다시 현재의 큐에 접근하기 때문에 [교착상태(Deadlock)](https://en.wikipedia.org/wiki/Deadlock)(간단히 말해, 작업이 진행이 안되는 상태)이 발생할 수 있습니다.
+
+```swift
+// 이러면 안됩니다! 예시
+DispatchQueue.global().async{ 
+  DispatchQueue.global().sync{
+  }
+}
+```
+
+현재 Thread2를 사용하고 있다고 합시다. Thread2에서 sync로 Queue에 작업을 보낸 상황(A)입니다. 이 상황에서 동기(sync)로 작업을 보냈기 때문에 작업이 끝날 때 까지 Thread2에서는 기다리고 있습니다. 즉, Thread2는 block 상태입니다. 하지만 같은 큐에서 같은 큐로 비동기적으로 보냈기 때문에 큐는 다시 Thread2로 작업을 보냅니다(B). 그럼 Thread2 입장에서는 먼저 보낸 작업이 끝날 때까지 block하고 있었는데 큐가 다시 Thread2에 접근해 작업을 보내려고 하니까 deadlock이 발생할 수 있습니다.
+
+이 때, GCD는 동시(concurrent)이기 때문에 (B)에서 Thread2가 아닌 다른 스레드(예를 들어 Thread3,4,5...)로 작업을 배치할 수 있습니다. 이럴 경우에는 deadlock이 발생하지 않습니다. 하지만 앞서 언급했듯이 어떤 스레드에 어떻게 분배가 될지는 OS(시스템)에서 결정을 하기 때문에 deadlock을 야기할 수 있는 가능성이 얼마든지 있으므로 하면 안됩니다.
+
+
 
 ## 정리
 
@@ -227,9 +269,17 @@ GCD는 간단한 일이나 위에 예제 코드에서 처럼 클로저로 묶은
 
 (기록해 놨다가 저도 나중에 보려고 씁니다 🐝)
 
+1. [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html)
 
+2. [Mastering Grand Central Dispatch - WWDC2011](https://developer.apple.com/videos/play/wwdc2011/210/)
 
-참고
+3. [Concurrent Programming With GCD in Swift 3 - WWDC2016](https://developer.apple.com/videos/play/wwdc2016/720)
 
-1.
+4. [Modernizing Grand Central Dispatch Usage - WWDC2017](https://developer.apple.com/videos/play/wwdc2017/706/)
 
+   
+
+## 참고
+
+1. [DispatchQueue](https://developer.apple.com/documentation/dispatch/dispatchqueue)
+2. [iOS Concurrency(동시성) 프로그래밍, 동기 비동기 처리 그리고 GCD/Operation](https://www.inflearn.com/course/iOS-Concurrency-GCD-Operation)
