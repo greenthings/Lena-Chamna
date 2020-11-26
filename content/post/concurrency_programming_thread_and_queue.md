@@ -1,13 +1,4 @@
----
-title: "Concurrency_programming_thread_and_queue"
-date: 2020-11-26T22:05:34+09:00
-images: []
-categories: []
-tags: []
-authors: []
----
-
-
++++
 
 authors = [
     "Lena"
