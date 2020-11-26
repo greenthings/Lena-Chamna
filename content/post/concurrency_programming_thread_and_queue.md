@@ -174,6 +174,11 @@ GCD는 간단한 일이나 위에 예제 코드에서 처럼 클로저로 묶은
 
 
 
+|            | Sync                                           | Async                                         |
+| ---------- | ---------------------------------------------- | --------------------------------------------- |
+| Serial     | <img src="https://i.imgur.com/T7vV1yN.png"  /> | <img src="https://i.imgur.com/Zs5zPKd.png"/>  |
+| Concurrent | <img src="https://i.imgur.com/pmhjRmQ.png"/>   | <img src="https://i.imgur.com/Xp2bwjp.png" /> |
+
 
 
 ## 정리
