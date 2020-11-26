@@ -12,7 +12,7 @@ authors: []
 authors = [
     "Lena"
 ]
-title = "동시성 프로그래밍(Concurrency programming): 스레드와 큐(thread and queue)"
+title = "동시성 프로그래밍(Concurrency programming): 스레드와 큐(Thread and Queue)"
 date = 2020-11-26T22:05:34+09:00
 description = "Concurrency programming: introduce thread and queue in iOS"
 tags = [
@@ -23,13 +23,13 @@ categories = [
 ]
 series = ["Concurrency programming"]
 images = [
-  "/images/Coordinator_Pattern _advanced_wide_ver.png"
+  "/images/async+concurrent.jpg"
 ]
 draft = false
 
 +++
 
-[동시성 프로그래밍 시리즈] Sync vs Async / Serial vs Concurrent에 대해 자세히 알아봅니다 🙌🏻<br>
+[동시성 프로그래밍 시리즈] **Sync** vs **Async** / Serial vs **Concurrent**에 대해 자세히 알아봅니다 🙌🏻<br>
 
 <br>
 
@@ -45,21 +45,32 @@ draft = false
 
 ##    <  📑 목차  >
 
-* 알아두기 (iOS 에서의 작업 처리 방식)
+* 알아두기
 * 큐(Queue)(대기열/대기행렬)
   * 큐 소개
   * 큐의 종류
 
 * Synchronous(동기) vs Asynchronous(비동기)
+
 * Serial(직렬) vs Concurrent(동시)
+
 * 스레드의 작업 처리 방식과 큐의 작업 분산 방식 조합
+
 * 디스패치큐(GCD) 사용시 알아야 할 점들과 이유
+
   * UI업데이트는 메인큐에서 해야하는 이유
   * 메인큐에서 다른큐로 보낼때 sync 메서드를 사용하면 안되는 이유
   * 현재의 큐에서 현재의 큐로 동기적으로 보내면 안되는 이유
+
 * 정리
+
 * 함께보면 좋을 자료들
+
 * 참고
+
+  
+
+<br>
 
 ## <span style="color: #6666FF">알아두기</span>
 
@@ -79,11 +90,11 @@ draft = false
 
  
 
-**그럼 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 되겠네요.**
+### ***그럼 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 되겠네요!**
 
 그렇다면 작업을 어떻게 큐에 보낼까요?
 
-**iOS에서는 DispatchQueue를 사용합니다.** 
+**iOS에서는 *DispatchQueue*를 사용합니다.** 
 
 ```swift
 DispatchQueue.global().async{
@@ -102,7 +113,7 @@ queue.async {
 
 GCD(Grand Central Dispatch)를 DispatchQueue라고 말하기도 합니다. 그리고 GCD는 간단한 일이나 위에 예제 코드에서 처럼 클로저로 묶은 작업과 같이 함수를 사용하는 작업에서 주로 사용합니다.
 
-참고로, GCD하면 Operation 개념도 함께 많이 나오죠? Operation은 작업이라는 뜻으로 GCD를 기반으로 한 OperationQueue는 대기열을 말하며 복잡한 일이나 데이터와 기능을 캡슐화한 객체를 취소하거나 순서를 지정하거나 일시중지(상태 추적)할 때 사용합니다. (이 글에서는 다루지 않고 다음에 다루겠습니다.)
+참고로, GCD에 대해서 구글링을 하면 Operation 개념도 함께 많이 나오더라구요. Operation은 작업이라는 뜻으로 GCD를 기반으로 한 OperationQueue는 대기열을 말하며 복잡한 일이나 데이터와 기능을 캡슐화한 객체를 취소하거나 순서를 지정하거나 일시중지(상태 추적)할 때 사용합니다. (이 글에서는 다루지 않고 다음에 다루겠습니다.)
 
 
 
@@ -161,7 +172,7 @@ GCD(Grand Central Dispatch)를 DispatchQueue라고 말하기도 합니다. 그�
 
 ## <span style="color: #6666FF">Serial(직렬) vs Concurrent(동시)</span>
 
-이 두 개념은 큐의 특성에 대한 개념입니다. 
+이 두 개념은 **큐의 특성**에 대한 개념입니다. 
 
 * Serial
 
@@ -251,11 +262,9 @@ DispatchQueue.global().async{
 
 정리하자면 이렇습니다.
 
-동기 / 비동기 개념은 작업을 보내는 시작점에서 작업이 끝날때 까지 기다릴지 말지에 대해 다루는 것입니다.
+<span style="color:orange">***동기 / 비동기 개념은 작업을 보내는 시작점에서 작업이 끝날때 까지 기다릴지 말지에 대해 다루는 것입니다.*** <br>***한편 직렬 / 동시 개념은 큐로 보낸 작업들이 여러 개의 스레드로 갈 것인지 아니면 하나의 스레드로만 갈 것인지에 대해 다루는 것입니다.***</span>
 
-한편 직렬 / 동시 개념은 큐로 보낸 작업들이 여러 개의 스레드로 갈 것인지 아니면 하나의 스레드로만 갈 것인지에 대해 다루는 것입니다.
-
-그러니까 둘은 다른 개념이고 둘이 같은 말인지 묻는다면 다르다고 답해야 하는거죠 :)
+그러니까 둘은 다른 개념이고, 둘이 같은 말인지 묻는다면 다르다고 답해야 하는거죠 :)
 
 
 
