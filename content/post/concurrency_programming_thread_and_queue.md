@@ -20,7 +20,7 @@ draft = false
 
 +++
 
-[동시성 프로그래밍 시리즈] **Sync** vs **Async** / Serial vs **Concurrent**에 대해 자세히 알아봅니다 🙌🏻<br>
+[동시성 프로그래밍 시리즈] **Sync** vs **Async** / **Serial** vs **Concurrent**에 대해 자세히 알아봅니다 🙌🏻<br>
 
 <br>
 
