@@ -38,9 +38,7 @@ draft = false
 
 * 알아두기
 
-* 큐(Queue)(대기열/대기행렬)GCD는 스레드 관리를 해주면서 개발자가 코드로 작성한 작업을 시스템 레벨에서 동작하도록 해주고 개발자는 수행할 작업을 큐에 등록 하면 됩니다. GCD가 쓰레드 생성과 스케줄링 관련된 일을 모두 담당합니다.
-
-  그럼 작업을 등록할 큐에는 어떤게 있을까요? 큐는 크게 `Dispatch Queue`, `Dispatch Sources`, `Operation Queue`가 있습니다. 
+* 큐(Queue)(대기열/대기행렬)
 
 * * 큐 소개
   * 큐의 종류
@@ -79,10 +77,10 @@ draft = false
 * 큐와 스레드를 이해하기에 앞서 [공식문서](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)에 있는 **GCD**(*Grand Central Dispatch*)에 대한 개념을 알고 갑시다.<br>
   (추가로 [이 자료](https://hcn1519.github.io/articles/2018-05/concurrent_programming)도 한 번 읽어보시면 좋을 것 같습니다 :) )
 
-  > One of the technologies for starting tasks asynchronously is ***Grand Central Dispatch (GCD)***. This technology takes the thread management code you would normally write in your own applications and moves that code down to the system level. All you have to do is define the tasks you want to execute and add them to an appropriate **dispatch queue**. _**GCD takes care of creating the needed threads and of scheduling your tasks to run on those threads**._ Because _the thread management is now part of the system_, **GCD provides a holistic approach to task management and execution, providing better efficiency than traditional threads.**
+  > One of the technologies for starting tasks asynchronously is ***Grand Central Dispatch (GCD)***. This technology takes the thread management code you would normally write in your own applications and moves that code down to the system level. All you have to do is define the tasks you want to execute and add them to an appropriate **dispatch queue**. _**GCD takes care of creating the needed threads and of scheduling your tasks to run on those threads**._ Because _the thread management is now part of the system_, **GCD provides a holistic approach to task management and execution, providing better efficiency than traditional threads.**<br>
   > **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
 
-  >   In the past, if an asynchronous function did not exist for what you want to do, you would have to write your own asynchronous function and create your own threads. But now, OS X and iOS provide technologies to allow you to perform any task asynchronously **_without having to manage the threads yourself._**
+  >   In the past, if an asynchronous function did not exist for what you want to do, you would have to write your own asynchronous function and create your own threads. But now, OS X and iOS provide technologies to allow you to perform any task asynchronously **_without having to manage the threads yourself._**<br>
   > **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
 
   
@@ -108,13 +106,13 @@ GCD는 스레드 관리를 해주면서 개발자가 코드로 작성한 작업�
 
  <br>
 
-### 즉, 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 됩니다!**
+### 즉, 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 됩니다!
 
 <br>
 
 그렇다면 작업을 어떻게 큐에 보낼까요?
 
-**_DispatchQueue_를 사용하는 방법이 있습니다.** 
+**_DispatchQueue_ 를 사용하는 방법이 있습니다.** 
 
 ```swift
 DispatchQueue.global().async{
@@ -131,7 +129,7 @@ queue.async {
 
 **Dispatch**의 사전적인 의미는 ***보내다, 파견하다***입니다. 그러니까 **DispatchQueue**는 *큐에 보내다* 정도로 이해할 수 있겠네요.
 
-> Dispatch queues are a C-based mechanism for executing custom tasks.
+> Dispatch queues are a C-based mechanism for executing custom tasks.<br>
 > **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
 
 <br>
