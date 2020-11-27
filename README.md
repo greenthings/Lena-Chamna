@@ -12,5 +12,6 @@
 | iOS | [간단한 예제로 살펴보는 iOS Design/Architecture Pattern: MVVM](https://lena-chamna.netlify.app/post/ios_design_pattern_mvvm/) | . |
 | iOS | [간단한 예제로 살펴보는 iOS Design/Architecture Pattern: Coordinator - Basic](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_basic/) | [Coordinator](https://github.com/dev-Lena/Coordinator) |
 | iOS | [간단한 예제로 살펴보는 iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced/) | [Coordinator](https://github.com/dev-Lena/Coordinator) |
+| iOS | [동시성 프로그래밍(Concurrency programming): 스레드와 큐(Thread and Queue)](https://master--lena-chamna.netlify.app/post/concurrency_programming_thread_and_queue/) | . |
 
 👉🏻 [댓글 관리 레파지토리](https://github.com/dev-Lena/blog-comments)
