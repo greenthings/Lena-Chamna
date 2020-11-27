@@ -39,12 +39,15 @@ draft = false
 * 알아두기
 
 * 큐(Queue)(대기열/대기행렬)GCD는 스레드 관리를 해주면서 개발자가 코드로 작성한 작업을 시스템 레벨에서 동작하도록 해주고 개발자는 수행할 작업을 큐에 등록 하면 됩니다. GCD가 쓰레드 생성과 스케줄링 관련된 일을 모두 담당합니다.
-  
+
   그럼 작업을 등록할 큐에는 어떤게 있을까요? 큐는 크게 `Dispatch Queue`, `Dispatch Sources`, `Operation Queue`가 있습니다. 
 
 * * 큐 소개
   * 큐의 종류
-  
+
+* * 큐 소개
+  * 큐의 종류
+
 * Synchronous(동기) vs Asynchronous(비동기)
 
 * Serial(직렬) vs Concurrent(동시)
@@ -214,8 +217,8 @@ queue.async {
 
 그림으로 보면 이렇습니다.
 
-|                | Sync    | Async  |
-| -------------- | ------------ | ---- |
+|                | Sync                                                         | Async                                                        |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Serial**     | <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:33%;" /> | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:33%;" /> |
 | **Concurrent** | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:33%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:33%;" /> |
 
