@@ -219,8 +219,8 @@ queue.async {
 
 |                | Sync                                                         | Async                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Serial**     | <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:50%;" /> | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:50%;" /> |
-| **Concurrent** | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:50%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:50%;" /> |
+| **Serial**     | <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:60%;" /> |
+| **Concurrent** | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:60%;" /> |
 
 <br><br>
 
@@ -252,7 +252,7 @@ URLSession.shared.dataTask(with: url){
 
 위에서 메인큐는 Serial 직렬이라고 언급했었죠? 시리얼큐에서 동기적으로 작업을 다른큐로 보내게되면 작업의 흐름이 이렇게 됩니다.
 
-<img src="https://i.imgur.com/T7vV1yN.png" style="zoom:50%;" />
+<img src="https://i.imgur.com/hRuqzM1.png" style="zoom:70%;" />
 
 메인 스레드는 즉각적으로 반응해야하는 UI 관련 작업을 수행하고 있는데 동기적으로(sync로) 작업을 다른 큐에 보내버리면 메인 큐에서 다른 큐로 보낸 작업이 끝날 때까지 메인 스레드는 block상태가 되어버립니다. **즉, UI 반응이 멈출 수 밖에 없습니다.** 그렇기 때문에 메인큐에서 다른큐로 작업을 보낼 때 Sync를 사용하면 안됩니다. 
 
