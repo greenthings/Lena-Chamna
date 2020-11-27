@@ -216,7 +216,7 @@ queue.async {
 |                | Sync                                                         | Async                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Serial**     | <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:60%;" /> |
-| **Concurrent** | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:60%;" /> |
+| **Concurrent** | <img src="https://i.imgur.com/ou8BToH.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:60%;" /> |
 
 <br><br>
 
