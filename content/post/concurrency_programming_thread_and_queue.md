@@ -40,10 +40,8 @@ draft = false
 
 * 큐(Queue)(대기열/대기행렬)
 
-* * 큐 소개
-  * 큐의 종류
+  * 큐 소개
 
-* * 큐 소개
   * 큐의 종류
 
 * Synchronous(동기) vs Asynchronous(비동기)
