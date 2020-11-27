@@ -134,13 +134,13 @@ queue.async {
 
 #### <span style="color:orange">2. 큐의 종류</span>
 
-큐는 여러 종류가 있습니다. 그리고 그 큐마다 특성이 다릅니다. <br><span style="color:orange">원하는 큐로 작업을 보내면 **각 큐가 알아서 각자 다른 스레드를 생성하고 일을 처리합니다.** </span>
+큐는 여러 종류가 있습니다. 그리고 그 큐마다 특성이 다릅니다. <br><span style="color:orange">원하는 큐로 작업을 보내면 시스템에서 큐의 특성에 따라 **스레드를 생성하고 일을 처리합니다.** </span>
 
 
 
 | 메인큐                                                       | Global Queue(글로벌큐)                                       | Private Queue(프라이빗큐)                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1. 한 개<br />2. 직렬(Serial)<br />3. 메인 스레드<br />4. `DispatchQueue.main.async{}` | 1. 종류 여러 개<br />2. 기본 설정 동시(Concurrent)<br />3.중요도에 따라 서비스 품질(QoS)을 설정한 큐 생성 가능. <br />4. `DispatchQueue.global()` 또는 `DispatchQueue.global(qos:) ` | 1. 커스텀으로 만듦.<br />2. 기본 설정 직렬(Serial)(동시(Concurrent) 설정 가능)<br />3. QoS 설정도 가능 |
+| 1. 한 개<br />2. 직렬(Serial)<br />3. 메인 스레드<br />4. `DispatchQueue.main.async{}` | 1. 종류 여러 개<br />2. 기본 설정 동시(Concurrent)<br />3.중요도에 따라 서비스 품질(QoS)을 설정한 큐 생성 가능. <br />4. `DispatchQueue.global()` 또는 `DispatchQueue.global(qos:) ` | 1. 커스텀으로 만듦.<br />2. 기본 설정 직렬(Serial)(동시(Concurrent) 설정 가능)<br />3. QoS 설정도 가능<br />4. `DispatchQueue(label:)` |
 
 각 큐에 대한 내용은 다음에 자세히 다루겠습니다. 여기서는 메인큐에 대한 내용을 알아두면 될 것 같습니다. (뒤에 관련 내용이 나옵니다)
 
@@ -250,7 +250,7 @@ URLSession.shared.dataTask(with: url){
 
 <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:70%;" />
 
-메인 스레드는 즉각적으로 반응해야하는 UI 관련 작업을 수행하고 있는데 동기적으로(sync로) 작업을 다른 큐에 보내버리면 메인 큐에서 다른 큐로 보낸 작업이 끝날 때까지 메인 스레드는 block상태가 되어버립니다. **즉, UI 반응이 멈출 수 밖에 없습니다.** 그렇기 때문에 메인큐에서 다른큐로 작업을 보낼 때 Sync를 사용하면 안됩니다. 
+메인 스레드는 즉각적으로 반응해야하는 UI 관련 작업을 수행하고 있는데 동기적으로(sync로) 작업을 다른 큐에 보내버리면 메인 큐에서 다른 큐로 보낸 작업이 끝날 때까지 메인 스레드는 block 상태가 되어버립니다. **즉, UI 반응이 멈출 수 밖에 없습니다.** 그렇기 때문에 메인큐에서 다른큐로 작업을 보낼 때 Sync를 사용하면 안됩니다. 
 
 <br>
 
@@ -309,6 +309,8 @@ Thread2에서 sync로 Queue에 작업을 보낸 상황(A)을 가정해봅시다.
 1. [DispatchQueue](https://developer.apple.com/documentation/dispatch/dispatchqueue)
 2. [iOS Concurrency(동시성) 프로그래밍, 동기 비동기 처리 그리고 GCD/Operation](https://www.inflearn.com/course/iOS-Concurrency-GCD-Operation)
 3. [Concurrency Programming Guide - Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
+
+<br>
 
 **피드백 주신 JK 감사합니다 🙏🏻**
 
