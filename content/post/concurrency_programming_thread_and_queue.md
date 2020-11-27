@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["Concurrency programming"]
 images = [
-  "/images/async+concurrent.jpg"
+  "/images/async+concurrent.png
 ]
 draft = false
 
@@ -37,21 +37,25 @@ draft = false
 ##    <  📑 목차  >
 
 * 알아두기
-* 큐(Queue)(대기열/대기행렬)
-  * 큐 소개
-  * 큐의 종류
 
+* 큐(Queue)(대기열/대기행렬)GCD는 스레드 관리를 해주면서 개발자가 코드로 작성한 작업을 시스템 레벨에서 동작하도록 해주고 개발자는 수행할 작업을 큐에 등록 하면 됩니다. GCD가 쓰레드 생성과 스케줄링 관련된 일을 모두 담당합니다.
+  
+  그럼 작업을 등록할 큐에는 어떤게 있을까요? 큐는 크게 `Dispatch Queue`, `Dispatch Sources`, `Operation Queue`가 있습니다. 
+
+* * 큐 소개
+  * 큐의 종류
+  
 * Synchronous(동기) vs Asynchronous(비동기)
 
 * Serial(직렬) vs Concurrent(동시)
 
 * 스레드의 작업 처리 방식과 큐의 작업 분산 방식 조합
 
-* 디스패치큐(GCD) 사용시 알아야 할 점들과 이유
+* DispatchQueue(디스패치큐) 사용시 알아야 할 점들과 이유
 
   * UI업데이트는 메인큐에서 해야하는 이유
-  * 메인큐에서 다른큐로 보낼때 sync 메서드를 사용하면 안되는 이유
-  * 현재의 큐에서 현재의 큐로 동기적으로 보내면 안되는 이유
+  * 메인 큐에서 다른 큐로 보낼때 sync 메서드를 사용하면 안되는 이유
+  * 현재의 큐에서 현재의 큐로 동기적(sync)으로 보내면 안되는 이유
 
 * 정리
 
@@ -69,27 +73,45 @@ draft = false
 
 * 동시성 프로그래밍의 시작은 "수행해야 할 작업(Task)들을 한 개의 스레드에서만이 아니라 다른 스레드에서도 어떻게 동시에 일을 시킬 수 있을까?" 라는 아이디어에서 시작합니다.
 
+* 큐와 스레드를 이해하기에 앞서 [공식문서](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)에 있는 **GCD**(*Grand Central Dispatch*)에 대한 개념을 알고 갑시다.<br>
+  (추가로 [이 자료](https://hcn1519.github.io/articles/2018-05/concurrent_programming)도 한 번 읽어보시면 좋을 것 같습니다 :) )
+
+  > One of the technologies for starting tasks asynchronously is ***Grand Central Dispatch (GCD)***. This technology takes the thread management code you would normally write in your own applications and moves that code down to the system level. All you have to do is define the tasks you want to execute and add them to an appropriate **dispatch queue**. _**GCD takes care of creating the needed threads and of scheduling your tasks to run on those threads**._ Because _the thread management is now part of the system_, **GCD provides a holistic approach to task management and execution, providing better efficiency than traditional threads.**
+  > **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
+
+  >   In the past, if an asynchronous function did not exist for what you want to do, you would have to write your own asynchronous function and create your own threads. But now, OS X and iOS provide technologies to allow you to perform any task asynchronously **_without having to manage the threads yourself._**
+  > **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
+
+  
+
+  **직접적으로 스레드를 관리하지 않고 큐(Queue) 개념을 사용하여 작업을 분산 처리합니다. iOS에서는 작업을 큐(Queue)에 보내면 OS가 알아서 다른 스레드로 분산처리를 해줍니다. 즉, 개발자가 스레드를 직접적으로 만들어서 큐에 작업을 넣어주지 않아도 됩니다. 개발자는 큐를 만들어서 큐에 작업을 넣어주고, 그러면 GCD가 스레드 생성과 스케줄링 관련된 일을 모두 담당하여 스레드에 작업을 배치합니다. GCD가 스레드보다 더 높은 레벨/차원에서 일을 한다고 이해하면 좋을 것 같네요.**
+
 <br>
 
 ## <span style="color: #6666FF">큐(Queue)(대기열/대기행렬)</span>
 
 <br>
 
+GCD는 스레드 관리를 해주면서 개발자가 코드로 작성한 작업을 시스템 레벨에서 동작하도록 해주고 개발자는 수행할 작업을 큐에 등록 하면 됩니다. GCD가 쓰레드 생성과 스케줄링 관련된 일을 모두 담당합니다.
+
+그럼 작업을 등록할 큐에는 어떤게 있을까요? <br>
+
+큐는 크게 `Dispatch Queue`, `Dispatch Sources`, `Operation Queue`가 있습니다. (이번 글에서는 `Dispatch Queue` 에 대한 내용만 다룹니다.)
+
 #### <span style="color:orange">1. 큐 소개</span>
 
-* ***직접적으로 스레드를 관리하지 않고 큐(Queue) 개념을 사용하여 작업을 분산 처리합니다. iOS에서는 작업을 큐(Queue)에 보내면 OS가 알아서 다른 스레드로 분산처리를 해줍니다. 즉, 개발자가 스레드를 직접적으로 만들어서 큐에 작업을 넣어주지 않아도 됩니다. 개발자는 큐를 만들어서 큐에 작업을 넣어주고, 그러면 큐가 알아서 스레드를 생성해서 스레드에 작업을 배치합니다. 또한 iOS에서는 GCD/Operation을 사용해 시스템에서 알아서 쓰레드 숫자를 관리합니다. GCD/Operation이 스레드보다 더 높은 레벨/차원에서 일을 한다고 이해하면 좋을 것 같네요.***
 * 큐는 항상 선입선출(FIFO: First In First Out)로 동작합니다. 
 * 먼저 들어온 작업이 다른 스레드에 먼저 배치가 되지만 그렇다고 먼저 끝나는 것이 보장하는 것은 아닙니다.  
 
  <br>
 
-### **그럼 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 되겠네요!**
+### 즉, 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 됩니다!**
 
 <br>
 
 그렇다면 작업을 어떻게 큐에 보낼까요?
 
-**iOS에서는 _DispatchQueue_를 사용합니다.** 
+**_DispatchQueue_를 사용하는 방법이 있습니다.** 
 
 ```swift
 DispatchQueue.global().async{
@@ -106,9 +128,8 @@ queue.async {
 
 **Dispatch**의 사전적인 의미는 ***보내다, 파견하다***입니다. 그러니까 **DispatchQueue**는 *큐에 보내다* 정도로 이해할 수 있겠네요.
 
-GCD(Grand Central Dispatch)를 DispatchQueue라고 말하기도 합니다. 그리고 GCD는 간단한 일이나 위에 예제 코드에서 처럼 클로저로 묶은 작업과 같이 함수를 사용하는 작업에서 주로 사용합니다.
-
-참고로, GCD에 대해서 구글링을 하면 Operation 개념도 함께 많이 나오더라구요. Operation은 작업이라는 뜻으로 GCD를 기반으로 한 OperationQueue는 대기열을 말하며 복잡한 일이나 데이터와 기능을 캡슐화한 객체를 취소하거나 순서를 지정하거나 일시중지(상태 추적)할 때 사용합니다. (이 글에서는 다루지 않고 다음에 다루겠습니다.)
+> Dispatch queues are a C-based mechanism for executing custom tasks.
+> **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
 
 <br>
 
@@ -178,7 +199,7 @@ GCD(Grand Central Dispatch)를 DispatchQueue라고 말하기도 합니다. 그�
 
 * **Concurrent**
 
-컨커런트큐는 받아들인 작업을 **여러 개의 스레드로 나눠서 보내 처리하는 큐**입니다. 이 때 몇 개의 쓰레드로 분산할지는 시스템(OS)이 알아서 결정합니다. 컨커런트큐는 각자 중요도나 작업 성격이 독립적이지만 유사한 여러 개의 작업을 처리할 때 사용합니다. (예를 들면 테이블 뷰 각 셀에 들어가는 이미지나 텍스트 데이터를 API에서 가지고 올 때가 있습니다.)
+컨커런트큐는 받아들인 작업을 **여러 개의 스레드로 나눠서 보내 처리하는 큐**입니다. 이 때 몇 개의 쓰레드로 분산할지는 위에서 언급했듯시스템(OS)이 알아서 결정합니다. 컨커런트큐는 각자 중요도나 작업 성격이 독립적이지만 유사한 여러 개의 작업을 처리할 때 사용합니다. (예를 들면 테이블 뷰 각 셀에 들어가는 이미지나 텍스트 데이터를 API에서 가지고 올 때가 있습니다.)
 
 <br><br>
 
@@ -188,15 +209,15 @@ GCD(Grand Central Dispatch)를 DispatchQueue라고 말하기도 합니다. 그�
 
 |                                                        | <span style="color:orange">Sync(동기)</span>                 | <span style="color:orange">Async(비동기)</span>              |
 | ------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <span style="color:orange">**Serial(직렬)**</span>     | 작업을 다른 스레드에서 하도록 시킨 후 그 작업이 끝나길 <span style="color:brown">**기다렸다가**</span> 다음 작업을 진행합니다. <br>이 때 다른 스레드에 작업을 분산하는 큐의 특성은 Serial입니다. 즉, 메인 스레드에서 분산처리 시킨 작업을 메인 스레드가 아닌 <span style="color:brown">**다른 한 개의 스레드에서**</span> 처리하도록 합니다(분배합니다.) | 작업을 다른 스레드에서 하도록 시킨 후 그 작업이 끝나길 <span style="color:brown">**기다리지 않고**</span> 다음 작업을 진행합니다.<br/>이 때 작업을 다른 스레드에 분산하는 큐의 특성은 Serial입니다. 즉, 메인 스레드에서 분산처리 시킨 작업을 메인 스레드가 아닌 <span style="color:brown">**다른 한 개의 스레드에서**</span> 처리하도록 합니다(분배합니다.) |
-| <span style="color:orange">**Concurrent(동시)**</span> | 작업을 다른 스레드에서 하도록 시킨 후 그 작업이 끝나길 <span style="color:brown">**기다렸다가**</span> 다음 작업을 진행합니다. <br/>이 때 작업을 다른 스레드에 작업을 분산하는 큐의 특성은 Concurrent 입니다. 즉, 메인 스레드에서 분산처리 시킨 작업을 <span style="color:brown">**다른 여러 개의 쓰레드에서**</span> 처리하도록 합니다(분배합니다.) | 작업을 다른 쓰레드에서 하도록 시킨 후, 그 작업이 끝나길 <span style="color:brown">**기다리지 않고**</span> 다음일을 진행한다. <br/>이 때 다른 스레드에 작업을 분산하는 큐의 특성은  Concurrent입니다. 즉, 메인 스레드에서 분산처리 시킨 작업을 <span style="color:brown">**다른 여러 개의 쓰레드에서**</span> 처리하도록 합니다.(분배합니다.) |
+| <span style="color:orange">**Serial(직렬)**</span>     | 작업을 다른 스레드에서 하도록 분산처리한 후 그 작업이 끝나길 <span style="color:brown">**기다렸다가**</span> 다음 작업을 큐에 넣습니다. <br>이 때 다른 스레드에 작업을 분산하는 큐의 특성은 Serial입니다. 즉, 작업을 시키는 스레드(A)에서 분산처리 시킨 작업을 해당 스레드(A)가 아닌 <span style="color:brown">**다른 한 개의 스레드(B)에서**</span> 처리하도록 합니다(분배합니다.) | 작업을 다른 스레드에서 하도록 분산처리한 후 그 작업이 끝나길 <span style="color:brown">**기다리지 않고**</span> 다음 작업을 큐에 넣습니다.<br/>이 때 작업을 다른 스레드에 분산하는 큐의 특성은 Serial입니다. 즉, 작업을 시키는 스레드(A)에서 분산처리 시킨 작업을 해당 스레드(A)가 아닌 <span style="color:brown">**다른 한 개의 스레드(B)에서**</span> 처리하도록 합니다(분배합니다.) |
+| <span style="color:orange">**Concurrent(동시)**</span> | 작업을 다른 스레드에서 하도록 분산처리한 후 그 작업이 끝나길 <span style="color:brown">**기다렸다가**</span> 다음 작업을 큐에 넣습니다. <br/>이 때 작업을 다른 스레드에 작업을 분산하는 큐의 특성은 Concurrent 입니다. 즉, 작업을 시키는 스레드(A)에서 분산처리 시킨 작업을 해당 스레드(A)가 아닌 <span style="color:brown">**다른 여러 개의 쓰레드(B,C,D...)에서**</span> 처리하도록 합니다(분배합니다.) | 작업을 다른 쓰레드에서 하도록 분산처리한 후 그 작업이 끝나길 <span style="color:brown">**기다리지 않고**</span> 다음 작업을 큐에 넣습니다. <br/>이 때 다른 스레드에 작업을 분산하는 큐의 특성은  Concurrent입니다. 즉, 작업을 시키는 스레드(A)에서 분산처리 시킨 작업을 해당 스레드(A)가 아닌 <span style="color:brown">**다른 여러 개의 쓰레드(B,C,D...)에서**</span> 처리하도록 합니다.(분배합니다.) |
 
 그림으로 보면 이렇습니다.
 
 |                | Sync    | Async  |
 | -------------- | ------------ | ---- |
-| **Serial**     | <img src="https://i.imgur.com/T7vV1yN.png" style="zoom:32%;"  /> | <img src="https://i.imgur.com/Zs5zPKd.png" style="zoom:30%;"/> |
-| **Concurrent** | <img src="https://i.imgur.com/pmhjRmQ.png" style="zoom:30%;"/> | <img src="https://i.imgur.com/Xp2bwjp.png" style="zoom:28%;"/> |
+| **Serial**     | <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:33%;" /> | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:33%;" /> |
+| **Concurrent** | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:33%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:33%;" /> |
 
 <br><br>
 
@@ -288,3 +309,7 @@ Thread2에서 sync로 Queue에 작업을 보낸 상황(A)을 가정해봅시다.
 
 1. [DispatchQueue](https://developer.apple.com/documentation/dispatch/dispatchqueue)
 2. [iOS Concurrency(동시성) 프로그래밍, 동기 비동기 처리 그리고 GCD/Operation](https://www.inflearn.com/course/iOS-Concurrency-GCD-Operation)
+3. [Concurrency Programming Guide - Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
+
+**피드백 주신 JK 감사합니다 🙏🏻**
+
