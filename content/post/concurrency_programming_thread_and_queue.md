@@ -193,13 +193,10 @@ GCD(Grand Central Dispatch)를 DispatchQueue라고 말하기도 합니다. 그�
 
 그림으로 보면 이렇습니다.
 
-
-|                | Sync                                                         | Async                                                        |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Serial**     | <img src="https://i.imgur.com/T7vV1yN.png" style="zoom:30%;"  /> | <img src="https://i.imgur.com/Zs5zPKd.png" style="zoom:30%;"/> |
+|                | Sync    | Async  |
+| -------------- | ------------ | ---- |
+| **Serial**     | <img src="https://i.imgur.com/T7vV1yN.png" style="zoom:32%;"  /> | <img src="https://i.imgur.com/Zs5zPKd.png" style="zoom:30%;"/> |
 | **Concurrent** | <img src="https://i.imgur.com/pmhjRmQ.png" style="zoom:30%;"/> | <img src="https://i.imgur.com/Xp2bwjp.png" style="zoom:28%;"/> |
-
-
 
 <br><br>
 
