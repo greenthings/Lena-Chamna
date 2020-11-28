@@ -36,26 +36,18 @@ draft = false
 
 ##    <  📑 목차  >
 
-* 알아두기
+1. 알아두기
+2. 큐(Queue)(대기열/대기행렬)
+   2.1. 큐 소개
+   2.2. 큐의 종류
+3. Synchronous(동기) vs Asynchronous(비동기)
+4. Serial(직렬) vs Concurrent(동시)
+5. 스레드의 작업 처리 방식과 큐의 작업 분산 방식 조합
+6. 정리
+7. 함께보면 좋을 자료들
+8. 참고
 
-* 큐(Queue)(대기열/대기행렬)
 
-  * 큐 소개
-* 큐의 종류
-  
-* Synchronous(동기) vs Asynchronous(비동기)
-
-* Serial(직렬) vs Concurrent(동시)
-
-* 스레드의 작업 처리 방식과 큐의 작업 분산 방식 조합
-
-* 정리
-
-* 함께보면 좋을 자료들
-
-* 참고
-
-  
 
 <br>
 

@@ -32,17 +32,17 @@ draft = false
 
 * DispatchQueue(디스패치큐) 사용시 주의할 점
 
-  * 1. 메인 큐에서의 주의할 점
+  * 1.메인 큐에서의 주의할 점
 
     * 1.1. UI 업데이트는 메인큐에서 해야합니다
 
     * 1.2. 메인 큐에서 다른 큐로 보낼때 sync 메서드를 사용하면 안됩니다
 
-  * 2. 현재의 큐에서 현재의 큐로 작업을 보낼 때 주의할 점
+  * 1.현재의 큐에서 현재의 큐로 작업을 보낼 때 주의할 점
 
 <br><br>
 
-### 👉🏻  [동시성 프로그래밍(Concurrency programming): 스레드와 큐(Thread and Queue)](https://lena-chamna.netlify.app/post/concurrency_programming_thread_and_queue/)에서 이어지는 내용입니다.ㄴ
+### 👉🏻  [동시성 프로그래밍(Concurrency programming): 스레드와 큐(Thread and Queue)](https://lena-chamna.netlify.app/post/concurrency_programming_thread_and_queue/)에서 이어지는 내용입니다.
 
 <br><br>
 
