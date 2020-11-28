@@ -13,5 +13,8 @@
 | iOS | [간단한 예제로 살펴보는 iOS Design/Architecture Pattern: Coordinator - Basic](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_basic/) | [Coordinator](https://github.com/dev-Lena/Coordinator) |
 | iOS | [간단한 예제로 살펴보는 iOS Design/Architecture Pattern: Coordinator - Advanced](https://lena-chamna.netlify.app/post/ios_design_pattern_coordinator_advanced/) | [Coordinator](https://github.com/dev-Lena/Coordinator) |
 | iOS | [동시성 프로그래밍(Concurrency programming): 스레드와 큐(Thread and Queue)](https://master--lena-chamna.netlify.app/post/concurrency_programming_thread_and_queue/) | . |
+| iOS | [동시성 프로그래밍(Concurrency programming): dispatchQueue 사용시 주의할 점들](https://lena-chamna.netlify.app/post/concurrency_programming_caution_when_using_dispatchqueue/) | . |
+
+
 
 👉🏻 [댓글 관리 레파지토리](https://github.com/dev-Lena/blog-comments)
