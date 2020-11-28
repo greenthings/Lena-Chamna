@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["Concurrency programming"]
 images = [
-  "/images/async+concurrent.jpg"
+  "/images/async+concurrent.jpg"f
 ]
 draft = false
 
@@ -41,20 +41,13 @@ draft = false
 * 큐(Queue)(대기열/대기행렬)
 
   * 큐 소개
-
-  * 큐의 종류
-
+* 큐의 종류
+  
 * Synchronous(동기) vs Asynchronous(비동기)
 
 * Serial(직렬) vs Concurrent(동시)
 
 * 스레드의 작업 처리 방식과 큐의 작업 분산 방식 조합
-
-* DispatchQueue(디스패치큐) 사용시 알아야 할 점들과 이유
-
-  * UI업데이트는 메인큐에서 해야하는 이유
-  * 메인 큐에서 다른 큐로 보낼때 sync 메서드를 사용하면 안되는 이유
-  * 현재의 큐에서 현재의 큐로 동기적(sync)으로 보내면 안되는 이유
 
 * 정리
 
@@ -75,7 +68,7 @@ draft = false
 * 큐와 스레드를 이해하기에 앞서 [공식문서](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)에 있는 **GCD**(*Grand Central Dispatch*)에 대한 개념을 알고 갑시다.<br>
   (추가로 [이 자료](https://hcn1519.github.io/articles/2018-05/concurrent_programming)도 한 번 읽어보시면 좋을 것 같습니다 :) )
 
-  > One of the technologies for starting tasks asynchronously is ***Grand Central Dispatch (GCD)***. This technology takes the thread management code you would normally write in your own applications and moves that code down to the system level. All you have to do is define the tasks you want to execute and add them to an appropriate **dispatch queue**. _**GCD takes care of creating the needed threads and of scheduling your tasks to run on those threads**._ Because _the thread management is now part of the system_, **GCD provides a holistic approach to task management and execution, providing better efficiency than traditional threads.**<br>
+  > One of the technologies for starting tasks asynchronously is ***Grand Central Dispatch (GCD)***. This technology takes the thread management code you would normally write in your own applications and moves that code down to the system level. All you have to do is define the tasks you want to execute and add them to an appropriate _**dispatch queue**._ **GCD takes care of creating the needed threads and of scheduling your tasks to run on those threads**._ Because _the thread management is now part of the system_, **GCD provides a holistic approach to task management and execution, providing better efficiency than traditional threads.**<br>
   > **출처**: [Concurrency and Application Design](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
 
   >   In the past, if an asynchronous function did not exist for what you want to do, you would have to write your own asynchronous function and create your own threads. But now, OS X and iOS provide technologies to allow you to perform any task asynchronously **_without having to manage the threads yourself._**<br>
@@ -104,7 +97,7 @@ GCD는 스레드 관리를 해주면서 개발자가 코드로 작성한 작업�
 
  <br>
 
-### 즉, 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 됩니다!
+### _즉, 2개 이상의 스레드를 사용하여 작업을 처리하고 싶을 때 큐에 작업을 보내면 됩니다!_
 
 <br>
 
@@ -140,19 +133,19 @@ queue.async {
 
 | 메인큐                                                       | Global Queue(글로벌큐)                                       | Private Queue(프라이빗큐)                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1. 한 개<br />2. 직렬(Serial)<br />3. 메인 스레드<br />4. `DispatchQueue.main.async{}` | 1. 종류 여러 개<br />2. 기본 설정 동시(Concurrent)<br />3.중요도에 따라 서비스 품질(QoS)을 설정한 큐 생성 가능. <br />4. `DispatchQueue.global()` 또는 `DispatchQueue.global(qos:) ` | 1. 커스텀으로 만듦.<br />2. 기본 설정 직렬(Serial)(동시(Concurrent) 설정 가능)<br />3. QoS 설정도 가능<br />4. `DispatchQueue(label:)` |
+| 1. 한 개<br />2. **직렬(Serial)**<br />3. 메인 스레드<br />4. `DispatchQueue.main.async{}` | 1. 종류 여러 개<br />2. 기본 설정 동시(Concurrent)<br />3.중요도에 따라 서비스 품질(QoS)을 설정한 큐 생성 가능. <br />4. `DispatchQueue.global()` 또는 `DispatchQueue.global(qos:) ` | 1. 커스텀으로 만듦.<br />2. 기본 설정 직렬(Serial)(동시(Concurrent) 설정 가능)<br />3. QoS 설정도 가능<br />4. `DispatchQueue(label:)` |
 
-각 큐에 대한 내용은 다음에 자세히 다루겠습니다. 여기서는 메인큐에 대한 내용을 알아두면 될 것 같습니다. (뒤에 관련 내용이 나옵니다)
+각 큐에 대한 내용은 다음에 자세히 다루겠습니다. 여기서는 메인큐에 대한 내용을 알아두면 될 것 같습니다. ([다음 글](https://lena-chamna.netlify.app/post/concurrency_programming_caution_when_using_dispatchQueue/)에 관련 내용이 나옵니다)
 
 <br><br>
 
 ## <span style="color: #6666FF">Synchronous(동기) vs Asynchronous(비동기)</span>
 
-메인스레드에서 작업들을 다른 스레드로 분산처리 시키고 그 작업이 끝날때 까지 기다릴지 기다리지 않을지에 대한 개념입니다.
+작업을 시키는 스레드에서 작업들을 다른 스레드로 분산처리 시키고 그 작업이 끝날때 까지 기다릴지 기다리지 않을지에 대한 개념입니다.
 
 | <span style="color:orange">비동기(Async)</span>              | <span style="color:orange">동기(Sync)</span>                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 작업을 메인 스레드가 아닌 다른 스레드에서 하도록 시킨 후,<br /> 그 작업이 끝나길 **기다리지 않고** 다음 작업을 진행합니다. <br>(기다리지 않아도 다음 작업을 생성할 수 있습니다.) | 작업을 메인 스레드가 아닌 다른 스레드에서 하도록 시킨 후, <br />그 작업이 끝나길 **기다렸다가** 작업이 완료되면 다음 작업을 진행합니다. <br/>(기다렸다가 다음 작업을 생성할 수 있습니다.) |
+| 작업을 작업을 시키는 스레드가 아닌 다른 스레드에서 하도록 시킨 후,<br /> 그 작업이 끝나길 **기다리지 않고** 다음 작업을 진행합니다. <br>(기다리지 않아도 다음 작업을 생성할 수 있습니다.) | 작업을 작업을 시키는 스레드가 아닌 다른 스레드에서 하도록 시킨 후, <br />그 작업이 끝나길 **기다렸다가** 작업이 완료되면 다음 작업을 진행합니다. <br/>(기다렸다가 다음 작업을 생성할 수 있습니다.) |
 
 <br>
 
@@ -162,7 +155,7 @@ queue.async {
   DispatchQueue.global().async{
   
   }
-  // 원래의 작업이 진행되고 있던 곳(메인스레드)에서 디스패치 글로벌 큐로 작업을 보낸 후 
+  // 원래의 작업이 진행되고 있던 곳에서 디스패치 글로벌 큐로 작업을 보낸 후 
   // 그 작업이 끝날때 까지 기다리지 않습니다.
   ```
 
@@ -181,7 +174,7 @@ queue.async {
   DispatchQueue.global().sync{
   
   }
-  // 원래의 작업이 진행되고 있던 곳(메인스레드)에서 디스패치 글로벌 큐로 작업을 보낸 후 
+  // 원래의 작업이 진행되고 있던 곳에서 디스패치 글로벌 큐로 작업을 보낸 후 
   // 그 작업이 끝날 때까지 동기적으로 기다립니다.
   ```
 
@@ -194,11 +187,11 @@ queue.async {
 
 * **Serial**
 
-시리얼큐는 큐가 받아들인 작업들을 **하나의 스레드로만 보내 처리하는 큐**입니다. 시리얼큐는 순서가 중요한 작업을 처리할 때 사용합니다.
+시리얼큐는 큐가 받아들인 작업들을 **하나의 스레드로만 보내 처리하는 큐**입니다. 시리얼큐는 _순서가 중요한 작업_ 을 처리할 때 사용합니다.
 
 * **Concurrent**
 
-컨커런트큐는 받아들인 작업을 **여러 개의 스레드로 나눠서 보내 처리하는 큐**입니다. 이 때 몇 개의 쓰레드로 분산할지는 위에서 언급했듯시스템(OS)이 알아서 결정합니다. 컨커런트큐는 각자 중요도나 작업 성격이 독립적이지만 유사한 여러 개의 작업을 처리할 때 사용합니다. (예를 들면 테이블 뷰 각 셀에 들어가는 이미지나 텍스트 데이터를 API에서 가지고 올 때가 있습니다.)
+컨커런트큐는 받아들인 작업을 **여러 개의 스레드로 나눠서 보내 처리하는 큐**입니다. 이 때 몇 개의 쓰레드로 분산할지는 위에서 언급했듯시스템(OS)이 알아서 결정합니다. 컨커런트큐는 각자 _중요도나 작업 성격이 독립적이지만 유사한 여러 개의 작업을 처리할 때_ 사용합니다. (예를 들면 테이블 뷰 각 셀에 들어가는 이미지나 텍스트 데이터를 API에서 가지고 올 때가 있습니다.)
 
 <br><br>
 
@@ -218,61 +211,7 @@ queue.async {
 | **Serial**     | <img src="https://i.imgur.com/hRuqzM1.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/qt4qV7K.png" style="zoom:60%;" /> |
 | **Concurrent** | <img src="https://i.imgur.com/ou8BToH.png" style="zoom:60%;" /> | <img src="https://i.imgur.com/Mro0GTL.png" style="zoom:60%;" /> |
 
-<br><br>
 
-## <span style="color: #6666FF">디스패치큐(GCD) 사용시 알아야 할 점들과 이유</span>
-
-#### <span style="color:orange">1. UI 업데이트는 메인큐에서 해야하는 이유</span>
-
- UI 관련 일들은 **메인큐**에서 처리해야 합니다. iOS 뿐만 아니라 모든 OS에서 화면을 표시하는 일은 한 개의 스레드에서만 담당해야하는데요. 그래야 **간섭이 일어나지 않기 때문**이라고 합니다. (간섭이 일어나면 화면이 정상적으로 표시되지 않고 화면이 깜빡일 수 있다고 하네요!) 그렇기 때문에 **다른 스레드로 보낸 작업에서 UI 업데이트를 해야하는 상황이 있을 때에는 UI 업데이트에 대한 작업을 메인 스레드로 보내 처리를 해야합니다**.
-
-
-
-```swift
-// API에서 비동기로 이미지를 받아와 imageView에 넣어주는 예시
-
-URLSession.shared.dataTask(with: url){
-  //이미지 다운로드 
-  DispatchQueue.main.async{ //메인큐
-    // 다운로드한 이미지를 이미지뷰에 표시(UI업데이트)
-    self.imageView.image = image
-  }
-}
-```
-
-<br>
-
-#### <span style="color:orange">2. 메인큐에서 다른큐로 보낼때 sync 메서드를 사용하면 안되는 이유</span>
-
-메인큐에서 다른큐로 작업을 보낼 때 동기적으로 보내면 안됩니다. 항상 비동기적으로 보내야합니다.
-
-위에서 메인큐는 Serial 직렬이라고 언급했었죠? 시리얼큐에서 동기적으로 작업을 다른큐로 보내게되면 작업의 흐름이 이렇게 됩니다.
-
-<img src="https://i.imgur.com/hRuqzM1.png" style="zoom:70%;" />
-
-메인 스레드는 즉각적으로 반응해야하는 UI 관련 작업을 수행하고 있는데 동기적으로(sync로) 작업을 다른 큐에 보내버리면 메인 큐에서 다른 큐로 보낸 작업이 끝날 때까지 메인 스레드는 block 상태가 되어버립니다. **즉, UI 반응이 멈출 수 밖에 없습니다.** 그렇기 때문에 메인큐에서 다른큐로 작업을 보낼 때 Sync를 사용하면 안됩니다. 
-
-<br>
-
-#### <span style="color:orange">3. 현재의 큐에서 현재의 큐로 동기적으로 보내면 안되는 이유</span>
-
-현재 큐에서 현재 큐로 동기적(sync)으로 작업을 보내면 안됩니다. 만약 그럴 경우 **현재의 큐를 block하는 동시에 다시 현재의 큐에 접근하기 때문에 [교착상태(Deadlock)](https://en.wikipedia.org/wiki/Deadlock)(간단히 말해, 작업이 진행이 안되는 상태)이 발생할 수 있습니다.**
-
-```swift
-// 이러면 안됩니다! 예시
-// 글로벌큐 사용. 글로벌큐의 기본 설정은 동시(Concurrent).
-DispatchQueue.global().async{ // (B) 다시 Thread2로 작업을 보냄
-  DispatchQueue.global().sync{ // (A) sync로 Queue에 작업을 보냄.
-    // 작업(Task)
-  }
-}
-```
-
-Thread2에서 sync로 Queue에 작업을 보낸 상황(A)을 가정해봅시다. 이 상황에서 동기(sync)로 작업을 보냈기 때문에 그 작업이 끝날 때 까지 Thread2에서는 기다리고 있습니다. 즉, Thread2는 block 상태입니다. 하지만 같은 큐에서 같은 큐로 비동기적(async)으로 보냈기 때문에 큐는 다시 Thread2로 작업을 보냅니다(B). **그럼 Thread2 입장에서는 먼저 보낸 작업이 끝날 때까지 block하고 있었는데 큐가 다시 Thread2에 접근해 작업을 보내려고 하니까 deadlock이 발생할 수 있습니다.**
-
-이 때, GCD는 동시(concurrent)이기 때문에 (B)에서 Thread2가 아닌 다른 스레드(예를 들어 Thread3,4,5...)로 작업을 배치할 수 있습니다. 이럴 경우에는 deadlock이 발생하지 않습니다. 하지만 앞서 언급했듯이 **어떤 스레드에 어떻게 분배가 될지는 OS(시스템)에서 결정을 하기 때문에 deadlock을 야기할 수 있는 가능성이 얼마든지 있으므로 하면 안됩니다.**
-
-<br><br>
 
 ## <span style="color: #6666FF">정리</span>
 
@@ -289,6 +228,12 @@ Thread2에서 sync로 Queue에 작업을 보낸 상황(A)을 가정해봅시다.
 <br>
 
 ## <span style="color: #6666FF">함께 보면 좋을 자료들</span>
+
+
+
+#### 👉🏻 [동시성 프로그래밍(Concurrency programming): dispatchQueue 사용시 주의할 점들](https://lena-chamna.netlify.app/post/concurrency_programming_caution_when_using_dispatchQueue/)
+
+
 
 (기록해 놨다가 저도 나중에 보려고 씁니다 🐝)
 
