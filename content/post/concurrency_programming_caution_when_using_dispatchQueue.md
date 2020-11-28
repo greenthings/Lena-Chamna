@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["Concurrency programming"]
 images = [
-  "/images/async+concurrent.jpg"f
+  "/images/mainQueue(Serial)+Sync.png"
 ]
 draft = false
 
