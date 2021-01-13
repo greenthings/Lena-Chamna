@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["Networking in iOS"]
 images = [
-  "/images/uploading_array_of_images_using_multipart/form-data_in_swift.png"
+  "/images/whatis-how_http_works_mobile.png"
 ]
 draft = false
 
