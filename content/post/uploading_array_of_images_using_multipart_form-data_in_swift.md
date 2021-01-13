@@ -41,10 +41,6 @@ draft = false
 
 <br><br>
 
-### 👉🏻 [Uploading images and forms to a server using URLSession](https://www.donnywals.com/uploading-images-and-forms-to-a-server-using-urlsession/) 여기에 설명이 잘 되어있습니다.   영어로 자료를 읽는 데에 무리가 없으신 분은 이 글을 참고하시면 좋을 것 같습니다 😃
-
-<br><br>
-
 ## <span style="color: #6666FF">HTTP multipart/form-data</span>
 
  먼저 **HTTP**, **multipart**, **multipart/form-data** 세 가지 키워드에 대해 알아봅시다.
@@ -77,27 +73,29 @@ draft = false
 
 **< MIME에서의 <span style="color:orange">multipart & multipart/form-data</span> >**
 
-> multipart 타입을 통해 MIME은 트리 구조의 메세지 형식을 정의할 수 있습니다. 
-> ex) 어떤 것이 첨부된 텍스트(multipart/mixed) / 텍스트와 HTML과 같이 다른 포맷을 함께 보낸 메세지(multipart/ alternative) 등
->
-> [ Multipart 메세지 ] 
->
-> * **서로 붙어있는 여러 개의 메세지를 포함하여 하나의 복합 메세지**로 보내집니다.
-> * MIME multipart 메세지는 **"Content-type:" 헤더**에 boundary 파라미터를 포함합니다.
-> * **boundary는 메세지 파트를 구분하는 역할을 하며, 메세지의 시작과 끝 부분도 나타납니다.**
-> * 첫번째 Boundary 전에 나오는 내용은 MIME을 지원하지 않는 클라이언트를 위해 제공됩니다.
-> * **boundary 를 선택하는 것은 클라이언트의 몫**입니다. **보통 무작위의 문자를 선택**해 메세지의 본문과 충돌을 피합니다. Ex) UUID
-> * 멀티파트 폼 제출: 
->   1. HTTP form을 채워서 제출하면, 가변 길이 텍스트 필드와 업로드 될 객체는 각각 멀티파트 본문을 구성하는 하나의 파트가 되어 보내집니다. 멀티 파트 분몬은 여러 다른 종류와 길이의 값으로 채워진 form을 허용합니다.
->   2. <span style="color:orange">`multipart/form-data`</span>: 사용자가 양식을 작성한 결과 값의 집합을 번들로 만드는데 사용합니다.
->
-> (출처: [기록은 기억을 이긴다](https://qssdev.tistory.com/47))
+multipart 타입을 통해 MIME은 트리 구조의 메세지 형식을 정의할 수 있습니다. 
+ex) 어떤 것이 첨부된 텍스트(multipart/mixed) / 텍스트와 HTML과 같이 다른 포맷을 함께 보낸 메세지(multipart/ alternative) 등
+
+* [ Multipart 메세지 ] 
+
+  * **서로 붙어있는 여러 개의 메세지를 포함하여 하나의 복합 메세지**로 보내집니다.
+  * MIME multipart 메세지는 **"Content-type:" 헤더**에 boundary 파라미터를 포함합니다.
+  * **boundary는 메세지 파트를 구분하는 역할을 하며, 메세지의 시작과 끝 부분도 나타납니다.**
+  * 첫번째 Boundary 전에 나오는 내용은 MIME을 지원하지 않는 클라이언트를 위해 제공됩니다.
+  * **boundary 를 선택하는 것은 클라이언트의 몫**입니다. **보통 무작위의 문자를 선택**해 메세지의 본문과 충돌을 피합니다. Ex) UUID
+
+  * 멀티파트 폼 제출: 
+    1. HTTP form을 채워서 제출하면, 가변 길이 텍스트 필드와 업로드 될 객체는 각각 멀티파트 본문을 구성하는 하나의 파트가 되어 보내집니다. 멀티 파트 분몬은 여러 다른 종류와 길이의 값으로 채워진 form을 허용합니다.
+    2. <span style="color:orange">`multipart/form-data`</span>: 사용자가 양식을 작성한 결과 값의 집합을 번들로 만드는데 사용합니다.
+
+(출처: [기록은 기억을 이긴다](https://qssdev.tistory.com/47))
 
 <br>
 
 **<파일 업로드할 때 알아야하는 HTTP 규약>**
 
-> First, there’s the `Content-Type` header. It contains information about the type of data you’re sending (`multipart/form-data;`) and a `boundary`. This boundary should always have a unique, somewhat random value. In the example above I used a `UUID`. Since multipart forms are not always sent to the server all at once but rather in chunks, the server needs some way to know when a certain part of the form you’re sending it ends or begins. This is what the `boundary` value is used for. This must be communicated in the headers since that’s the first thing the receiving server will be able to read.
+> First, there’s the `Content-Type` header. It contains information about the type of data you’re sending (`multipart/form-data;`) and a `boundary`. This boundary should always have a unique, somewhat random value. In the example above I used a `UUID`. Since multipart forms are not always sent to the server all at once but rather in chunks, the server needs some way to know when a certain part of the form you’re sending it ends or begins. This is what the `boundary` value is used for. This must be communicated in the headers since that’s the first thing the receiving server will be able to read.  
+> (출처: [Uploading images and forms to a server using URLSession](https://www.donnywals.com/uploading-images-and-forms-to-a-server-using-urlsession/))
 
 **<파일 업로드할 때 알아야하는 HTTP 규약>**
 
@@ -113,7 +111,7 @@ draft = false
 2. 전송되는 파일 데이터의 구분자로 boundary에 지정되어 있는 문자열을 이용합니다.
 3. boundary의 문자열 중 마지막 `**------WebKitFormBoundaryQGvWeNAiOE4g2VM5--**` 값은 다른 값과 다르게 `--`가 마지막에 붙었는데, `--` 는 body의 끝을 알리는 의미를 가집니다.
 
-이 규격에 맞게 http header와 body 데이터를 생성 한 후 HTTP server에 요청하게 되면 서버에서도 HTTP 통신 규격에 맞게 데이터를 파싱한 후 처리하게 됩니다.
+이 규격에 맞게 http header와 body 데이터를 생성 한 후 HTTP server에 요청하게 되면 서버에서도 HTTP 통신 규격에 맞게 데이터를 파싱한 후 처리하게 됩니다.  아래는 HTTP Request Data,  HTTP Response Data 예시입니다.
 
 ```http
 ## HTTP Request Data
@@ -209,6 +207,7 @@ request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField
 1. **create a URLRequest**, make it a POST request and set its Content-Type header.
 
 <br>
+
 ``` swift
 func convertFormField(named name: String, value: String, using boundary: String) -> String {
   var fieldString = "--\(boundary)\r\n"
@@ -219,7 +218,7 @@ func convertFormField(named name: String, value: String, using boundary: String)
   return fieldString
 }
 ```
-2. create a **method that will output these chunks of body data.**
+2. create a **method that will output these chunks of body data.**<br>
 ⭐️ Note the \r\n that is added to the string after every line. This is needed to add a new line to the string so we get the output that we want.
 
 <br>
@@ -248,10 +247,10 @@ extension NSMutableData {
   }
 }
 ```
-3. create a **body chunk** for the file
-  ✍🏻 Instead of a String, we create Data this time. The reason for this is twofold. 
-  One is that **we already have the file data**. Converting this to a String and then back to Data when we add it to the HTTP body is wasteful. 
-  The second reason is that the **HTTP body itself must be created as Data rather than a String**. To make appending text to the Data object, we add an extension on NSMutableData that safely appends the given string as Data. From the structure of the method, you should be able to derive that it matches the HTTP body that was shown earlier.
+3. create a **body chunk** for the file.  
+    ✍🏻 Instead of a String, we create Data this time. The reason for this is twofold.   
+    One is that **we already have the file data**. Converting this to a String and then back to Data when we add it to the HTTP body is wasteful.   
+    The second reason is that the **HTTP body itself must be created as Data rather than a String**. To make appending text to the Data object, we add an extension on NSMutableData that safely appends the given string as Data. From the structure of the method, you should be able to derive that it matches the HTTP body that was shown earlier.
 
   #### **<span style="color:orange">이미지가 여러장일 위 예제 코드에서 ⭐️한 곳에 이미지 배열을 반복문을 통해 순회하며 data에 추가해주면 됩니다.</span>**
 
@@ -276,9 +275,9 @@ request.httpBody = httpBody as Data
 
 print(String(data: httpBody as Data, encoding: .utf8)!)
 ```
-4. You use the methods you wrote earlier to construct the HTTP body.<br> After adding the form fields you add the **final boundary with the two trailing dashes(`--`) and the resulting data is set** as the request’s httpBody
-
-<br>
+4. You use the methods you wrote earlier to construct the HTTP body.  
+   After adding the form fields you add the **final boundary with   the two trailing dashes and the resulting data is set** as the request’s httpBody.  
+   print 하면 나오는 데이터는 아래와 같습니다.   
 
  ```http
  // print 하면 나오는 데이터
@@ -303,11 +302,13 @@ Content-Type: image/png
   // handle the response here
 }.resume()
  ```
-5. run your request just like you would normally
+5. **run your request** just like you would normally
 
 <br><br>
 
-#### <span style="color:orange">**⭐️ 추가적인 URLSession / Alamofire를 이용한 예제는 [이 블로그](https://nsios.tistory.com/39)를 참고하면 될 것 같습니다.⭐️**</span>
+#### <span style="color:orange">**⭐️추가적인 URLSession / Alamofire를 이용한 예제는**</span>
+
+#### <span style="color:orange">**[이 블로그](https://nsios.tistory.com/39)를 참고하면 될 것 같습니다.⭐️**</span>
 
 
 
