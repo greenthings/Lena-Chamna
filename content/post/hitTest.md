@@ -56,8 +56,12 @@ UIResponder에 대한 내용은 [Using Responders and the Responder Chain to Han
 #### 참고
 
 1. [hitTest:withEvent:](https://developer.apple.com/documentation/uikit/uiview/1622469-hittest?language=objc)
-2. [Hit-Testing in iOS](http://smnh.me/hit-testing-in-ios/)
-3. [iOS ) hitTest](https://zeddios.tistory.com/536)
+
+2. [hitTest(_:with:)](https://developer.apple.com/documentation/uikit/uiview/1622469-hittest)
+
+3. [Hit-Testing in iOS](http://smnh.me/hit-testing-in-ios/)
+
+4. [iOS ) hitTest](https://zeddios.tistory.com/536)
 
 #### 이미지 출처: [Hit-Testing in iOS](http://smnh.me/hit-testing-in-ios/)
 
