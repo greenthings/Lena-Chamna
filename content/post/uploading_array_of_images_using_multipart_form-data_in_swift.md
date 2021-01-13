@@ -67,7 +67,7 @@ draft = false
 
 <img src="https://user-images.githubusercontent.com/52783516/104418336-189aac80-55ba-11eb-8cb0-6a85ee6dd58d.png" alt="image" style="zoom:70%;" />
 
-<span style="color:orange">HTTP(request와 response)</span>>는 간단하게 위 이미지와 같이 4개의 파트로 나눌 수 있습니다. **여기서 Message Body에 들어가는 데이터 타입을 HTTP Header에 명시해줄 수 있습니다**. 이 때 명시할 수 있도록 해주는 필드가 바로 Content-type입니다. 추가적으로 Content-type 필드에 [MIME(Multipurpose Internet Mail Extensions)](https://en.wikipedia.org/wiki/MIME) 타입을 기술해줄 수 있는데, 여러 타입 중 하나가 바로 **<span style="color:orange">multipart</span>** 입니다. 
+<span style="color:orange">HTTP(request와 response)</span>는 간단하게 위 이미지와 같이 4개의 파트로 나눌 수 있습니다. **여기서 Message Body에 들어가는 데이터 타입을 HTTP Header에 명시해줄 수 있습니다**. 이 때 명시할 수 있도록 해주는 필드가 바로 Content-type입니다. 추가적으로 Content-type 필드에 [MIME(Multipurpose Internet Mail Extensions)](https://en.wikipedia.org/wiki/MIME) 타입을 기술해줄 수 있는데, 여러 타입 중 하나가 바로 **<span style="color:orange">multipart</span>** 입니다. 
 
 <br>
 
@@ -252,9 +252,11 @@ extension NSMutableData {
     One is that **we already have the file data**. Converting this to a String and then back to Data when we add it to the HTTP body is wasteful.   
     The second reason is that the **HTTP body itself must be created as Data rather than a String**. To make appending text to the Data object, we add an extension on NSMutableData that safely appends the given string as Data. From the structure of the method, you should be able to derive that it matches the HTTP body that was shown earlier.
 
-  #### **<span style="color:orange">이미지가 여러장일 위 예제 코드에서 ⭐️한 곳에 이미지 배열을 반복문을 통해 순회하며 data에 추가해주면 됩니다.</span>**
-
 <br>
+
+**<span style="color:orange">이미지가 여러장일 위 예제 코드에서 ⭐️한 곳에 이미지 배열을 반복문을 통해 순회하며 data에 추가해주면 됩니다.</span>**
+
+<br><br>
 
 ```swift
 let httpBody = NSMutableData()
