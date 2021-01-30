@@ -3,7 +3,7 @@ authors = [
     "Lena"
 ]
 title = "Hit test 사용하기"
-date = 2021-01-15 T00:51:55+09:00
+date = 2021-01-15T00:51:55+09:00
 description = "give examples of practical use of hit test"
 tags = [
     "iOS", "Dealing with Events", "Hit-testing"
@@ -30,7 +30,7 @@ Hit test 의 활용 예시를 소개합니다 <br>
 ## <  📑 목차  >
 
 1. **터치 면적 넓히기**
-2. **터치 이벤트를 그냥 통과 시키기**
+2. **터치 이벤트를 아래 view로 전달하기**
 
 <br><br>
 
