@@ -62,7 +62,7 @@ HitTest에 대해 보기 전에 UIResponder에 대한 내용은 [Using Responder
 
 UIResponder에 대한 공식 문서를 보다가 이런 Note를 발견했는데요! 여기에서도 `hitTest(_:with:)` 를 언급하고 있더라구요! 
 
-<img src="/Users/keunnalee/Library/Application Support/typora-user-images/image-20210113223407709.png" alt="image-20210113223407709" style="zoom:90%;" />
+<img src="https://i.imgur.com/wHinduq.png" style="zoom:67%;" />
 
 
 
