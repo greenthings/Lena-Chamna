@@ -34,6 +34,8 @@ Hit test 의 활용 예시를 소개합니다 <br>
 
 <br><br>
 
+안녕하세요! HitTest의 사용 예시에 대해 소개하겠습니다. 아는 분이 HitTest 키워드를 알려주셔서 흥미로워서 공부해봤는데 지난 포스트와 이번 포스트 모두 재밌는것 같아요 👻  
+
 Hit test는 그럼 언제 사용할까요? 
 
  A view에서 처리하려는 터치 이벤트가 해당 터치 이벤트 시퀀스의 모든 단계에 대해 B view로 리다이렉트 되어야 할 때 **`hitTest:withEvent:`** 메서드를 재정의해서 사용할 수 있습니다. 
@@ -90,4 +92,3 @@ view hierarchy 뷰 계층에서 가장 최상단에 있는 view가 터치 이벤
 
 2. [iOS/swift. hitTest 이용하기](https://mrgamza.tistory.com/526)
 
-<br>
