@@ -19,9 +19,7 @@ draft = false
 
 +++
 
-1. Java의 Garbage Collection(GC)<br>
-2. Swift의 Automatic Reference Counting(ARC) <br>
-3. MRR(Manual Retain-Release) or MRC(Manual Reference Counting) <br>
+1️⃣Java의 Garbage Collection(GC)와 2️⃣Swift의 Automatic Reference Counting(ARC) 3️⃣MRR(Manual Retain-Release) or MRC(Manual Reference Counting)에 대해 소개합니다 :)
 
 <br>
 
@@ -31,7 +29,7 @@ draft = false
 
 <img src="https://i.imgur.com/OpygiIv.png" style="zoom:33%;" />
 
-[Effective Swift](https://theswiftists.github.io/effective-swift/)
+👉🏻👉🏻 [Effective Swift](https://theswiftists.github.io/effective-swift/)
 
 Swift라는 언어가 다른 프로그래밍 언어에 비해서 업데이트가 빨라 바뀌는게 많아서 그런지 Swift는 Effective 시리즈가 없더라구요! 그래서 Effective 시리즈 중 많은 프로그래머들에게 인정받고 있는 Effective Java 책 기반으로 Effective Swift를 해보면 어떨까? 라는 생각에 친구들과 함께 공부하고 있습니다. 
 
@@ -43,23 +41,23 @@ Swift라는 언어가 다른 프로그래밍 언어에 비해서 업데이트가
 
 ## <  📑 목차  >
 
-1. Java의 Garbage Collection(GC)
-   1.1. 동작방식
-   1.2. 장단점
+1. Java의 Garbage Collection(GC)<br>
+   1.1. 동작방식<br>
+   1.2. 장단점<br>
 
-2. MRR(Manual Retain-Release) or MRC(Manual Reference Counting) 
+2. MRR(Manual Retain-Release) or MRC(Manual Reference Counting) <br>
 
-3. Swift의 Automatic Reference Counting(ARC) 
-   3.1. 동작방식
-   3.2. 레퍼런스 카운팅 시점
-   3.3. 장단점
+3. Swift의 Automatic Reference Counting(ARC) <br>
+   3.1. 동작방식<br>
+   3.2. 레퍼런스 카운팅 시점<br>
+   3.3. 장단점<br>
 
-4. 메모리 누수 (Memory Leak)
-   4.1. 메모리 누수는 언제 일어날까?
-   4.2. 강한 참조(Strong Reference)와 강한 참조 순환(Reference Cycle) 예시
-   4.3. 해결 방법
-   4.4. Weak 참조(약한 참조)와 Unowned 참조(미소유 참조)
-   4.5. Strong 참조, Weak 참조, Unowned 참조 비교표
+4. 메모리 누수 (Memory Leak)<br>
+   4.1. 메모리 누수는 언제 일어날까?<br>
+   4.2. 강한 참조(Strong Reference)와 강한 참조 순환(Reference Cycle) 예시<br>
+   4.3. 해결 방법<br>
+   4.4. Weak 참조(약한 참조)와 Unowned 참조(미소유 참조)<br>
+   4.5. Strong 참조, Weak 참조, Unowned 참조 비교표<br>
 
 5. 참고
 
@@ -99,7 +97,7 @@ class C {
 * **런타임**시 **백그라운드**에서 사용되지 않는 객체와 객체 그래프들(objects and object graphs)을 감지하는 방식으로 동작합니다.
   이 동작은 일정 시간 경과한 뒤나 런타임 메모리가 낮아졌을 때 중간 간격(intermediate intervals)으로 발생하며 <u>**정확한 순간에 해제되지 않습니다.**</u>
 * GC는 **사용자가 강제로 수행할 수 없고 언제 일어나는지도 불확실합니다.**
-* GC는 객체를 메모리에서 제거하기 전에 해당 객체의 finalize( ) 메소드 호출합니다. 
+* GC는 객체를 메모리에서 제거하기 전에 해당 객체의 `finalize( )` 메소드 호출합니다. 
 
 <span style="color:orange">**2. 장단점**</span>
 
@@ -116,7 +114,7 @@ class C {
 
 Objective-C는 RC 방법으로 메모리를 관리해 왔습니다. 개발자가 메모리 할당 및 해제를 직접 관리해야 했기 때문에 **MRC(Manual Reference Counting)**, 또는 할당(`retain`)과 해제(`release`)를 명시적으로 호출하기 때문에 **MRR(Manual Retain-Release)** 이라는 이름으로 불렸습니다.
 
-src="https://blog.kakaocdn.net/dn/bin8O7/btqFIjeJxHu/RgkMxKEn59q35DWrMhm2v1/img.png" alt="../Art/ARC_Illustration.jpg" style="zoom:6-%;" />
+<img src="https://blog.kakaocdn.net/dn/bin8O7/btqFIjeJxHu/RgkMxKEn59q35DWrMhm2v1/img.png" alt="../Art/ARC_Illustration.jpg" style="zoom:20%;" />
 
    ARC가 나오기 전에는 개발자가 직접 메모리 관리에 신경을 써야 했습니다. 메모리 관리를 직접 한다는 것은 인스턴스를 메모리에 할당하고 필요하지 않을 때 메모리에서 해제시키는 코드를 적절하게 사용해야 한다는 의미입니다. ARC 이전에는 Retain Cycle을 추적하여 인스턴스를 retain 한 만큼 명시적으로 release 시켜 주어야 했습니다. 
 
@@ -235,6 +233,8 @@ java = nil                       // java Reference Count: 1
 
 <span style="color:orange">**5. Strong 참조, Weak 참조, Unowned 참조 비교표**</span>
 
+
+
 ![](https://i.imgur.com/F2fecnQ.png)
 
 ## <span style="color: #6666FF">참고</span>
@@ -246,7 +246,7 @@ java = nil                       // java Reference Count: 1
 5. [Java Reference와 GC](https://d2.naver.com/helloworld/329631)
 6. [ARC](https://velog.io/@cskim/ARCAutomatic-Reference-Counting)
 
-### 이미지 출처
+**이미지 출처**
 
 - Java의 Garbage Collection(GC): [Naver D2 - Java Reference와 GC](https://d2.naver.com/helloworld/329631)
 - Swift의 ARC 이미지: [Transitioning to ARC Release Notes](https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html)
