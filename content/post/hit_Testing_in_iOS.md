@@ -4,7 +4,7 @@ authors = [
     "Lena"
 ]
 title = "Hit-Testing in iOS "
-date = 2021-01-14T21:41:58+09:00
+date = 2021-01-15T21:41:58+09:00
 description = "explain how to find UIView object to handle events with reverse pre-order depth-first traverse algorithm and Hit-testing"
 tags = [
     "iOS", "UITouch", "UIResponder", "Dealing with Events", "Hit-testing", "reverse pre-order depth-first traverse algorithm"

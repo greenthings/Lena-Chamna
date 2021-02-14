@@ -3,7 +3,7 @@ authors = [
     "Lena"
 ]
 title = "Hit test 사용하기"
-date = 2021-01-15T00:51:55+09:00
+date = 2021-01-14T00:51:55+09:00
 description = "give examples of practical use of hit test"
 tags = [
     "iOS", "Dealing with Events", "Hit-testing"
