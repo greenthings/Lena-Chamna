@@ -45,14 +45,15 @@ Effective 시리즈 중 많은 프로그래머들에게 인정받고 있는 Effe
 
 3. 의존성 주입(Dependency Injection)
 
-   3.1. 소개
-   3.2. 장점
-   3.3. 단점
+  3.1. 소개
+  3.2. 장점
+  3.3. 단점
 
 4. 의존성 주입 방법
-   4.1. Initializer injection(Constructor Injection)
-   4.2. Property Injection
-   4.3. Method Injection
+5. 
+  4.1. Initializer injection(Constructor Injection)
+  4.2. Property Injection
+  4.3. Method Injection
 
 5. iOS 활용 예시
 
