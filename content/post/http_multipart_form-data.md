@@ -13,7 +13,7 @@ categories = [
 ]
 series = ["Network"]
 images = [
-  "/images/imageName.png"
+  "/images/whatis-how_http_works_mobile.png"
 ]
 draft = false
 
@@ -35,6 +35,9 @@ draft = false
     * MIME에서의 multipart & multipart/form-data
     * 파일 업로드할 때 알아야하는 HTTP 규약
 
+<br>
+<br>
+
 ## <span style="color: #6666FF">HTTP multipart/form-data</span>
 
  먼저 **HTTP**, **multipart**, **multipart/form-data** 세 가지 키워드에 대해 알아봅시다.
@@ -46,6 +49,7 @@ draft = false
 > 인터넷 상에서 클라이언트와 서버가 자원을 주고 받을 때 쓰는 통신 규약.
 > (From [Tech Interview](https://gyoogle.dev/blog/computer-science/network/HTTP%20&%20HTTPS.html))
 
+<br>
 <br>
 
 #### <span style="color:orange">**클라이언트 → 서버 파일 업로드하는 과정 이해하기**</span>
@@ -69,6 +73,7 @@ draft = false
 
 multipart 타입을 통해 MIME은 트리 구조의 메세지 형식을 정의할 수 있습니다. 
 ex) 어떤 것이 첨부된 텍스트(multipart/mixed) / 텍스트와 HTML과 같이 다른 포맷을 함께 보낸 메세지(multipart/ alternative) 등
+<br>
 
 * [ Multipart 메세지 ] 
 
@@ -91,6 +96,8 @@ ex) 어떤 것이 첨부된 텍스트(multipart/mixed) / 텍스트와 HTML과 �
 > First, there’s the `Content-Type` header. It contains information about the type of data you’re sending (`multipart/form-data;`) and a `boundary`. This boundary should always have a unique, somewhat random value. In the example above I used a `UUID`. Since multipart forms are not always sent to the server all at once but rather in chunks, the server needs some way to know when a certain part of the form you’re sending it ends or begins. This is what the `boundary` value is used for. This must be communicated in the headers since that’s the first thing the receiving server will be able to read.  
 > (출처: [Uploading images and forms to a server using URLSession](https://www.donnywals.com/uploading-images-and-forms-to-a-server-using-urlsession/))
 
+<br>
+
 **<파일 업로드할 때 알아야하는 HTTP 규약>**
 
 ![img](https://t1.daumcdn.net/cfile/tistory/255E643653B0F89026)
@@ -106,6 +113,8 @@ ex) 어떤 것이 첨부된 텍스트(multipart/mixed) / 텍스트와 HTML과 �
 3. boundary의 문자열 중 마지막 `**------WebKitFormBoundaryQGvWeNAiOE4g2VM5--**` 값은 다른 값과 다르게 `--`가 마지막에 붙었는데, `--` 는 body의 끝을 알리는 의미를 가집니다.
 
 이 규격에 맞게 http header와 body 데이터를 생성 한 후 HTTP server에 요청하게 되면 서버에서도 HTTP 통신 규격에 맞게 데이터를 파싱한 후 처리하게 됩니다.  아래는 HTTP Request Data,  HTTP Response Data 예시입니다.
+
+<br>
 
 ```http
 ## HTTP Request Data
@@ -171,6 +180,8 @@ Date: Mon, 30 Jun 2014 01:28:19 GMT[\r][\n]
 
 SUCCESS
 ```
+
+<br>
 
 (출처: [탁구치는 개발자](https://lng1982.tistory.com/209))
 

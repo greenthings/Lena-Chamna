@@ -14,7 +14,7 @@ categories = [
 ]
 series = ["Network"]
 images = [
-  "/images/whatis-how_http_works_mobile.png"
+  "/images/send_file_to_server.png"
 ]
 draft = false
 
