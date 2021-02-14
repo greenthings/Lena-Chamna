@@ -111,7 +111,7 @@ class SpellChecker {
 
 ## <span style="color: #6666FF">생성자 주입을 사용한 예</span>
 
-#### <span style="color:orange">1. 생성자 주입을 사용한 예 </span>
+ <span style="color:orange">**1. 생성자 주입을 사용한 예** </span>
 
 ```swift
 class SpellChecker {
@@ -129,7 +129,7 @@ class SpellChecker {
 
 ## <span style="color: #6666FF">의존성 주입(Dependency Injection)</span>
 
-#### <span style="color:orange">의존성 주입(Dependency Injection)이란?</span>
+<span style="color:orange">**의존성 주입(Dependency Injection)이란?**</span>
 
 - 의존성: 함수에 필요한 클래스 또는 참조 변수나 객체에 의존하는 것.
     - 주입: 내부에서 필요한 객체를 생성하여 참조/사용하지 않고 외부에서 객체를 생성해 넣어주는 것.
@@ -151,11 +151,13 @@ class SpellChecker {
   1. 의존성 주입을 위한 선행 작업 필요합니다.
   2. 코드를 추척하고 읽기 어려울 수 있습니다.
 
+<br>
+
 ## <span style="color: #6666FF">의존성 주입 방법</span>
 
-#### <span style="color:orange">1. Initializer injection(Constructor Injection)</span>
+<span style="color:orange">**1. Initializer injection(Constructor Injection)**</span>
 
-   ```swift
+```swift
    protocol Drinkable {
        var volume: Int { get }
    }
@@ -175,11 +177,12 @@ class SpellChecker {
    }
    
    let vendingMachine = VendingMachine(Pepsi())
-   ```
+```
+<br>
 
-#### <span style="color:orange">2. Property Injection</span>
+<span style="color:orange">**2.Property Injection**</span>
 
-   ```swift
+```swift
    protocol Drinkable {
        var volume: Int { get }
    }
@@ -196,11 +199,11 @@ class SpellChecker {
    
    let vendingMachine = VendingMachine()
    vendingMachine.beverage = Pepsi()
-   ```
+```
 
-#### <span style="color:orange">3. Method Injection</span>
+<span style="color:orange">**3.Method Injection**</span>
 
-   ```swift
+```swift
    protocol Drinkable {
        var volume: Int { get }
    }
@@ -221,11 +224,12 @@ class SpellChecker {
    
    let vendingMachine = VendingMachine()
    vendingMachine.setupBeverage(Pepsi())
-   ```
+```
+<br>
 
 ## <span style="color: #6666FF">iOS 활용 예시</span>
 
-#### <span style="color:orange">1. Property Injection</span>
+<span style="color:orange">**1.Property Injection**</span>
 
 ```swift
 // Property Injection 
@@ -256,7 +260,9 @@ class DataManager {
 }
 ```
 
-#### <span style="color:orange">2. Initializer injection</span>
+<br>
+
+<span style="color:orange">**2. Initializer injection**</span>
 
   * 네트워크에 이미지 요청
 
