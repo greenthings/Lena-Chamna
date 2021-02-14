@@ -110,7 +110,7 @@ class SpellChecker {
 
 ## <span style="color: #6666FF">생성자 주입을 사용한 예</span>
 
-<span style="color:orange">**1. 생성자 주입을 사용한 예 **</span>
+#### <span style="color:orange">1. 생성자 주입을 사용한 예 </span>
 
 ```swift
 class SpellChecker {
@@ -128,31 +128,31 @@ class SpellChecker {
 
 ## <span style="color: #6666FF">의존성 주입(Dependency Injection)</span>
 
-<span style="color:orange">**의존성 주입(Dependency Injection)이란? **</span>
+#### <span style="color:orange">의존성 주입(Dependency Injection)이란?</span>
 
 - 의존성: 함수에 필요한 클래스 또는 참조 변수나 객체에 의존하는 것.
     - 주입: 내부에서 필요한 객체를 생성하여 참조/사용하지 않고 외부에서 객체를 생성해 넣어주는 것.
     - 의존성 주입: 코드에서 두 모듈 간의 연결. 객체지향 언어에서는 두 클래스 간의 관계라고도 한다. 
     
-  * <span style="color:orange">**의존성 주입의 장점 **</span>
-    1. 객체 간의 결합도(Coupling)을 낮춰 의존성을 줄여 유지보수가 용이해집니다.
-       - 객체 간 의존성(종속성)이 감소해 변경에 민감하지 않습니다.  
-    2. 재사용성이 증가합니다. 
-    3. 리팩토링이 수월합니다.
-    4. Protocol을 사용하는 경우, Protocol에 구현체를 쉽게 교체하면서 상황에 따라 적절한 행동을 정의할 수 있습니다.
-    5. 테스트가 용이합니다. 
-       - 주입할 의존 객체를 Mock 객체로 구현한 후 주입할 수 있습니다.
-    6. 보일러 플레이트 코드(Boilerplate code , 꼭 필요하면서 간단한 기능에 비해 많은 코드를 필요로 하는 코드를 의미 한다. 예를 들면 setter, getter을 의미한다.) 감소시킬 수 있습니다.
-    7. 같은 자원을 사용하려는 여러 클라이언트가 의존 객체들을 안전하게 공유할 수 있습니다. 
-    8. 생성자, 정적 팩터리, 빌더 모두에 똑같이 응용할 수 있습니다.
+* <span style="color:orange">**의존성 주입의 장점**</span>
+  1. 객체 간의 결합도(Coupling)을 낮춰 의존성을 줄여 유지보수가 용이해집니다.
+     - 객체 간 의존성(종속성)이 감소해 변경에 민감하지 않습니다.  
+  2. 재사용성이 증가합니다. 
+  3. 리팩토링이 수월합니다.
+  4. Protocol을 사용하는 경우, Protocol에 구현체를 쉽게 교체하면서 상황에 따라 적절한 행동을 정의할 수 있습니다.
+  5. 테스트가 용이합니다. 
+     - 주입할 의존 객체를 Mock 객체로 구현한 후 주입할 수 있습니다.
+  6. 보일러 플레이트 코드(Boilerplate code , 꼭 필요하면서 간단한 기능에 비해 많은 코드를 필요로 하는 코드를 의미 한다. 예를 들면 setter, getter을 의미한다.) 감소시킬 수 있습니다.
+  7. 같은 자원을 사용하려는 여러 클라이언트가 의존 객체들을 안전하게 공유할 수 있습니다. 
+  8. 생성자, 정적 팩터리, 빌더 모두에 똑같이 응용할 수 있습니다.
 
-  * <span style="color:orange">**의존성 주입의 단점 **</span>
-    1. 의존성 주입을 위한 선행 작업 필요합니다.
-    2. 코드를 추척하고 읽기 어려울 수 있습니다.
+* <span style="color:orange">**의존성 주입의 단점**</span>
+  1. 의존성 주입을 위한 선행 작업 필요합니다.
+  2. 코드를 추척하고 읽기 어려울 수 있습니다.
 
 ## <span style="color: #6666FF">의존성 주입 방법</span>
 
-<span style="color:orange">**1. Initializer injection(Constructor Injection)**</span>
+#### <span style="color:orange">1. Initializer injection(Constructor Injection)</span>
 
    ```swift
    protocol Drinkable {
@@ -176,7 +176,7 @@ class SpellChecker {
    let vendingMachine = VendingMachine(Pepsi())
    ```
 
-<span style="color:orange">**2. Property Injection **</span>
+#### <span style="color:orange">2. Property Injection</span>
 
    ```swift
    protocol Drinkable {
@@ -197,7 +197,7 @@ class SpellChecker {
    vendingMachine.beverage = Pepsi()
    ```
 
-<span style="color:orange">**3. Method Injection **</span>
+#### <span style="color:orange">3. Method Injection</span>
 
    ```swift
    protocol Drinkable {
@@ -224,7 +224,7 @@ class SpellChecker {
 
 ## <span style="color: #6666FF">iOS 활용 예시</span>
 
-<span style="color:orange">**1. Property Injection **</span>
+#### <span style="color:orange">1. Property Injection</span>
 
 ```swift
 // Property Injection 
@@ -255,7 +255,7 @@ class DataManager {
 }
 ```
 
-<span style="color:orange">**2. Initializer injection **</span>
+#### <span style="color:orange">2. Initializer injection</span>
 
   * 네트워크에 이미지 요청
 
