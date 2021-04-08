@@ -6,7 +6,7 @@ title = "[iOS] AppDelegate와 SceneDelegate"
 date = 2020-03-06T23:26:10+09:00
 description = "iOS 13 이후 AppDelegate와 SceneDelegate"
 tags = [
-    "iOS13", "AppDelegate", "SceneDelegate"
+    "iOS", "AppDelegate", "SceneDelegate"
 ]
 images = [
   "/images/iOS13_AppDelegate_and_SceneDelegate.png"
