@@ -19,6 +19,8 @@
 | Swift | [Swift - Generic](https://lena-chamna.netlify.app/post/introduce_swift_generic/) | . |
 | HTTP & iOS | [HTTP multipart/form-data 이해하기](https://lena-chamna.netlify.app/post/http_multipart_form-data/) | . |
 | HTTP & iOS | [multipart/form-data 이용해서 사진/이미지 배열 업로드하기](https://lena-chamna.netlify.app/post/uploading_array_of_images_using_multipart_form-data_in_swift/) | . |
+| iOS | [Hit test 사용하기](https://lena-chamna.netlify.app/post/practical_use_of_hit_test/) | . |
+| iOS | [Hit-Testing in iOS](https://lena-chamna.netlify.app/post/hit_testing_in_ios/) | . |
 
 
 
