@@ -161,6 +161,22 @@ view의 'draw(_:)'는 ['setNeedsDisplay()'](https://developer.apple.com/document
 main 스레드에서 실행해야 하는 코드의 경우 XCT 테스트 성능 테스트를 생성하여 코드를 실행하는 데 걸린 시간을 측정합니다. [`measure(_:)`](https://developer.apple.com/documentation/xctest/xctestcase/1496290-measure) 블록에서 관련 코드를 실행합니다. 코드 블록의 평균 런타임을 기준으로 사용하거나 기준선을 편집하여 0.25초(iOS가 main 스레드를 실행하는 데 허용되는 최대 시간)로 설정할 수 있습니다. 코드가 실행되는 데 기준 시간보다 상당히 긴 시간이 필요한 경우 성능 테스트가 실패합니다.
 
 
+
+<br><span style="color:orange">🤓 MetrickKit에 대해 더 알고 싶다면!</span>
+
+👉🏻 
+
+[MetricKit](https://developer.apple.com/documentation/metrickit/)
+
+[What's new in MetricKit](https://developer.apple.com/videos/play/wwdc2020/10081/)
+
+[Improving Battery Life and Performance](https://developer.apple.com/videos/play/wwdc2019/417/)
+
+[MetricKit Internals. Insights into your iOS app performance.](https://appspector.com/blog/metrickit)
+
+[Metric Kit explained](https://medium.com/@deekshithbellare/metric-kit-explained-ec47dda1d496)
+
+
 ## <span style="color: #6666FF">참고</span>
 
 1. [Improving App Responsiveness](https://developer.apple.com/documentation/xcode/improving_your_app_s_performance/improving_app_responsiveness)
