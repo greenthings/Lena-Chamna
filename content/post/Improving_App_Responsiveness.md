@@ -66,7 +66,7 @@ Apple Developer Doumentation 중 앱 반응성을 향상시키는 [아티클](ht
 
 - hitch: (잠깐 지체하게 하는) 문제[장애] 
 
-<img src="https://docs-assets.developer.apple.com/published/25c6f3b83a/rendered2x-1599869861.png" alt="Screenshot of the Scrolling metric pane in the Xcode Organizer. From left to right is the list of metrics and reports, the metric UI with a bar graph showing the scroll hitch rate over the last 8 app versions, the selected version bar highlighted in the graph, and the comparison data for the selected and latest versions on the right side.  " width="70%;" />
+<img src="https://docs-assets.developer.apple.com/published/25c6f3b83a/rendered2x-1599869861.png" alt="Screenshot of the Scrolling metric pane in the Xcode Organizer. From left to right is the list of metrics and reports, the metric UI with a bar graph showing the scroll hitch rate over the last 8 app versions, the selected version bar highlighted in the graph, and the comparison data for the selected and latest versions on the right side.  " width="90%;" />
 
 <br>
 
@@ -78,7 +78,7 @@ Apple Developer Doumentation 중 앱 반응성을 향상시키는 [아티클](ht
 
 "hang"은 앱이 응답하지 않는 구체적인 예입니다. ① main 스레드를 사용할 수 없어 뷰 콘텐츠를 업데이트할 수 없거나(view 업데이트는 main 스레드에서만 가능하기 때문) ② 사용자 작업에 응답할 수 없을 때 <u>앱이 중단</u>됩니다. iOS는 앱이 중단되는 때를 감지하고 MetricKit 및 Xcode의 metrics organizer를 통해 데이터를 사용할 수 있도록 합니다. iOS는 main 스레드가 250ms 이상 응답하지 않을 때 앱의 hangs를 추적하며, 아래와 같이 metrics organizer에서 결과를 확인할 수 있습니다.(아래 그림 참조)
 
-<img src="https://docs-assets.developer.apple.com/published/90c7baeade/rendered2x-1599869862.png" alt="Screenshot of the Hang Rate metric pane in the Xcode Organizer. From left to right is the list of metrics and reports, the metric UI with a bar graph showing the hang rate over the last 8 app versions, the selected version bar highlighted in the graph, and the comparison data for the selected and latest versions on the right side.  " width="70%;" />
+<img src="https://docs-assets.developer.apple.com/published/90c7baeade/rendered2x-1599869862.png" alt="Screenshot of the Hang Rate metric pane in the Xcode Organizer. From left to right is the list of metrics and reports, the metric UI with a bar graph showing the hang rate over the last 8 app versions, the selected version bar highlighted in the graph, and the comparison data for the selected and latest versions on the right side.  " width="90%;" />
 
 > The Xcode Organizer reports the hang rate as the number of seconds per hour that the app is unresponsive. The Organizer shows both the median hang rate experienced by the typical user, and the extreme 90th percentile hang rate. [MetricKit](https://developer.apple.com/documentation/metrickit) provides the same hang rate metric as a histogram.
 >
@@ -100,7 +100,7 @@ iOS는 다양한 하드웨어 기능과 성능 특성을 가진 다양한 기기
 
 Thread State Track instrument(스레드 상태 추적기) 는 입력된 시스템 호출, 걸린 시간 및 iOS가 스레드를 실행하도록 예약한 시간을 상세히 설명하는 서술(narrative)과 함께 스레드 상태의 타임라인을 보여줍니다. 이 정보와 Thread State Track instrument와 결합은  각 스레드에서 수행한 시스템 호출 수와 지속 시간에 대한 요약 통계를 보여주는데, 이를 통해 시스템 호출이 main 스레드를 차단하는지 여부를 확인할 수 있습니다.
 
-<img src="https://docs-assets.developer.apple.com/published/0ef4f577bb/12137851-c3ea-4b5c-8610-d70afba5d735.png" alt="Illustration showing thread state and system call trace timelines in Instruments." width="70%;" />
+<img src="https://docs-assets.developer.apple.com/published/0ef4f577bb/12137851-c3ea-4b5c-8610-d70afba5d735.png" alt="Illustration showing thread state and system call trace timelines in Instruments." width="90%;" />
 
 >  Click on a particular invocation of a system call in the narrative to view a backtrace of the thread when it made that system call. Use this information to find out which functions or methods on the main thread cause it to hang.
 
@@ -126,7 +126,7 @@ UI 업데이트를 분리하여 표시할 데이터를 준비하고 view를 다�
 
 이러한 모든 작업 중 UIKit에서 호출되는 action method (action 메서드)와 앱의 view 재구성만 main스레드를 사용하면 됩니다. 앱은 아래 그림과 같이 다른 모든 작업을 백그라운드로 비동기식으로 디스패치할 수 있습니다.
 
-<img src="https://docs-assets.developer.apple.com/published/6d462a8042/87ba2a55-ed92-478d-9384-42b55f5bd0c4.png" alt="Illustration showing an app using an asynchronous dispatch queue to increase the responsiveness of its main thread." width="40%;" />
+<img src="https://docs-assets.developer.apple.com/published/6d462a8042/87ba2a55-ed92-478d-9384-42b55f5bd0c4.png" alt="Illustration showing an app using an asynchronous dispatch queue to increase the responsiveness of its main thread." width="60%;" />
 
 #### <br><span style="color:orange">Minimize View Update Time</span>
 
