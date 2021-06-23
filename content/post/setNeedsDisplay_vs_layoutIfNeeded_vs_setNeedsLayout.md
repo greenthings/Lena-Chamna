@@ -13,13 +13,13 @@ categories = [
 ]
 series = ["iOS", "View"]
 images = [
-  "/images/imageName.png"
+  "/images/viewUpdateMethodCallOrder.png"
 ]
 draft = true
 
 +++
 
-한줄 소개글 <br>
+ "**setNeedsDisplay( )** vs **layoutIfNeeded( )** vs **setNeedsLayout( )**"에 대해 알아봅시다! <br>
 
 <br>
 
@@ -117,6 +117,7 @@ myButton.setNeedsDisplay()
 ## <span style="color: #6666FF">참고</span>
 
 1. [iOS / drawRect 와 setNeedsDisplay](https://unnnyong.me/2019/05/29/ios-%F0%9F%87%B0%F0%9F%87%B7-drawrect-%EC%99%80-setneedsdisplay/)
+2. [Why after -setNeedsLayout -layoutsSubviews method executes immediately](https://stackoverflow.com/questions/52899704/why-after-setneedslayout-layoutssubviews-method-executes-immediately)(썸네일 이미지 출처)
 
 <br>
 
