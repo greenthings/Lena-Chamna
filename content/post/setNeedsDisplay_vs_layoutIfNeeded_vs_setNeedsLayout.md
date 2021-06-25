@@ -118,6 +118,9 @@ myButton.setNeedsDisplay()
 
 1. [iOS / drawRect 와 setNeedsDisplay](https://unnnyong.me/2019/05/29/ios-%F0%9F%87%B0%F0%9F%87%B7-drawrect-%EC%99%80-setneedsdisplay/)
 2. [Why after -setNeedsLayout -layoutsSubviews method executes immediately](https://stackoverflow.com/questions/52899704/why-after-setneedslayout-layoutssubviews-method-executes-immediately)(썸네일 이미지 출처)
+3. [setNeedsLayout()](https://developer.apple.com/documentation/uikit/uiview/1622601-setneedslayout)
+4. [layoutIfNeeded( )](https://developer.apple.com/documentation/uikit/uiview/1622507-layoutifneeded)
+5. [setNeedsDisplay( )](https://developer.apple.com/documentation/uikit/uiview/1622437-setneedsdisplay)
 
 <br>
 
