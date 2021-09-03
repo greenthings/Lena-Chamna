@@ -3,16 +3,16 @@
 authors = [
     "Lena"
 ]
-title = "Hit-Testing in iOS "
+title = "View 계층 탐색 알고리즘과 Hit-Testing in iOS "
 date = 2021-01-15T21:41:58+09:00
 description = "explain how to find UIView object to handle events with reverse pre-order depth-first traverse algorithm and Hit-testing"
 tags = [
     "iOS", "UITouch", "UIResponder", "Dealing with Events", "Hit-testing", "reverse pre-order depth-first traverse algorithm"
 ]
 categories = [
-     "iOS", "View", "Event", "Deep Dive"
+     "iOS", "View", "Event", "Deep Dive", "View Hierachy Searching Algorithm", "Reverse Pre-order Depth-first Traversal Algorithm"
 ]
-series = ["View in iOS"]
+series = ["View in iOS", "View Algorithm"]
 images = [
   "/images/hit-test-depth-first-traversal.png"
 ]
@@ -23,6 +23,7 @@ draft = false
  <br>
  1. Hit-testing 에 대해 설명합니다.  
   2. Hit-testing 가 어떻게 이벤트를 처리할 UIView 객체를 찾는지 그 과정과 로직에 대해 설명합니다.
+   3. View 계층 탐색 알고리즘에 대해서 소개합니다.(reverse pre-order depth-first traversal algorithm)
 
 <br>
 
