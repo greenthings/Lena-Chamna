@@ -3,7 +3,7 @@ authors = [
     "Lena"
 ]
 title = "Swift로 알고리즘 풀 때 유용한 메서드 모음"
-date = 2021-09-18T21:06:41+09:00
+date = 2021-03-18T21:06:41+09:00
 description = "Swift 알고리즘에서 많이 사용하는 메서드들을 정리합니다."
 tags = [
    "Swift", "Algorithm"
